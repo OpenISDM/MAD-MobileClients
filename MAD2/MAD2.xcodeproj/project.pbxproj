@@ -1,0 +1,436 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED07778C15BE759000CEB9CB /* MADLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07778B15BE759000CEB9CB /* MADLocation.m */; };
+		ED07779A15BE892E00CEB9CB /* MADLocationDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED07779915BE892E00CEB9CB /* MADLocationDataModel.m */; };
+		ED1133E415C66A9000360389 /* taipei.gpx in Resources */ = {isa = PBXBuildFile; fileRef = ED1133E315C66A9000360389 /* taipei.gpx */; };
+		ED12D1BD15D803BB00AA924B /* light_flame.png in Resources */ = {isa = PBXBuildFile; fileRef = ED12D1BC15D803BA00AA924B /* light_flame.png */; };
+		ED12D1BF15D8050C00AA924B /* convFire.json in Resources */ = {isa = PBXBuildFile; fileRef = ED12D1BE15D8050C00AA924B /* convFire.json */; };
+		ED1489D315CF668A000F3344 /* test2.json in Resources */ = {isa = PBXBuildFile; fileRef = ED1489D215CF668A000F3344 /* test2.json */; };
+		ED170E4E15BFA29F00E8BE76 /* LocationsUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = ED170E4D15BFA29F00E8BE76 /* LocationsUpdater.m */; };
+		ED1A2E6C15BE69FA00FF4999 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1A2E6B15BE69FA00FF4999 /* UIKit.framework */; };
+		ED1A2E6E15BE69FA00FF4999 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1A2E6D15BE69FA00FF4999 /* Foundation.framework */; };
+		ED1A2E7015BE69FA00FF4999 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1A2E6F15BE69FA00FF4999 /* CoreGraphics.framework */; };
+		ED1A2E7215BE69FA00FF4999 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1A2E7115BE69FA00FF4999 /* CoreData.framework */; };
+		ED1A2E7815BE69FA00FF4999 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED1A2E7615BE69FA00FF4999 /* InfoPlist.strings */; };
+		ED1A2E7A15BE69FA00FF4999 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1A2E7915BE69FA00FF4999 /* main.m */; };
+		ED1A2E7E15BE69FA00FF4999 /* MAD2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1A2E7D15BE69FA00FF4999 /* MAD2AppDelegate.m */; };
+		ED1A2E8115BE69FA00FF4999 /* MAD2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED1A2E7F15BE69FA00FF4999 /* MAD2.xcdatamodeld */; };
+		ED1A2E8815BE6B3D00FF4999 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED1A2E8715BE6B3D00FF4999 /* Storyboard.storyboard */; };
+		ED30A4E715BF918600010558 /* MADLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED30A4E615BF918600010558 /* MADLocationViewController.m */; };
+		ED3FC83715D0B01C00327204 /* light_add.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3FC83615D0B01C00327204 /* light_add.png */; };
+		ED3FC83A15D0B7FB00327204 /* light_shield.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3FC83915D0B7FB00327204 /* light_shield.png */; };
+		ED3FC83C15D0BC9C00327204 /* light_search.png in Resources */ = {isa = PBXBuildFile; fileRef = ED3FC83B15D0BC9C00327204 /* light_search.png */; };
+		ED737BC715C2900700A956B0 /* MADLocationMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = ED737BC615C2900700A956B0 /* MADLocationMapPoint.m */; };
+		ED737BCA15C299D800A956B0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED737BC915C299D800A956B0 /* CoreLocation.framework */; };
+		ED76AA5415C9214C00EDBFDE /* MADLocationSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED76AA5315C9214C00EDBFDE /* MADLocationSearchController.m */; };
+		ED92BE5315D041AD006EC4AD /* earthQuakeIcon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ED92BE5215D041AD006EC4AD /* earthQuakeIcon.jpeg */; };
+		ED92BE5615D0432A006EC4AD /* typhoonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92BE5515D0432A006EC4AD /* typhoonIcon.png */; };
+		ED92BE5815D0453F006EC4AD /* light_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92BE5715D0453F006EC4AD /* light_pin.png */; };
+		ED92BE5A15D04584006EC4AD /* light_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92BE5915D04584006EC4AD /* light_heart.png */; };
+		ED92BE5C15D045A1006EC4AD /* light_bolt.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92BE5B15D045A1006EC4AD /* light_bolt.png */; };
+		ED92BE6015D048AE006EC4AD /* academiaSinicaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92BE5F15D048AE006EC4AD /* academiaSinicaLogo.png */; };
+		ED92BE6815D04BC0006EC4AD /* calBearYes.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92BE6715D04BC0006EC4AD /* calBearYes.png */; };
+		ED92BE6A15D04EC2006EC4AD /* light_home.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92BE6915D04EC2006EC4AD /* light_home.png */; };
+		ED9C0A7115D3625C00842746 /* medicalConv.json in Resources */ = {isa = PBXBuildFile; fileRef = ED9C0A7015D3625C00842746 /* medicalConv.json */; };
+		ED9C0A7515D4C06500842746 /* MADDirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9C0A7415D4C06400842746 /* MADDirectionsViewController.m */; };
+		EDA10BF615C25D2800EC85C9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA10BF515C25D2800EC85C9 /* MapKit.framework */; };
+		EDB0666215D50375007CC254 /* shelterConv.json in Resources */ = {isa = PBXBuildFile; fileRef = EDB0666115D50375007CC254 /* shelterConv.json */; };
+		EDB38AA515C045EA00B9AB04 /* MADLocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB38AA415C045EA00B9AB04 /* MADLocationDetailViewController.m */; };
+		EDB9E2A715D8A89C006605C8 /* MADIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB9E2A615D8A89C006605C8 /* MADIcon.png */; };
+		EDF0CF0E15CF72300049ACC7 /* MADSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF0CF0D15CF72300049ACC7 /* MADSearchBar.m */; };
+		EDF0CF1115CF73910049ACC7 /* MADLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF0CF1015CF73910049ACC7 /* MADLocationTableViewCell.m */; };
+		EDF0CF1415CF892F0049ACC7 /* MADLocationViewControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF0CF1315CF892F0049ACC7 /* MADLocationViewControllerHelper.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		ED07778A15BE759000CEB9CB /* MADLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocation.h; sourceTree = "<group>"; };
+		ED07778B15BE759000CEB9CB /* MADLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADLocation.m; sourceTree = "<group>"; };
+		ED07779815BE892E00CEB9CB /* MADLocationDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocationDataModel.h; sourceTree = "<group>"; };
+		ED07779915BE892E00CEB9CB /* MADLocationDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADLocationDataModel.m; sourceTree = "<group>"; };
+		ED1133E315C66A9000360389 /* taipei.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = taipei.gpx; path = "../../../../../Desktop/FACEBOOK PHOTOS/taipei.gpx"; sourceTree = "<group>"; };
+		ED12D1BC15D803BA00AA924B /* light_flame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = light_flame.png; path = ../../../../../Desktop/Titanium_Iconpack_1/light/light_flame.png; sourceTree = "<group>"; };
+		ED12D1BE15D8050C00AA924B /* convFire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = convFire.json; path = ../../../../../Desktop/OpenDataConverter/convFire.json; sourceTree = "<group>"; };
+		ED1489D215CF668A000F3344 /* test2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test2.json; path = ../../../../../Desktop/OpenDataConverter/test2.json; sourceTree = "<group>"; };
+		ED170E4C15BFA29F00E8BE76 /* LocationsUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsUpdater.h; sourceTree = "<group>"; };
+		ED170E4D15BFA29F00E8BE76 /* LocationsUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsUpdater.m; sourceTree = "<group>"; };
+		ED1A2E6715BE69FA00FF4999 /* MAD2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAD2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED1A2E6B15BE69FA00FF4999 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		ED1A2E6D15BE69FA00FF4999 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		ED1A2E6F15BE69FA00FF4999 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		ED1A2E7115BE69FA00FF4999 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		ED1A2E7515BE69FA00FF4999 /* MAD2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAD2-Info.plist"; sourceTree = "<group>"; };
+		ED1A2E7715BE69FA00FF4999 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED1A2E7915BE69FA00FF4999 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ED1A2E7B15BE69FA00FF4999 /* MAD2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAD2-Prefix.pch"; sourceTree = "<group>"; };
+		ED1A2E7C15BE69FA00FF4999 /* MAD2AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAD2AppDelegate.h; sourceTree = "<group>"; };
+		ED1A2E7D15BE69FA00FF4999 /* MAD2AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAD2AppDelegate.m; sourceTree = "<group>"; };
+		ED1A2E8015BE69FA00FF4999 /* MAD2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAD2.xcdatamodel; sourceTree = "<group>"; };
+		ED1A2E8715BE6B3D00FF4999 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		ED30A4E515BF918600010558 /* MADLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocationViewController.h; sourceTree = "<group>"; };
+		ED30A4E615BF918600010558 /* MADLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADLocationViewController.m; sourceTree = "<group>"; };
+		ED3FC83615D0B01C00327204 /* light_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = light_add.png; path = ../../../../../Desktop/Titanium_Iconpack_1/light/light_add.png; sourceTree = "<group>"; };
+		ED3FC83915D0B7FB00327204 /* light_shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = light_shield.png; path = ../../../../../Desktop/Titanium_Iconpack_1/light/light_shield.png; sourceTree = "<group>"; };
+		ED3FC83B15D0BC9C00327204 /* light_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = light_search.png; path = ../../../../../Desktop/Titanium_Iconpack_1/light/light_search.png; sourceTree = "<group>"; };
+		ED737BC515C2900600A956B0 /* MADLocationMapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocationMapPoint.h; sourceTree = "<group>"; };
+		ED737BC615C2900700A956B0 /* MADLocationMapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADLocationMapPoint.m; sourceTree = "<group>"; };
+		ED737BC915C299D800A956B0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		ED76AA5215C9214C00EDBFDE /* MADLocationSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MADLocationSearchController.h; path = ../MADLocationSearchController.h; sourceTree = "<group>"; };
+		ED76AA5315C9214C00EDBFDE /* MADLocationSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MADLocationSearchController.m; path = ../MADLocationSearchController.m; sourceTree = "<group>"; };
+		ED92BE5215D041AD006EC4AD /* earthQuakeIcon.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = earthQuakeIcon.jpeg; path = ../../../../../Desktop/earthQuakeIcon.jpeg; sourceTree = "<group>"; };
+		ED92BE5515D0432A006EC4AD /* typhoonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = typhoonIcon.png; path = ../../../../../Desktop/typhoonIcon.png; sourceTree = "<group>"; };
+		ED92BE5715D0453F006EC4AD /* light_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = light_pin.png; path = ../../../../../Desktop/Titanium_Iconpack_1/light/light_pin.png; sourceTree = "<group>"; };
+		ED92BE5915D04584006EC4AD /* light_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = light_heart.png; path = ../../../../../Desktop/Titanium_Iconpack_1/light/light_heart.png; sourceTree = "<group>"; };
+		ED92BE5B15D045A1006EC4AD /* light_bolt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = light_bolt.png; path = ../../../../../Desktop/Titanium_Iconpack_1/light/light_bolt.png; sourceTree = "<group>"; };
+		ED92BE5F15D048AE006EC4AD /* academiaSinicaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = academiaSinicaLogo.png; path = ../../../../../Desktop/academiaSinicaLogo.png; sourceTree = "<group>"; };
+		ED92BE6715D04BC0006EC4AD /* calBearYes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calBearYes.png; path = ../../../../../Desktop/calBearYes.png; sourceTree = "<group>"; };
+		ED92BE6915D04EC2006EC4AD /* light_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = light_home.png; path = ../../../../../Desktop/Titanium_Iconpack_1/light/light_home.png; sourceTree = "<group>"; };
+		ED9C0A7015D3625C00842746 /* medicalConv.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = medicalConv.json; path = ../../../../../Desktop/OpenDataConverter/medicalConv.json; sourceTree = "<group>"; };
+		ED9C0A7315D4C06300842746 /* MADDirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADDirectionsViewController.h; sourceTree = "<group>"; };
+		ED9C0A7415D4C06400842746 /* MADDirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADDirectionsViewController.m; sourceTree = "<group>"; };
+		EDA10BF515C25D2800EC85C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		EDB0666115D50375007CC254 /* shelterConv.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shelterConv.json; sourceTree = "<group>"; };
+		EDB38AA315C045EA00B9AB04 /* MADLocationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocationDetailViewController.h; sourceTree = "<group>"; };
+		EDB38AA415C045EA00B9AB04 /* MADLocationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADLocationDetailViewController.m; sourceTree = "<group>"; };
+		EDB9E2A615D8A89C006605C8 /* MADIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MADIcon.png; path = ../../../../../Desktop/MADIcon.png; sourceTree = "<group>"; };
+		EDF0CF0C15CF72300049ACC7 /* MADSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADSearchBar.h; sourceTree = "<group>"; };
+		EDF0CF0D15CF72300049ACC7 /* MADSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADSearchBar.m; sourceTree = "<group>"; };
+		EDF0CF0F15CF73910049ACC7 /* MADLocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocationTableViewCell.h; sourceTree = "<group>"; };
+		EDF0CF1015CF73910049ACC7 /* MADLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADLocationTableViewCell.m; sourceTree = "<group>"; };
+		EDF0CF1215CF892F0049ACC7 /* MADLocationViewControllerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocationViewControllerHelper.h; sourceTree = "<group>"; };
+		EDF0CF1315CF892F0049ACC7 /* MADLocationViewControllerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADLocationViewControllerHelper.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED1A2E6415BE69FA00FF4999 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED737BCA15C299D800A956B0 /* CoreLocation.framework in Frameworks */,
+				EDA10BF615C25D2800EC85C9 /* MapKit.framework in Frameworks */,
+				ED1A2E6C15BE69FA00FF4999 /* UIKit.framework in Frameworks */,
+				ED1A2E6E15BE69FA00FF4999 /* Foundation.framework in Frameworks */,
+				ED1A2E7015BE69FA00FF4999 /* CoreGraphics.framework in Frameworks */,
+				ED1A2E7215BE69FA00FF4999 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED1A2E5C15BE69F900FF4999 = {
+			isa = PBXGroup;
+			children = (
+				ED737BC915C299D800A956B0 /* CoreLocation.framework */,
+				EDA10BF515C25D2800EC85C9 /* MapKit.framework */,
+				ED1A2E8715BE6B3D00FF4999 /* Storyboard.storyboard */,
+				ED1A2E7315BE69FA00FF4999 /* MAD2 */,
+				ED1A2E6A15BE69FA00FF4999 /* Frameworks */,
+				ED1A2E6815BE69FA00FF4999 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED1A2E6815BE69FA00FF4999 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED1A2E6715BE69FA00FF4999 /* MAD2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED1A2E6A15BE69FA00FF4999 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED1A2E6B15BE69FA00FF4999 /* UIKit.framework */,
+				ED1A2E6D15BE69FA00FF4999 /* Foundation.framework */,
+				ED1A2E6F15BE69FA00FF4999 /* CoreGraphics.framework */,
+				ED1A2E7115BE69FA00FF4999 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED1A2E7315BE69FA00FF4999 /* MAD2 */ = {
+			isa = PBXGroup;
+			children = (
+				ED1133E315C66A9000360389 /* taipei.gpx */,
+				ED1A2E7C15BE69FA00FF4999 /* MAD2AppDelegate.h */,
+				ED76AA5215C9214C00EDBFDE /* MADLocationSearchController.h */,
+				ED76AA5315C9214C00EDBFDE /* MADLocationSearchController.m */,
+				ED92BE5F15D048AE006EC4AD /* academiaSinicaLogo.png */,
+				ED1A2E7D15BE69FA00FF4999 /* MAD2AppDelegate.m */,
+				ED1A2E7F15BE69FA00FF4999 /* MAD2.xcdatamodeld */,
+				ED92BE6915D04EC2006EC4AD /* light_home.png */,
+				ED92BE6715D04BC0006EC4AD /* calBearYes.png */,
+				ED92BE5515D0432A006EC4AD /* typhoonIcon.png */,
+				ED92BE5215D041AD006EC4AD /* earthQuakeIcon.jpeg */,
+				ED3FC83B15D0BC9C00327204 /* light_search.png */,
+				ED3FC83915D0B7FB00327204 /* light_shield.png */,
+				ED3FC83615D0B01C00327204 /* light_add.png */,
+				ED12D1BC15D803BA00AA924B /* light_flame.png */,
+				ED92BE5B15D045A1006EC4AD /* light_bolt.png */,
+				ED92BE5915D04584006EC4AD /* light_heart.png */,
+				ED92BE5715D0453F006EC4AD /* light_pin.png */,
+				ED1489D215CF668A000F3344 /* test2.json */,
+				ED12D1BE15D8050C00AA924B /* convFire.json */,
+				EDB0666115D50375007CC254 /* shelterConv.json */,
+				ED9C0A7015D3625C00842746 /* medicalConv.json */,
+				ED07779815BE892E00CEB9CB /* MADLocationDataModel.h */,
+				ED07779915BE892E00CEB9CB /* MADLocationDataModel.m */,
+				ED170E4C15BFA29F00E8BE76 /* LocationsUpdater.h */,
+				ED170E4D15BFA29F00E8BE76 /* LocationsUpdater.m */,
+				ED07778A15BE759000CEB9CB /* MADLocation.h */,
+				ED07778B15BE759000CEB9CB /* MADLocation.m */,
+				ED1A2E7415BE69FA00FF4999 /* Supporting Files */,
+				ED30A4E515BF918600010558 /* MADLocationViewController.h */,
+				ED30A4E615BF918600010558 /* MADLocationViewController.m */,
+				EDF0CF1215CF892F0049ACC7 /* MADLocationViewControllerHelper.h */,
+				EDF0CF1315CF892F0049ACC7 /* MADLocationViewControllerHelper.m */,
+				EDF0CF0F15CF73910049ACC7 /* MADLocationTableViewCell.h */,
+				EDF0CF1015CF73910049ACC7 /* MADLocationTableViewCell.m */,
+				EDB38AA315C045EA00B9AB04 /* MADLocationDetailViewController.h */,
+				EDB38AA415C045EA00B9AB04 /* MADLocationDetailViewController.m */,
+				ED737BC515C2900600A956B0 /* MADLocationMapPoint.h */,
+				ED737BC615C2900700A956B0 /* MADLocationMapPoint.m */,
+				EDF0CF0C15CF72300049ACC7 /* MADSearchBar.h */,
+				EDF0CF0D15CF72300049ACC7 /* MADSearchBar.m */,
+				ED9C0A7315D4C06300842746 /* MADDirectionsViewController.h */,
+				ED9C0A7415D4C06400842746 /* MADDirectionsViewController.m */,
+			);
+			path = MAD2;
+			sourceTree = "<group>";
+		};
+		ED1A2E7415BE69FA00FF4999 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED1A2E7515BE69FA00FF4999 /* MAD2-Info.plist */,
+				ED1A2E7615BE69FA00FF4999 /* InfoPlist.strings */,
+				EDB9E2A615D8A89C006605C8 /* MADIcon.png */,
+				ED1A2E7915BE69FA00FF4999 /* main.m */,
+				ED1A2E7B15BE69FA00FF4999 /* MAD2-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED1A2E6615BE69FA00FF4999 /* MAD2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED1A2E8415BE69FA00FF4999 /* Build configuration list for PBXNativeTarget "MAD2" */;
+			buildPhases = (
+				ED1A2E6315BE69FA00FF4999 /* Sources */,
+				ED1A2E6415BE69FA00FF4999 /* Frameworks */,
+				ED1A2E6515BE69FA00FF4999 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MAD2;
+			productName = MAD2;
+			productReference = ED1A2E6715BE69FA00FF4999 /* MAD2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED1A2E5E15BE69F900FF4999 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "UC Berkeley EECS";
+			};
+			buildConfigurationList = ED1A2E6115BE69F900FF4999 /* Build configuration list for PBXProject "MAD2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ED1A2E5C15BE69F900FF4999;
+			productRefGroup = ED1A2E6815BE69FA00FF4999 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED1A2E6615BE69FA00FF4999 /* MAD2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED1A2E6515BE69FA00FF4999 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED1A2E7815BE69FA00FF4999 /* InfoPlist.strings in Resources */,
+				ED1A2E8815BE6B3D00FF4999 /* Storyboard.storyboard in Resources */,
+				ED1133E415C66A9000360389 /* taipei.gpx in Resources */,
+				ED1489D315CF668A000F3344 /* test2.json in Resources */,
+				ED92BE5315D041AD006EC4AD /* earthQuakeIcon.jpeg in Resources */,
+				ED92BE5615D0432A006EC4AD /* typhoonIcon.png in Resources */,
+				ED92BE5815D0453F006EC4AD /* light_pin.png in Resources */,
+				ED92BE5A15D04584006EC4AD /* light_heart.png in Resources */,
+				ED92BE5C15D045A1006EC4AD /* light_bolt.png in Resources */,
+				ED92BE6015D048AE006EC4AD /* academiaSinicaLogo.png in Resources */,
+				ED92BE6815D04BC0006EC4AD /* calBearYes.png in Resources */,
+				ED92BE6A15D04EC2006EC4AD /* light_home.png in Resources */,
+				ED3FC83715D0B01C00327204 /* light_add.png in Resources */,
+				ED3FC83A15D0B7FB00327204 /* light_shield.png in Resources */,
+				ED3FC83C15D0BC9C00327204 /* light_search.png in Resources */,
+				ED9C0A7115D3625C00842746 /* medicalConv.json in Resources */,
+				EDB0666215D50375007CC254 /* shelterConv.json in Resources */,
+				ED12D1BD15D803BB00AA924B /* light_flame.png in Resources */,
+				ED12D1BF15D8050C00AA924B /* convFire.json in Resources */,
+				EDB9E2A715D8A89C006605C8 /* MADIcon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED1A2E6315BE69FA00FF4999 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED1A2E7A15BE69FA00FF4999 /* main.m in Sources */,
+				ED1A2E7E15BE69FA00FF4999 /* MAD2AppDelegate.m in Sources */,
+				ED1A2E8115BE69FA00FF4999 /* MAD2.xcdatamodeld in Sources */,
+				ED07778C15BE759000CEB9CB /* MADLocation.m in Sources */,
+				ED07779A15BE892E00CEB9CB /* MADLocationDataModel.m in Sources */,
+				ED30A4E715BF918600010558 /* MADLocationViewController.m in Sources */,
+				ED170E4E15BFA29F00E8BE76 /* LocationsUpdater.m in Sources */,
+				EDB38AA515C045EA00B9AB04 /* MADLocationDetailViewController.m in Sources */,
+				ED737BC715C2900700A956B0 /* MADLocationMapPoint.m in Sources */,
+				ED76AA5415C9214C00EDBFDE /* MADLocationSearchController.m in Sources */,
+				EDF0CF0E15CF72300049ACC7 /* MADSearchBar.m in Sources */,
+				EDF0CF1115CF73910049ACC7 /* MADLocationTableViewCell.m in Sources */,
+				EDF0CF1415CF892F0049ACC7 /* MADLocationViewControllerHelper.m in Sources */,
+				ED9C0A7515D4C06500842746 /* MADDirectionsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ED1A2E7615BE69FA00FF4999 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED1A2E7715BE69FA00FF4999 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED1A2E8215BE69FA00FF4999 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ED1A2E8315BE69FA00FF4999 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED1A2E8515BE69FA00FF4999 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MAD2/MAD2-Prefix.pch";
+				INFOPLIST_FILE = "MAD2/MAD2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		ED1A2E8615BE69FA00FF4999 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MAD2/MAD2-Prefix.pch";
+				INFOPLIST_FILE = "MAD2/MAD2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED1A2E6115BE69F900FF4999 /* Build configuration list for PBXProject "MAD2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED1A2E8215BE69FA00FF4999 /* Debug */,
+				ED1A2E8315BE69FA00FF4999 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED1A2E8415BE69FA00FF4999 /* Build configuration list for PBXNativeTarget "MAD2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED1A2E8515BE69FA00FF4999 /* Debug */,
+				ED1A2E8615BE69FA00FF4999 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ED1A2E7F15BE69FA00FF4999 /* MAD2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ED1A2E8015BE69FA00FF4999 /* MAD2.xcdatamodel */,
+			);
+			currentVersion = ED1A2E8015BE69FA00FF4999 /* MAD2.xcdatamodel */;
+			path = MAD2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = ED1A2E5E15BE69F900FF4999 /* Project object */;
+}
