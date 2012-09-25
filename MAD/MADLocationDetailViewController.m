@@ -19,7 +19,7 @@
 
 @implementation MADLocationDetailViewController
 
-@synthesize location = _location, nameLabel=_nameLabel, lonLabel = _lonLabel, latLabel = _latLabel, detailLabel = _detailLabel, typeLabel = _typeLabel,addressLabel=_addressLabel ,directionsButton = _directionsButton;
+@synthesize location = _location, nameLabel=_nameLabel, detailLabel = _detailLabel, typeLabel = _typeLabel,addressLabel=_addressLabel ,directionsButton = _directionsButton;
 
 
 - (void)setLocation:(MADLocation *)location:newLocation
@@ -46,8 +46,8 @@
     MADLocation *theLocation= self.location;
     if (theLocation) {
         self.nameLabel.text = theLocation.name;
-        self.lonLabel.text = theLocation.lon.description;
-        self.latLabel.text = theLocation.lat.description;
+        //self.lonLabel.text = theLocation.lon.description;
+        //self.latLabel.text = theLocation.lat.description;
         self.detailLabel.text = theLocation.detail;
         self.typeLabel.text = theLocation.type;
 //        CLLocation * cLocation = [[CLLocation alloc] initWithLatitude:[theLocation.lat doubleValue] longitude:[theLocation.lon doubleValue]];

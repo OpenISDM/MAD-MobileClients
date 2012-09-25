@@ -45,6 +45,8 @@
 		2B4DD04616115A090070B743 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4DD04516115A090070B743 /* CoreLocation.framework */; };
 		2B4DD04816115A1F0070B743 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4DD04716115A1F0070B743 /* CoreData.framework */; };
 		2B4DD05116115CCA0070B743 /* MAD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD04F16115CC90070B743 /* MAD.xcdatamodeld */; };
+		2BCA24FE161199CD000CF380 /* Academia.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 2BCA24FD161199CD000CF380 /* Academia.gpx */; };
+		2BCA25051611A3B9000CF380 /* KMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCA25041611A3B9000CF380 /* KMLParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +103,9 @@
 		2B4DD04516115A090070B743 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2B4DD04716115A1F0070B743 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2B4DD05016115CCA0070B743 /* MAD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAD.xcdatamodel; sourceTree = "<group>"; };
+		2BCA24FD161199CD000CF380 /* Academia.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Academia.gpx; sourceTree = "<group>"; };
+		2BCA25031611A3B9000CF380 /* KMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLParser.h; sourceTree = "<group>"; };
+		2BCA25041611A3B9000CF380 /* KMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +159,8 @@
 		2B4DCFEA161157710070B743 /* MAD */ = {
 			isa = PBXGroup;
 			children = (
+				2BCA25031611A3B9000CF380 /* KMLParser.h */,
+				2BCA25041611A3B9000CF380 /* KMLParser.m */,
 				2B4DD04F16115CC90070B743 /* MAD.xcdatamodeld */,
 				2B4DD042161159AC0070B743 /* json */,
 				2B4DD0411611596D0070B743 /* Image */,
@@ -189,6 +196,7 @@
 		2B4DCFEB161157710070B743 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2BCA24FD161199CD000CF380 /* Academia.gpx */,
 				2B4DCFEC161157710070B743 /* MAD-Info.plist */,
 				2B4DCFED161157710070B743 /* InfoPlist.strings */,
 				2B4DCFF0161157710070B743 /* main.m */,
@@ -297,6 +305,7 @@
 				2B4DD0201611593C0070B743 /* light_shield.png in Resources */,
 				2B4DD03F161159570070B743 /* medicalConv.json in Resources */,
 				2B4DD040161159570070B743 /* shelterConv.json in Resources */,
+				2BCA24FE161199CD000CF380 /* Academia.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +330,7 @@
 				2B4DD03D161159570070B743 /* MADLocationViewControllerHelper.m in Sources */,
 				2B4DD03E161159570070B743 /* MADSearchBar.m in Sources */,
 				2B4DD05116115CCA0070B743 /* MAD.xcdatamodeld in Sources */,
+				2BCA25051611A3B9000CF380 /* KMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,7 +370,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -380,7 +390,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -393,6 +403,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAD/MAD-Prefix.pch";
 				INFOPLIST_FILE = "MAD/MAD-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -404,6 +415,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAD/MAD-Prefix.pch";
 				INFOPLIST_FILE = "MAD/MAD-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -428,6 +440,7 @@
 				2B4DD000161157710070B743 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

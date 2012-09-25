@@ -11,66 +11,56 @@
 #import "MADAppDelegate.h"
 
 @implementation LocationsUpdater
+
 @synthesize locationDataModel=_locationDataModel;
 
 -(id) initWithDataModel:(MADLocationDataModel *) dataModel
 {
     self = [super init];
     if (self !=nil){
-
-//        MADAppDelegate* appDelegate = (MADAppDelegate*)[[UIApplication sharedApplication] delegate];
-//        [self setLocationDataModel:[appDelegate locationDataModel]];
+        //MADAppDelegate* appDelegate = (MADAppDelegate*)[[UIApplication sharedApplication] delegate];
+        //[self setLocationDataModel:[appDelegate locationDataModel]];
 
         [self setLocationDataModel:dataModel];
     }
     return self;
 }
 
+-(NSArray *) readFromJson:(NSString *) filename
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:[filename stringByDeletingPathExtension] ofType:@"json"];
+    NSError * error;
+    NSData* data = [NSData dataWithContentsOfFile:filePath];
+    NSArray * arr = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    //NSLog(@"DATA %@: ", [[arr objectAtIndex:0] objectForKey:@"name"]);
+    
+    return arr;
+}
+
 -(NSArray *) getNewData
 {
-    NSArray* interim = [[self getNewShelterData] arrayByAddingObjectsFromArray: [self getNewFireData]];
-//    NSArray* interim = [[NSArray alloc] init ];
-    return [interim arrayByAddingObjectsFromArray:[self getNewHospitalData]];
+    NSArray* interim = [[self getNewShelterData] arrayByAddingObjectsFromArray: [self getNewHospitalData]];
+    return interim;
 }
 
 -(NSArray *) getNewShelterData
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"shelterConv" ofType:@"json"]; 
-    NSError * error;
-    NSData* data = [NSData dataWithContentsOfFile:filePath];
-    NSArray * array = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    //    NSLog(@"DATA %@: ", [[array objectAtIndex:0] objectForKey:@"name"]);
-    return array;
+    return [self readFromJson:@"shelterConv.json"];
 }
 
 -(NSArray *) getNewPoliceData
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"shelterConv" ofType:@"json"]; 
-    NSError * error;
-    NSData* data = [NSData dataWithContentsOfFile:filePath];
-    NSArray * array = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    //    NSLog(@"DATA %@: ", [[array objectAtIndex:0] objectForKey:@"name"]);
-    return array;
+    return [self readFromJson:@"medicalConv"];
 }
 
 -(NSArray *) getNewFireData
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"shelterConv" ofType:@"json"]; 
-    NSError * error;
-    NSData* data = [NSData dataWithContentsOfFile:filePath];
-    NSArray * array = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    //    NSLog(@"DATA %@: ", [[array objectAtIndex:0] objectForKey:@"name"]);
-    return array;
+    return [self readFromJson:@"medicalConv"];
 }
 
 -(NSArray *) getNewHospitalData
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"medicalConv" ofType:@"json"]; 
-    NSError * error;
-    NSData* data = [NSData dataWithContentsOfFile:filePath];
-    NSArray * array = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    //    NSLog(@"DATA %@: ", [[array objectAtIndex:0] objectForKey:@"name"]);
-    return array;
+    return [self readFromJson:@"medicalConv"];
 }
 
 -(void) update
@@ -78,6 +68,7 @@
     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
     NSArray * array = [self getNewData];
+    
     if ([array count]==[[_locationDataModel allLocations] count])
     {
         NSLog(@"No need to update!");
@@ -85,11 +76,6 @@
     }
     for (NSDictionary * json in array)
     {
-        if ([self locationDataModel] == nil){
-            NSLog(@"WTF IS IT NIL!");
-        } else {
-            NSLog(@"IT IS NOT NIL");
-        }
         NSString* name = [json objectForKey:@"name"];
         NSLog(@"name:%@", name);
         NSNumber * lon =[json objectForKey:@"lon"];
@@ -100,13 +86,12 @@
         NSLog(@"detail:%@", detail);
         NSString* type = [json objectForKey:@"type"];
         NSLog(@"type:%@",type);
-        if (name ==nil || lon == [NSNull null] || lat == [NSNull null] || detail==nil || type ==nil)
+        if (name ==nil || lon == nil || lat == nil || detail==nil || type ==nil)
         {
             NSLog(@"field is null, skipping it!");
             continue;
         }
         [[self locationDataModel] addLocationWithName:name Longitude: lon Latitude:lat Detail:detail Type:type];
-  
     }
 }
 
