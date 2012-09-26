@@ -15,7 +15,6 @@
 #import "MADLocation.h"
 #import "MADLocationTableViewCell.h"
 #import "MADLocationViewControllerHelper.h"
-#import "MADDirectionsViewController.h"
 
 //TODO: create refresh table view method
 

@@ -30,7 +30,6 @@
 		2B4DD01F1611593C0070B743 /* light_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DD0151611593C0070B743 /* light_search.png */; };
 		2B4DD0201611593C0070B743 /* light_shield.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DD0161611593C0070B743 /* light_shield.png */; };
 		2B4DD0211611593C0070B743 /* LocationsUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD0181611593C0070B743 /* LocationsUpdater.m */; };
-		2B4DD036161159570070B743 /* MADDirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD023161159570070B743 /* MADDirectionsViewController.m */; };
 		2B4DD037161159570070B743 /* MADLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD025161159570070B743 /* MADLocation.m */; };
 		2B4DD038161159570070B743 /* MADLocationDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD027161159570070B743 /* MADLocationDataModel.m */; };
 		2B4DD039161159570070B743 /* MADLocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD029161159570070B743 /* MADLocationDetailViewController.m */; };
@@ -44,9 +43,17 @@
 		2B4DD04416115A000070B743 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4DD04316115A000070B743 /* MapKit.framework */; };
 		2B4DD04616115A090070B743 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4DD04516115A090070B743 /* CoreLocation.framework */; };
 		2B4DD04816115A1F0070B743 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4DD04716115A1F0070B743 /* CoreData.framework */; };
-		2B4DD05116115CCA0070B743 /* MAD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD04F16115CC90070B743 /* MAD.xcdatamodeld */; };
+		2BA692401612CF4600FF336C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BA6923D1612CF4600FF336C /* SVProgressHUD.bundle */; };
+		2BA692411612CF4600FF336C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6923F1612CF4600FF336C /* SVProgressHUD.m */; };
+		2BA6924F1612D01800FF336C /* DirectionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6924C1612D01800FF336C /* DirectionsView.m */; };
+		2BA692501612D01800FF336C /* MapDirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6924E1612D01800FF336C /* MapDirectionsViewController.m */; };
+		2BA692561612D03D00FF336C /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA692521612D03D00FF336C /* arrow_left.png */; };
+		2BA692571612D03D00FF336C /* arrow_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA692531612D03D00FF336C /* arrow_left@2x.png */; };
+		2BA692581612D03D00FF336C /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA692541612D03D00FF336C /* arrow_right.png */; };
+		2BA692591612D03D00FF336C /* arrow_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA692551612D03D00FF336C /* arrow_right@2x.png */; };
+		2BA692641612E09300FF336C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA692631612E09300FF336C /* QuartzCore.framework */; };
+		2BA692791612FC2200FF336C /* MAD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BA692771612FC2200FF336C /* MAD.xcdatamodeld */; };
 		2BCA24FE161199CD000CF380 /* Academia.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 2BCA24FD161199CD000CF380 /* Academia.gpx */; };
-		2BCA25051611A3B9000CF380 /* KMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCA25041611A3B9000CF380 /* KMLParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,8 +86,6 @@
 		2B4DD0161611593C0070B743 /* light_shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light_shield.png; sourceTree = "<group>"; };
 		2B4DD0171611593C0070B743 /* LocationsUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsUpdater.h; sourceTree = "<group>"; };
 		2B4DD0181611593C0070B743 /* LocationsUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsUpdater.m; sourceTree = "<group>"; };
-		2B4DD022161159570070B743 /* MADDirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADDirectionsViewController.h; sourceTree = "<group>"; };
-		2B4DD023161159570070B743 /* MADDirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADDirectionsViewController.m; sourceTree = "<group>"; };
 		2B4DD024161159570070B743 /* MADLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocation.h; sourceTree = "<group>"; };
 		2B4DD025161159570070B743 /* MADLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADLocation.m; sourceTree = "<group>"; };
 		2B4DD026161159570070B743 /* MADLocationDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocationDataModel.h; sourceTree = "<group>"; };
@@ -102,10 +107,20 @@
 		2B4DD04316115A000070B743 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2B4DD04516115A090070B743 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2B4DD04716115A1F0070B743 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		2B4DD05016115CCA0070B743 /* MAD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAD.xcdatamodel; sourceTree = "<group>"; };
+		2BA6923D1612CF4600FF336C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		2BA6923E1612CF4600FF336C /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		2BA6923F1612CF4600FF336C /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		2BA6924B1612D01800FF336C /* DirectionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsView.h; sourceTree = "<group>"; };
+		2BA6924C1612D01800FF336C /* DirectionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsView.m; sourceTree = "<group>"; };
+		2BA6924D1612D01800FF336C /* MapDirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDirectionsViewController.h; sourceTree = "<group>"; };
+		2BA6924E1612D01800FF336C /* MapDirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDirectionsViewController.m; sourceTree = "<group>"; };
+		2BA692521612D03D00FF336C /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
+		2BA692531612D03D00FF336C /* arrow_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_left@2x.png"; sourceTree = "<group>"; };
+		2BA692541612D03D00FF336C /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
+		2BA692551612D03D00FF336C /* arrow_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_right@2x.png"; sourceTree = "<group>"; };
+		2BA692631612E09300FF336C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2BA692781612FC2200FF336C /* MAD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAD.xcdatamodel; sourceTree = "<group>"; };
 		2BCA24FD161199CD000CF380 /* Academia.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Academia.gpx; sourceTree = "<group>"; };
-		2BCA25031611A3B9000CF380 /* KMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMLParser.h; sourceTree = "<group>"; };
-		2BCA25041611A3B9000CF380 /* KMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMLParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BA692641612E09300FF336C /* QuartzCore.framework in Frameworks */,
 				2B4DD04816115A1F0070B743 /* CoreData.framework in Frameworks */,
 				2B4DD04616115A090070B743 /* CoreLocation.framework in Frameworks */,
 				2B4DD04416115A000070B743 /* MapKit.framework in Frameworks */,
@@ -146,6 +162,7 @@
 		2B4DCFE3161157710070B743 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2BA692631612E09300FF336C /* QuartzCore.framework */,
 				2B4DD04716115A1F0070B743 /* CoreData.framework */,
 				2B4DD04516115A090070B743 /* CoreLocation.framework */,
 				2B4DD04316115A000070B743 /* MapKit.framework */,
@@ -159,13 +176,10 @@
 		2B4DCFEA161157710070B743 /* MAD */ = {
 			isa = PBXGroup;
 			children = (
-				2BCA25031611A3B9000CF380 /* KMLParser.h */,
-				2BCA25041611A3B9000CF380 /* KMLParser.m */,
-				2B4DD04F16115CC90070B743 /* MAD.xcdatamodeld */,
+				2BA692511612D02000FF336C /* MapDirectionsView */,
+				2BA692421612CF5000FF336C /* SVProgressHUD */,
 				2B4DD042161159AC0070B743 /* json */,
 				2B4DD0411611596D0070B743 /* Image */,
-				2B4DD022161159570070B743 /* MADDirectionsViewController.h */,
-				2B4DD023161159570070B743 /* MADDirectionsViewController.m */,
 				2B4DD024161159570070B743 /* MADLocation.h */,
 				2B4DD025161159570070B743 /* MADLocation.m */,
 				2B4DD026161159570070B743 /* MADLocationDataModel.h */,
@@ -196,6 +210,7 @@
 		2B4DCFEB161157710070B743 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2BA692771612FC2200FF336C /* MAD.xcdatamodeld */,
 				2BCA24FD161199CD000CF380 /* Academia.gpx */,
 				2B4DCFEC161157710070B743 /* MAD-Info.plist */,
 				2B4DCFED161157710070B743 /* InfoPlist.strings */,
@@ -233,6 +248,39 @@
 				2B4DD035161159570070B743 /* shelterConv.json */,
 			);
 			name = json;
+			sourceTree = "<group>";
+		};
+		2BA692421612CF5000FF336C /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				2BA6923D1612CF4600FF336C /* SVProgressHUD.bundle */,
+				2BA6923E1612CF4600FF336C /* SVProgressHUD.h */,
+				2BA6923F1612CF4600FF336C /* SVProgressHUD.m */,
+			);
+			name = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		2BA692511612D02000FF336C /* MapDirectionsView */ = {
+			isa = PBXGroup;
+			children = (
+				2BA6925A1612D04200FF336C /* Image */,
+				2BA6924B1612D01800FF336C /* DirectionsView.h */,
+				2BA6924C1612D01800FF336C /* DirectionsView.m */,
+				2BA6924D1612D01800FF336C /* MapDirectionsViewController.h */,
+				2BA6924E1612D01800FF336C /* MapDirectionsViewController.m */,
+			);
+			name = MapDirectionsView;
+			sourceTree = "<group>";
+		};
+		2BA6925A1612D04200FF336C /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				2BA692521612D03D00FF336C /* arrow_left.png */,
+				2BA692531612D03D00FF336C /* arrow_left@2x.png */,
+				2BA692541612D03D00FF336C /* arrow_right.png */,
+				2BA692551612D03D00FF336C /* arrow_right@2x.png */,
+			);
+			name = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +354,11 @@
 				2B4DD03F161159570070B743 /* medicalConv.json in Resources */,
 				2B4DD040161159570070B743 /* shelterConv.json in Resources */,
 				2BCA24FE161199CD000CF380 /* Academia.gpx in Resources */,
+				2BA692401612CF4600FF336C /* SVProgressHUD.bundle in Resources */,
+				2BA692561612D03D00FF336C /* arrow_left.png in Resources */,
+				2BA692571612D03D00FF336C /* arrow_left@2x.png in Resources */,
+				2BA692581612D03D00FF336C /* arrow_right.png in Resources */,
+				2BA692591612D03D00FF336C /* arrow_right@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +373,6 @@
 				2B4DCFF5161157710070B743 /* MADAppDelegate.m in Sources */,
 				2B4DD0081611588F0070B743 /* MADLocationSearchController.m in Sources */,
 				2B4DD0211611593C0070B743 /* LocationsUpdater.m in Sources */,
-				2B4DD036161159570070B743 /* MADDirectionsViewController.m in Sources */,
 				2B4DD037161159570070B743 /* MADLocation.m in Sources */,
 				2B4DD038161159570070B743 /* MADLocationDataModel.m in Sources */,
 				2B4DD039161159570070B743 /* MADLocationDetailViewController.m in Sources */,
@@ -329,8 +381,10 @@
 				2B4DD03C161159570070B743 /* MADLocationViewController.m in Sources */,
 				2B4DD03D161159570070B743 /* MADLocationViewControllerHelper.m in Sources */,
 				2B4DD03E161159570070B743 /* MADSearchBar.m in Sources */,
-				2B4DD05116115CCA0070B743 /* MAD.xcdatamodeld in Sources */,
-				2BCA25051611A3B9000CF380 /* KMLParser.m in Sources */,
+				2BA692411612CF4600FF336C /* SVProgressHUD.m in Sources */,
+				2BA6924F1612D01800FF336C /* DirectionsView.m in Sources */,
+				2BA692501612D01800FF336C /* MapDirectionsViewController.m in Sources */,
+				2BA692791612FC2200FF336C /* MAD.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,12 +499,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2B4DD04F16115CC90070B743 /* MAD.xcdatamodeld */ = {
+		2BA692771612FC2200FF336C /* MAD.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				2B4DD05016115CCA0070B743 /* MAD.xcdatamodel */,
+				2BA692781612FC2200FF336C /* MAD.xcdatamodel */,
 			);
-			currentVersion = 2B4DD05016115CCA0070B743 /* MAD.xcdatamodel */;
+			currentVersion = 2BA692781612FC2200FF336C /* MAD.xcdatamodel */;
 			path = MAD.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

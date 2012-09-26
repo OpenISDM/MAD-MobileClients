@@ -206,7 +206,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="WJ7-9n-VOs" kind="push" identifier="ShowDirections" id="nET-qM-vto"/>
+                                                        <segue destination="R8L-bj-lGz" kind="push" identifier="DisplayDirections" id="a0B-Oq-ufc"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="N6c-it-HhU">
@@ -234,7 +234,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="O2X-nk-28M"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="detailLabel" destination="Cnx-Ep-VjB" id="a9Y-LR-bST"/>
+                        <outlet property="addressLabel" destination="Cnx-Ep-VjB" id="8Ll-By-F1o"/>
                         <outlet property="nameLabel" destination="FOm-SH-vTQ" id="P6H-0g-Qb1"/>
                         <outlet property="typeLabel" destination="QCs-Jz-noT" id="yM5-BM-rOU"/>
                     </connections>
@@ -243,29 +243,20 @@
             </objects>
             <point key="canvasLocation" x="1539" y="-1125"/>
         </scene>
-        <!--Directions View Controller-->
-        <scene sceneID="Gdy-j4-gMo">
+        <!--Map Directions View Controller-->
+        <scene sceneID="etH-Uw-7IG">
             <objects>
-                <viewController id="WJ7-9n-VOs" customClass="MADDirectionsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BWU-kq-07g">
+                <viewController hidesBottomBarWhenPushed="YES" id="R8L-bj-lGz" customClass="MapDirectionsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yh4-Rn-Jd8">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" id="sb2-61-fcp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="WJ7-9n-VOs" id="nEM-id-5uf"/>
-                                </connections>
-                            </webView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="jth-6d-Z9V"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xkL-J7-I51" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2k8-Vs-uns" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1929" y="-1125"/>
+            <point key="canvasLocation" x="1930" y="-1125"/>
         </scene>
         <!--Navigation Controller - Locations-->
         <scene sceneID="dNi-w7-xgF">
@@ -466,41 +457,6 @@
         <image name="light_home.png" width="30" height="27"/>
         <image name="light_pin.png" width="19" height="27"/>
     </resources>
-    <classes>
-        <class className="MADDirectionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MADDirectionsViewController.h"/>
-        </class>
-        <class className="MADLocationDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MADLocationDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="getDirectionsTo:"/>
-                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="directionsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="latLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lonLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="typeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MADLocationTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MADLocationTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="distanceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MADLocationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MADLocationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showLocationDetails:"/>
-                <relationship kind="action" name="toggleLocationView:"/>
-            </relationships>
-        </class>
-        <class className="MADSearchBar" superclassName="UISearchBar">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MADSearchBar.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
