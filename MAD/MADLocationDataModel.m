@@ -12,7 +12,7 @@
 
 @implementation MADLocationDataModel
 
-@synthesize managedObjectContext = __managedObjectContext;
+@synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel= _managedObjectModel;
 @synthesize allLocations=_allLocations;
 @synthesize locationsUpdater = _locationsUpdater;
@@ -20,19 +20,20 @@
 -(id) init
 {
     self = [super init];
-    if (self!=nil){
-        _allLocations=(NSMutableArray *) [self getAllLocations];
+    if (self != nil) {
+        _allLocations = (NSMutableArray *) [self getAllLocations];
         return self;
     }
     return self;
 }
 
-- (NSManagedObjectContext*) managedObjectContext {
-    if (__managedObjectContext==nil){
+- (NSManagedObjectContext*) managedObjectContext
+{
+    if (_managedObjectContext==nil){
         MADAppDelegate* appDelegate = (MADAppDelegate*)[[UIApplication sharedApplication] delegate];
-        __managedObjectContext= appDelegate.managedObjectContext;
+        _managedObjectContext= appDelegate.managedObjectContext;
     }
-    return __managedObjectContext;
+    return _managedObjectContext;
 }
 
 - (NSManagedObjectModel*) managedObjectModel {
@@ -43,26 +44,36 @@
     return _managedObjectModel;
 }
 
+-(LocationsUpdater *) locationsUpdater
+{
+    if (_locationsUpdater==nil)
+    {
+        _locationsUpdater = [[LocationsUpdater alloc] initWithDataModel:self];
+    }
+    return _locationsUpdater;
+}
 
--(MADLocation *) addLocationWithName:(NSString *)name Longitude:(NSNumber *)lon Latitude:(NSNumber *)lat Detail: (NSString *) detail Type: (NSString *)type
+-(MADLocation *) addLocationWithName:(NSString *)name
+                           longitude:(NSNumber *)lon
+                            latitude:(NSNumber *)lat
+                                addr:(NSString *)addr
+                                type:(NSString *)type
+                                 tel:(NSString *)tel
 {
     NSLog(@"ADDLOCATION");
-    MADLocation * newLocation = [NSEntityDescription insertNewObjectForEntityForName:@"MADLocation"inManagedObjectContext:self.managedObjectContext];
+    MADLocation * newLocation = [NSEntityDescription insertNewObjectForEntityForName:@"MADLocation"
+                                                              inManagedObjectContext:self.managedObjectContext];
     newLocation.name = name;
     newLocation.lon = lon;
     newLocation.lat = lat;
-    newLocation.detail = detail;
+    newLocation.addr = addr;
     newLocation.type = type;
+    newLocation.tel = tel;
     
     [[self managedObjectContext] save:nil];
-    
     [[self allLocations] addObject:newLocation];
+    
     return newLocation;
-}
-
--(MADLocation *) addLocation
-{
-    return [self addLocationWithName:@"STUB" Longitude:[[NSNumber alloc] initWithDouble:1.1] Latitude:[[NSNumber alloc] initWithDouble:2.2] Detail:@"Detail" Type:@"Type"];
 }
 
 -(NSMutableArray * ) getAllLocations
@@ -79,34 +90,11 @@
     return [result mutableCopy];
 }
 
--(NSMutableArray * ) getAllShelters
-{
-//    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-//    NSEntityDescription * e = [[[self managedObjectModel] entitiesByName] objectForKey:@"MADLocation"];
-//    [request setEntity: e];
-//    NSError * error;
-//    NSArray * result = [[self managedObjectContext] executeFetchRequest:request error:&error];
-//    if (!result){
-//        NSLog(@"getAllLocationsError:%@",[error localizedDescription]);
-//        return nil;
-//    }
-//    return [result mutableCopy];
-    return nil;
-}
-
-
 -(void) updateLocations
 {
     
 }
 
--(LocationsUpdater *) locationsUpdater
-{
-    if (_locationsUpdater==nil)
-    {
-        _locationsUpdater = [[LocationsUpdater alloc] initWithDataModel:self];
-    }
-    return _locationsUpdater;
-}
+
 
 @end

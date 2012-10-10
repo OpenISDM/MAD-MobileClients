@@ -14,7 +14,7 @@
 
 @implementation MADLocationViewControllerHelper
 
-+(NSArray *) sortLocations: (NSArray*) toSort
++ (NSArray *) sortLocations: (NSArray*) toSort
 {
     NSArray * sortedArray;
     sortedArray = [toSort sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -32,7 +32,7 @@
     return sortedArray;
 }
 
-+ (NSArray *) getLocationsGiven:  (NSArray *) locations And: (NSString *) type
++ (NSArray *) getLocationsGiven:(NSArray *)locations And:(NSString *)type
 {
     if ([@"all" isEqualToString:type])
     {
@@ -42,14 +42,12 @@
     for (MADLocation * location in locations)
     {
         if ([location.type isEqualToString:type])
-        {
             [result addObject:location];
-        }
     }
     return result;
 }
 
-+ (void) setImageForCell:(UITableViewCell *) cell WithLocation:(MADLocation *) location
++ (void) setImageForCell:(UITableViewCell *)cell WithLocation:(MADLocation *)location
 {
     if ([[location type] isEqualToString:@"police"])
     {
@@ -69,7 +67,7 @@
     }
 }
 
-+(void) fitAnnotationsForLocations: (NSArray*) locationsToShow ForMap: (MKMapView *) mapView
++ (void) fitAnnotationsForLocations:(NSArray*)locationsToShow ForMap:(MKMapView *) mapView
 {
     double up,down,left,right;
     //double padding = 1.0;
@@ -117,7 +115,7 @@
     }
 }
 
-+ (NSMutableArray*) getSearchResults: (NSArray*) locationsToShow ForSearchTerm: (NSString *) term;
++ (NSMutableArray*) getSearchResults:(NSArray*)locationsToShow ForSearchTerm:(NSString *)term;
 {
     NSString *pattern = [[NSString alloc] initWithFormat:@".*%@.*",term];
     NSError * error = NULL;
@@ -128,14 +126,9 @@
         NSUInteger numberOfMatches = [regex numberOfMatchesInString:location.name
                                                             options:0
                                                               range:NSMakeRange(0, [location.name length])];
-        if ([@" " isEqualToString:term]|| numberOfMatches > 0) {
+        if ([@" " isEqualToString:term] || numberOfMatches > 0) {
             [results addObject:location];
         }
-        
-//        if ([location.name hasPrefix:term])
-//        {
-//            [results addObject:location];
-//        }
     }
     return results;
 }
@@ -153,14 +146,10 @@
     {
         if (mPoint.mLocation== mLocation)
         {
-            NSLog(@"FUCK YEA FOUND THE ANNOTATIONNNNNNNNNNNNN!!!!!!");
             [mapView selectAnnotation:mPoint animated:YES];
             return;
         }
     }
-    
-//    [mapView selectAnnotation:av.annotation animated:NO];
-
 }
 
 @end

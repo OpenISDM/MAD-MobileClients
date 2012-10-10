@@ -1,22 +1,23 @@
 //
 //  MADLocation.m
-//  MAD2
+//  MAD
 //
-//  Created by Derrick Cheng on 7/23/12.
-//  Copyright (c) 2012 UC Berkeley EECS. All rights reserved.
+//  Created by Lai Yi An on 10/10/12.
+//  Copyright (c) 2012 OpenISDM. All rights reserved.
 //
 
 #import "MADLocation.h"
-#import "MADAppDelegate.h"
 
 
 @implementation MADLocation
 
-@dynamic name;
-@dynamic lon;
-@dynamic lat;
-@dynamic detail;
-@dynamic type;
 @dynamic dateAdded;
+@dynamic addr;
+@dynamic lat;
+@dynamic lon;
+@dynamic name;
+@dynamic type;
+@dynamic dateUpdated;
+@dynamic tel;
 
 @end

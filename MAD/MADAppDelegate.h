@@ -11,7 +11,7 @@
 #import "MADLocation.h"
 #import "MADLocationDataModel.h"
 
-@interface MADAppDelegate : UIResponder <UIApplicationDelegate>
+@interface MADAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -23,5 +23,6 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 @property (strong, nonatomic) CLLocation * userLocation;
+
 
 @end

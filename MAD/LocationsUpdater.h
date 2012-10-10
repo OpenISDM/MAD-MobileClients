@@ -11,22 +11,18 @@
 @class MADLocationDataModel;
 
 @interface LocationsUpdater : NSObject
-@property (nonatomic, weak) MADLocationDataModel * locationDataModel;
+
+@property (nonatomic, weak) MADLocationDataModel *locationDataModel;
 
 -(id) initWithDataModel:(MADLocationDataModel *) dataModel;
 
 -(NSArray *) getNewData;
-
 -(NSArray *) getNewShelterData;
-
 -(NSArray *) getNewPoliceData;
-
 -(NSArray *) getNewHospitalData;
-
 -(NSArray *) getNewFireData;
 
 -(void) update;
-
 -(BOOL *) needsUpdate;
 
 @end

@@ -15,7 +15,6 @@
 #import "MADLocation.h"
 #import "MADLocationTableViewCell.h"
 #import "MADLocationViewControllerHelper.h"
-#import "MADDirectionsViewController.h"
 
 //TODO: create refresh table view method
 
@@ -35,13 +34,11 @@
 
 @synthesize locationDataModel = _locationDataModel;
 
-
 //SearchBar Delegate stuff
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     resultsToShow=[MADLocationViewControllerHelper getSearchResults:locationsToShow ForSearchTerm:searchText];
     [self.searchDisplayController.searchResultsTableView reloadData];
-//    [self.searchDisplayController.searchBar resignFirstResponder];
 //    [self.searchDisplayController.searchBar resignFirstResponder];
     NSLog(@"text did change");
 }
@@ -82,16 +79,13 @@
 }
  */
 
-
-
-
 -(void) viewDidLoad
 {
-    isButtonForList=FALSE;
-    mapNeedToReload=NO;
     [super viewDidLoad];
-    listView = (UITableView * ) [self.view viewWithTag:101];
-    listMapOuterView = (UIView * ) [self.view viewWithTag:99];
+    isButtonForList = FALSE;
+    mapNeedToReload = NO;
+    listView = (UITableView *)[self.view viewWithTag:101];
+    listMapOuterView = (UIView *)[self.view viewWithTag:99];
     MADAppDelegate* appDelegate = (MADAppDelegate*)[[UIApplication sharedApplication] delegate];
     _locationDataModel = [appDelegate locationDataModel];
     locationsArray =[_locationDataModel allLocations];
@@ -136,8 +130,6 @@
     }
     if (cell == nil)
     {
-//        UIViewController *temporaryController = [[UIViewController alloc] initWithNibName:@"locationTableViewCell" bundle:nil];
-//        cell = (MADLocationTableViewCell *) temporaryController.view;
         cell = [[MADLocationTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"locationTableViewCell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } 
@@ -215,18 +207,11 @@
         [self addAnnotationsToShowToMap];
     }
 
-    
     return mapView;
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-   
-//    CLLocationCoordinate2D loc = [userLocation coordinate];
-    
-//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
-//    [[self mapView] setRegion:region animated:YES];
-//    currentLocation = userLocation;
     curLocation = userLocation.location;
     
     NSLog(@"DIDUPDATEUSERLOCATIONS IS CALLED");
@@ -234,19 +219,19 @@
 
 //MAPVIEW DELEGATE STUFF
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+-(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     selectedAnnotation = view.annotation;
 }
 
--(IBAction)showLocationDetails:(id)sender
+-(IBAction) showLocationDetails:(id)sender
 {
     [self performSegueWithIdentifier:@"ShowLocationPinDetails" sender:sender];
 //    [self presentModalViewController: animated:<#(BOOL)#>
     NSLog(@"ShowLocationDetails for Pin Called");
 }
-- (MKAnnotationView *)mapView:(MKMapView *)mapView
-            viewForAnnotation:(id <MKAnnotation>)annotation
+
+-(MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])

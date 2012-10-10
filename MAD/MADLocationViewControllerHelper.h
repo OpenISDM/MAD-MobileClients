@@ -12,10 +12,10 @@
 @class MADLocation;
 
 @interface MADLocationViewControllerHelper : NSObject
-+(NSArray *) sortLocations: (NSArray*) toSort;
-+ (NSArray *) getLocationsGiven:  (NSArray *) locations And: (NSString *) type;
-+ (void) setImageForCell:(UITableViewCell *) cell WithLocation:(MADLocation *) location;
-+ (void) fitAnnotationsForLocations: (NSArray*) locationsToShow ForMap: (MKMapView *) mapView;
-+ (NSArray*) getSearchResults: (NSArray*) locationsToShow ForSearchTerm: (NSString *) term;
-+ (void) zoomIntoLocation:(MADLocation*) mLocation ForMap: (MKMapView *) mapView;
++ (NSArray *) sortLocations:(NSArray*)toSort;
++ (NSArray *) getLocationsGiven:(NSArray *)locations And:(NSString *)type;
++ (void) setImageForCell:(UITableViewCell *)cell WithLocation:(MADLocation *)location;
++ (void) fitAnnotationsForLocations:(NSArray*)locationsToShow ForMap:(MKMapView *)mapView;
++ (NSArray*) getSearchResults:(NSArray*)locationsToShow ForSearchTerm:(NSString *)term;
++ (void) zoomIntoLocation:(MADLocation*)mLocation ForMap:(MKMapView *)mapView;
 @end
