@@ -10,7 +10,7 @@
 #import "MADLocationDataModel.h"
 #import <MapKit/MapKit.h>
 
-@interface MADLocationViewController : UIViewController <UITableViewDataSource,MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate>
+@interface MADLocationViewController : UIViewController <UITableViewDataSource, MKMapViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
 
 @property (nonatomic, weak) MADLocationDataModel* locationDataModel;
 
@@ -22,9 +22,9 @@
 
 -(MKMapView *) mapView;
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation;
+-(void) mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation;
 
-- (void) setZoomToFitAnnotations;
+-(void) setZoomToFitAnnotations;
 
 -(void) addAnnotationsToShowToMap;
 

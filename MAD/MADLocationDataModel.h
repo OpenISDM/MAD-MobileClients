@@ -16,14 +16,14 @@
     
 @property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, weak) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, strong) NSMutableArray* allLocations;
-@property (nonatomic, strong) LocationsUpdater* locationsUpdater;
-@property (nonatomic, strong) NSArray * locationsToShow;
+@property (nonatomic, strong) NSMutableArray *allLocations;
+@property (nonatomic, strong) LocationsUpdater *locationsUpdater;
+@property (nonatomic, strong) NSArray *locationsToShow;
 
--(MADLocation *) addLocationWithName:(NSString *)name Longitude:(NSNumber *)lon Latitude:(NSNumber *)lat Detail: (NSString *) detail Type: (NSString *)type;
+-(MADLocation *) addLocationWithName:(NSString *)name longitude:(NSNumber *)lon latitude:(NSNumber *)lat detail:(NSString *) detail type:(NSString *)type;
 -(MADLocation *) addLocation;
--(NSArray * ) getAllLocations;
+-(NSArray *) getAllLocations;
 -(void) updateLocations;
--(NSMutableArray * ) getAllShelters;
+-(NSMutableArray *) getAllShelters;
 
 @end

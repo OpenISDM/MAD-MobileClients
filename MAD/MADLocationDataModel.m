@@ -12,7 +12,7 @@
 
 @implementation MADLocationDataModel
 
-@synthesize managedObjectContext = __managedObjectContext;
+@synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel= _managedObjectModel;
 @synthesize allLocations=_allLocations;
 @synthesize locationsUpdater = _locationsUpdater;
@@ -20,19 +20,20 @@
 -(id) init
 {
     self = [super init];
-    if (self!=nil){
-        _allLocations=(NSMutableArray *) [self getAllLocations];
+    if (self != nil) {
+        _allLocations = (NSMutableArray *) [self getAllLocations];
         return self;
     }
     return self;
 }
 
-- (NSManagedObjectContext*) managedObjectContext {
-    if (__managedObjectContext==nil){
+- (NSManagedObjectContext*) managedObjectContext
+{
+    if (_managedObjectContext==nil){
         MADAppDelegate* appDelegate = (MADAppDelegate*)[[UIApplication sharedApplication] delegate];
-        __managedObjectContext= appDelegate.managedObjectContext;
+        _managedObjectContext= appDelegate.managedObjectContext;
     }
-    return __managedObjectContext;
+    return _managedObjectContext;
 }
 
 - (NSManagedObjectModel*) managedObjectModel {
@@ -44,10 +45,15 @@
 }
 
 
--(MADLocation *) addLocationWithName:(NSString *)name Longitude:(NSNumber *)lon Latitude:(NSNumber *)lat Detail: (NSString *) detail Type: (NSString *)type
+-(MADLocation *) addLocationWithName:(NSString *)name
+                           longitude:(NSNumber *)lon
+                            latitude:(NSNumber *)lat
+                              detail:(NSString *)detail
+                                type:(NSString *)type
 {
     NSLog(@"ADDLOCATION");
-    MADLocation * newLocation = [NSEntityDescription insertNewObjectForEntityForName:@"MADLocation"inManagedObjectContext:self.managedObjectContext];
+    MADLocation * newLocation = [NSEntityDescription insertNewObjectForEntityForName:@"MADLocation"
+                                                              inManagedObjectContext:self.managedObjectContext];
     newLocation.name = name;
     newLocation.lon = lon;
     newLocation.lat = lat;
@@ -55,15 +61,19 @@
     newLocation.type = type;
     
     [[self managedObjectContext] save:nil];
-    
     [[self allLocations] addObject:newLocation];
+    
     return newLocation;
 }
 
+/**
+ * Old testing method
+ 
 -(MADLocation *) addLocation
 {
     return [self addLocationWithName:@"STUB" Longitude:[[NSNumber alloc] initWithDouble:1.1] Latitude:[[NSNumber alloc] initWithDouble:2.2] Detail:@"Detail" Type:@"Type"];
 }
+ */
 
 -(NSMutableArray * ) getAllLocations
 {

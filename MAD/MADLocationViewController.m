@@ -41,7 +41,6 @@
     resultsToShow=[MADLocationViewControllerHelper getSearchResults:locationsToShow ForSearchTerm:searchText];
     [self.searchDisplayController.searchResultsTableView reloadData];
 //    [self.searchDisplayController.searchBar resignFirstResponder];
-//    [self.searchDisplayController.searchBar resignFirstResponder];
     NSLog(@"text did change");
 }
 
@@ -86,11 +85,11 @@
 
 -(void) viewDidLoad
 {
-    isButtonForList=FALSE;
-    mapNeedToReload=NO;
     [super viewDidLoad];
-    listView = (UITableView * ) [self.view viewWithTag:101];
-    listMapOuterView = (UIView * ) [self.view viewWithTag:99];
+    isButtonForList = FALSE;
+    mapNeedToReload = NO;
+    listView = (UITableView *)[self.view viewWithTag:101];
+    listMapOuterView = (UIView *)[self.view viewWithTag:99];
     MADAppDelegate* appDelegate = (MADAppDelegate*)[[UIApplication sharedApplication] delegate];
     _locationDataModel = [appDelegate locationDataModel];
     locationsArray =[_locationDataModel allLocations];
@@ -233,19 +232,18 @@
 
 //MAPVIEW DELEGATE STUFF
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+-(void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     selectedAnnotation = view.annotation;
 }
 
--(IBAction)showLocationDetails:(id)sender
+-(IBAction) showLocationDetails:(id)sender
 {
     [self performSegueWithIdentifier:@"ShowLocationPinDetails" sender:sender];
 //    [self presentModalViewController: animated:<#(BOOL)#>
     NSLog(@"ShowLocationDetails for Pin Called");
 }
-- (MKAnnotationView *)mapView:(MKMapView *)mapView
-            viewForAnnotation:(id <MKAnnotation>)annotation
+-(MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])

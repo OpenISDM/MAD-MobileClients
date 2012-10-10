@@ -13,8 +13,8 @@
 @interface MADLocationMapPoint : NSObject <MKAnnotation>
 -(id) initWithCoordinate:(CLLocationCoordinate2D) c title:(NSString *) t;
 
-@property (nonatomic,readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic,strong) MADLocation * mLocation;
+@property (nonatomic, strong) MADLocation * mLocation;
 
 @end

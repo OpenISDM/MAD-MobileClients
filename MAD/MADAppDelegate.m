@@ -34,7 +34,6 @@
 // what to do when the user's location updates
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    //    NSLog(@"NEW LOCATION FOUND: %@",newLocation);
     _userLocation = newLocation;
 }
 
