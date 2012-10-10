@@ -1,9 +1,9 @@
 //
 //  MADLocation.h
-//  MAD2
+//  MAD
 //
-//  Created by Derrick Cheng on 7/23/12.
-//  Copyright (c) 2012 UC Berkeley EECS. All rights reserved.
+//  Created by Lai Yi An on 10/10/12.
+//  Copyright (c) 2012 OpenISDM. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -12,11 +12,13 @@
 
 @interface MADLocation : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * lon;
-@property (nonatomic, retain) NSNumber * lat;
-@property (nonatomic, retain) NSString * detail;
-@property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSDate * dateAdded;
+@property (nonatomic, retain) NSString * addr;
+@property (nonatomic, retain) NSNumber * lat;
+@property (nonatomic, retain) NSNumber * lon;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NSDate * dateUpdated;
+@property (nonatomic, retain) NSString * tel;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B3BE43E1625CC33002A42EC /* MADLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3BE43D1625CC33002A42EC /* MADLocation.m */; };
 		2B4DCFE5161157710070B743 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4DCFE4161157710070B743 /* UIKit.framework */; };
 		2B4DCFE7161157710070B743 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4DCFE6161157710070B743 /* Foundation.framework */; };
 		2B4DCFE9161157710070B743 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4DCFE8161157710070B743 /* CoreGraphics.framework */; };
@@ -30,7 +31,6 @@
 		2B4DD01F1611593C0070B743 /* light_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DD0151611593C0070B743 /* light_search.png */; };
 		2B4DD0201611593C0070B743 /* light_shield.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B4DD0161611593C0070B743 /* light_shield.png */; };
 		2B4DD0211611593C0070B743 /* LocationsUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD0181611593C0070B743 /* LocationsUpdater.m */; };
-		2B4DD037161159570070B743 /* MADLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD025161159570070B743 /* MADLocation.m */; };
 		2B4DD038161159570070B743 /* MADLocationDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD027161159570070B743 /* MADLocationDataModel.m */; };
 		2B4DD039161159570070B743 /* MADLocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD029161159570070B743 /* MADLocationDetailViewController.m */; };
 		2B4DD03A161159570070B743 /* MADLocationMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4DD02B161159570070B743 /* MADLocationMapPoint.m */; };
@@ -57,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B3BE43C1625CC33002A42EC /* MADLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADLocation.h; sourceTree = "<group>"; };
+		2B3BE43D1625CC33002A42EC /* MADLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADLocation.m; sourceTree = "<group>"; };
 		2B4DCFE0161157710070B743 /* MAD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4DCFE4161157710070B743 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2B4DCFE6161157710070B743 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -211,6 +213,8 @@
 			isa = PBXGroup;
 			children = (
 				2BA692771612FC2200FF336C /* MAD.xcdatamodeld */,
+				2B3BE43C1625CC33002A42EC /* MADLocation.h */,
+				2B3BE43D1625CC33002A42EC /* MADLocation.m */,
 				2BCA24FD161199CD000CF380 /* Academia.gpx */,
 				2B4DCFEC161157710070B743 /* MAD-Info.plist */,
 				2B4DCFED161157710070B743 /* InfoPlist.strings */,
@@ -373,7 +377,6 @@
 				2B4DCFF5161157710070B743 /* MADAppDelegate.m in Sources */,
 				2B4DD0081611588F0070B743 /* MADLocationSearchController.m in Sources */,
 				2B4DD0211611593C0070B743 /* LocationsUpdater.m in Sources */,
-				2B4DD037161159570070B743 /* MADLocation.m in Sources */,
 				2B4DD038161159570070B743 /* MADLocationDataModel.m in Sources */,
 				2B4DD039161159570070B743 /* MADLocationDetailViewController.m in Sources */,
 				2B4DD03A161159570070B743 /* MADLocationMapPoint.m in Sources */,
@@ -385,6 +388,7 @@
 				2BA6924F1612D01800FF336C /* DirectionsView.m in Sources */,
 				2BA692501612D01800FF336C /* MapDirectionsViewController.m in Sources */,
 				2BA692791612FC2200FF336C /* MAD.xcdatamodeld in Sources */,
+				2B3BE43E1625CC33002A42EC /* MADLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +461,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAD/MAD-Prefix.pch";
 				INFOPLIST_FILE = "MAD/MAD-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -469,7 +473,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAD/MAD-Prefix.pch";
 				INFOPLIST_FILE = "MAD/MAD-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

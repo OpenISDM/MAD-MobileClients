@@ -56,8 +56,9 @@
 -(MADLocation *) addLocationWithName:(NSString *)name
                            longitude:(NSNumber *)lon
                             latitude:(NSNumber *)lat
-                              detail:(NSString *)detail
+                                addr:(NSString *)addr
                                 type:(NSString *)type
+                                 tel:(NSString *)tel
 {
     NSLog(@"ADDLOCATION");
     MADLocation * newLocation = [NSEntityDescription insertNewObjectForEntityForName:@"MADLocation"
@@ -65,8 +66,9 @@
     newLocation.name = name;
     newLocation.lon = lon;
     newLocation.lat = lat;
-    newLocation.detail = detail;
+    newLocation.addr = addr;
     newLocation.type = type;
+    newLocation.tel = tel;
     
     [[self managedObjectContext] save:nil];
     [[self allLocations] addObject:newLocation];

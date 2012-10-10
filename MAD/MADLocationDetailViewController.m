@@ -48,7 +48,7 @@
         self.nameLabel.text = theLocation.name;
         //self.lonLabel.text = theLocation.lon.description;
         //self.latLabel.text = theLocation.lat.description;
-        self.addressLabel.text = theLocation.detail;
+        self.addressLabel.text = theLocation.addr;
         self.typeLabel.text = theLocation.type;
 //        CLLocation * cLocation = [[CLLocation alloc] initWithLatitude:[theLocation.lat doubleValue] longitude:[theLocation.lon doubleValue]];
     }

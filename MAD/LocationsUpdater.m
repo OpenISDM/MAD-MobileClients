@@ -87,8 +87,8 @@
         {
             NSLog(@"field is null, skipping it!");
             continue;
-        }
-        [self.locationDataModel addLocationWithName:name longitude:lon latitude:lat detail:detail type:type];
+        } 
+        [self.locationDataModel addLocationWithName:name longitude:lon latitude:lat addr:detail type:type tel:@"0000"];
     }
 }
 

@@ -20,7 +20,12 @@
 @property (nonatomic, strong) LocationsUpdater *locationsUpdater;
 @property (nonatomic, strong) NSArray *locationsToShow;
 
--(MADLocation *) addLocationWithName:(NSString *)name longitude:(NSNumber *)lon latitude:(NSNumber *)lat detail:(NSString *) detail type:(NSString *)type;
+-(MADLocation *) addLocationWithName:(NSString *)name
+                           longitude:(NSNumber *)lon
+                            latitude:(NSNumber *)lat
+                                addr:(NSString *)addr
+                                type:(NSString *)type
+                                 tel:(NSString *)tel;
 -(NSArray *) getAllLocations;
 -(void) updateLocations;
 
