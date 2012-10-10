@@ -44,6 +44,14 @@
     return _managedObjectModel;
 }
 
+-(LocationsUpdater *) locationsUpdater
+{
+    if (_locationsUpdater==nil)
+    {
+        _locationsUpdater = [[LocationsUpdater alloc] initWithDataModel:self];
+    }
+    return _locationsUpdater;
+}
 
 -(MADLocation *) addLocationWithName:(NSString *)name
                            longitude:(NSNumber *)lon
@@ -66,15 +74,6 @@
     return newLocation;
 }
 
-/**
- * Old testing method
- 
--(MADLocation *) addLocation
-{
-    return [self addLocationWithName:@"STUB" Longitude:[[NSNumber alloc] initWithDouble:1.1] Latitude:[[NSNumber alloc] initWithDouble:2.2] Detail:@"Detail" Type:@"Type"];
-}
- */
-
 -(NSMutableArray * ) getAllLocations
 {
     NSFetchRequest * request = [[NSFetchRequest alloc] init];
@@ -89,34 +88,11 @@
     return [result mutableCopy];
 }
 
--(NSMutableArray * ) getAllShelters
-{
-//    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-//    NSEntityDescription * e = [[[self managedObjectModel] entitiesByName] objectForKey:@"MADLocation"];
-//    [request setEntity: e];
-//    NSError * error;
-//    NSArray * result = [[self managedObjectContext] executeFetchRequest:request error:&error];
-//    if (!result){
-//        NSLog(@"getAllLocationsError:%@",[error localizedDescription]);
-//        return nil;
-//    }
-//    return [result mutableCopy];
-    return nil;
-}
-
-
 -(void) updateLocations
 {
     
 }
 
--(LocationsUpdater *) locationsUpdater
-{
-    if (_locationsUpdater==nil)
-    {
-        _locationsUpdater = [[LocationsUpdater alloc] initWithDataModel:self];
-    }
-    return _locationsUpdater;
-}
+
 
 @end

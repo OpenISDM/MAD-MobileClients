@@ -13,7 +13,7 @@
 @synthesize title = _title;
 @synthesize mLocation = _mLocation;
 
--(id) initWithCoordinate:(CLLocationCoordinate2D) c title:(NSString *) t
+-(id) initWithCoordinate:(CLLocationCoordinate2D)c title:(NSString *)t
 {
     self = [super init];
     if (self)

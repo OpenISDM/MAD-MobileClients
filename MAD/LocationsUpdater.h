@@ -12,7 +12,7 @@
 
 @interface LocationsUpdater : NSObject
 
-@property (nonatomic, weak) MADLocationDataModel * locationDataModel;
+@property (nonatomic, weak) MADLocationDataModel *locationDataModel;
 
 -(id) initWithDataModel:(MADLocationDataModel *) dataModel;
 

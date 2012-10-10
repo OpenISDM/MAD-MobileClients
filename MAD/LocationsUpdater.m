@@ -12,15 +12,12 @@
 
 @implementation LocationsUpdater
 
-@synthesize locationDataModel=_locationDataModel;
+@synthesize locationDataModel = _locationDataModel;
 
 -(id) initWithDataModel:(MADLocationDataModel *) dataModel
 {
     self = [super init];
     if (self !=nil){
-        //MADAppDelegate* appDelegate = (MADAppDelegate*)[[UIApplication sharedApplication] delegate];
-        //[self setLocationDataModel:[appDelegate locationDataModel]];
-
         [self setLocationDataModel:dataModel];
     }
     return self;
@@ -65,33 +62,33 @@
 
 -(void) update
 {
-    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSArray * array = [self getNewData];
+    NSArray *array = [self getNewData];
     
     if ([array count]==[[_locationDataModel allLocations] count])
     {
         NSLog(@"No need to update!");
         return;
     }
-    for (NSDictionary * json in array)
+    for (NSDictionary *json in array)
     {
-        NSString* name = [json objectForKey:@"name"];
+        NSString *name = [json objectForKey:@"name"];
         NSLog(@"name:%@", name);
-        NSNumber * lon =[json objectForKey:@"lon"];
+        NSNumber *lon =[json objectForKey:@"lon"];
         NSLog(@"lon:%@", lon);
-        NSNumber * lat =[json objectForKey:@"lat"];
+        NSNumber *lat =[json objectForKey:@"lat"];
         NSLog(@"lat:%@", lat);
-        NSString* detail = [json objectForKey:@"detail"];
+        NSString *detail = [json objectForKey:@"detail"];
         NSLog(@"detail:%@", detail);
-        NSString* type = [json objectForKey:@"type"];
+        NSString *type = [json objectForKey:@"type"];
         NSLog(@"type:%@",type);
         if (name ==nil || lon == nil || lat == nil || detail==nil || type ==nil)
         {
             NSLog(@"field is null, skipping it!");
             continue;
         }
-        [[self locationDataModel] addLocationWithName:name Longitude: lon Latitude:lat Detail:detail Type:type];
+        [self.locationDataModel addLocationWithName:name longitude:lon latitude:lat detail:detail type:type];
     }
 }
 

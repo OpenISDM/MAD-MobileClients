@@ -21,9 +21,7 @@
 @property (nonatomic, strong) NSArray *locationsToShow;
 
 -(MADLocation *) addLocationWithName:(NSString *)name longitude:(NSNumber *)lon latitude:(NSNumber *)lat detail:(NSString *) detail type:(NSString *)type;
--(MADLocation *) addLocation;
 -(NSArray *) getAllLocations;
 -(void) updateLocations;
--(NSMutableArray *) getAllShelters;
 
 @end

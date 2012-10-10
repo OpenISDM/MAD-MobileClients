@@ -18,6 +18,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *directionsButton;
-//-(IBAction)getDirectionsTo:(id)sender;
 
 @end

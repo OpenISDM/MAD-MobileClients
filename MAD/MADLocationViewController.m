@@ -34,7 +34,6 @@
 
 @synthesize locationDataModel = _locationDataModel;
 
-
 //SearchBar Delegate stuff
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
@@ -79,9 +78,6 @@
     [self.searchDisplayController.searchBar setShowsScopeBar:YES];
 }
  */
-
-
-
 
 -(void) viewDidLoad
 {
@@ -134,8 +130,6 @@
     }
     if (cell == nil)
     {
-//        UIViewController *temporaryController = [[UIViewController alloc] initWithNibName:@"locationTableViewCell" bundle:nil];
-//        cell = (MADLocationTableViewCell *) temporaryController.view;
         cell = [[MADLocationTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"locationTableViewCell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } 
@@ -213,18 +207,11 @@
         [self addAnnotationsToShowToMap];
     }
 
-    
     return mapView;
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-   
-//    CLLocationCoordinate2D loc = [userLocation coordinate];
-    
-//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
-//    [[self mapView] setRegion:region animated:YES];
-//    currentLocation = userLocation;
     curLocation = userLocation.location;
     
     NSLog(@"DIDUPDATEUSERLOCATIONS IS CALLED");
@@ -243,6 +230,7 @@
 //    [self presentModalViewController: animated:<#(BOOL)#>
     NSLog(@"ShowLocationDetails for Pin Called");
 }
+
 -(MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it's the user location, just return nil.
