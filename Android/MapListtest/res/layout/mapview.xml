@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <Button
+        android:id="@+id/button02"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="List" />
+
+    <org.osmdroid.views.MapView
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/button02"
+        tilesource="MapquestOSM"
+        android:clickable="true"
+        android:enabled="true" />
+
+    <ImageButton
+        android:id="@+id/ShelterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/shelter" />
+
+    <ImageButton
+        android:id="@+id/HospitalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ShelterButton"
+        android:layout_toRightOf="@+id/ShelterButton"
+        android:src="@drawable/h" />
+
+    <ImageButton
+        android:id="@+id/FireStationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/HospitalButton"
+        android:src="@drawable/fire" />
+
+    <ImageButton
+        android:id="@+id/PoliceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/FireStationButton"
+        android:src="@drawable/police" />
+
+</RelativeLayout>
