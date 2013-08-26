@@ -8,43 +8,66 @@ import android.view.Window;
 import android.widget.TabHost;
 
 
+/******************************************************************************
+ *  Class name: MainActivity
+ *  Inheritance: N/A
+ *  Methods: onConfigurationChanged
+ *  Functionality: Use Activity Group to build Tab
+******************************************************************************/
 @SuppressWarnings("deprecation")
-public class MainActivity extends ActivityGroup {
-
+public class MainActivity extends ActivityGroup 
+{
 	private TabHost mTabHost = null;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
+		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.activity_main);
 				
 		mTabHost = (TabHost) findViewById(R.id.maintabhost);
-		mTabHost.setup();
 		
+		mTabHost.setup();
 		
 		mTabHost.setup(this.getLocalActivityManager());
 	
-		mTabHost.addTab(mTabHost.newTabSpec("t1").setIndicator("DownLoad Information")
+		mTabHost.addTab(mTabHost.newTabSpec("t1")
+				.setIndicator("DownLoad Information")
 				.setContent(new Intent(this, DownloadActivity.class)));
+		
 		mTabHost.addTab(mTabHost.newTabSpec("t2").setIndicator("Map/List")
 				.setContent(new Intent(this, ListViewTab.class)));
-		mTabHost.addTab(mTabHost.newTabSpec("t3").setIndicator("Emergency Board")
+		
+		mTabHost.addTab(mTabHost.newTabSpec("t3")
+				.setIndicator("Emergency Board")
 				.setContent(new Intent(this, EmergencyBoardActivity.class)));
+		
 		mTabHost.addTab(mTabHost.newTabSpec("t4").setIndicator("Host Server")
 				.setContent(new Intent(this, HotSpotActivity.class)));
+		
 		mTabHost.setCurrentTabByTag("t2");
-	
 
 	}
+	/**************************************************************************
+	 *  Method name: onConfigurationChanged
+	 *  Functionality: Avoid execute onCreate when orientation change 
+	 *  @param: Configuration
+	 *  @return: N/A
+	**************************************************************************/
     @Override
-    public void onConfigurationChanged(Configuration newConfig){
+    public void onConfigurationChanged(Configuration newConfig)
+    {
         super.onConfigurationChanged(newConfig);
-
         // Checks the orientation of the screen
-        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
+        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE)
+        {
             
-        }else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT){
+        }
+        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT)
+        {
             
         }
     }

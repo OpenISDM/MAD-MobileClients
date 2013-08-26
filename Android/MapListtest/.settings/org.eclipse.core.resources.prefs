@@ -1,13 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/com/example/maplisttest/DownloadActivity.java=UTF-8
 encoding//src/com/example/maplisttest/EmergencyBoardActivity.java=UTF-8
-encoding//src/com/example/maplisttest/GetJsonFromDevice.java=UTF-8
-encoding//src/com/example/maplisttest/GetJsonFromIS.java=UTF-8
 encoding//src/com/example/maplisttest/HotSpotActivity.java=UTF-8
 encoding//src/com/example/maplisttest/ListViewTab.java=UTF-8
 encoding//src/com/example/maplisttest/LogoActivity.java=UTF-8
 encoding//src/com/example/maplisttest/MainActivity.java=UTF-8
 encoding//src/com/example/maplisttest/MapActivity.java=UTF-8
 encoding//src/com/example/maplisttest/MapMainActivity.java=UTF-8
-encoding//src/com/example/maplisttest/SortByMinDistance.java=UTF-8
-encoding//src/com/example/maplisttest/StreamTool.java=UTF-8
+encoding//src/com/example/maplisttest/StreamTools.java=UTF-8
