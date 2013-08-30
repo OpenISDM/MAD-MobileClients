@@ -1,1 +1,21 @@
-Hello
+[About]
+This version use OSMdroid and OSMand library (osmbonuspack_v3.4.jar, osmdroid-android-3.0.10.jar, osmdroid-packager-3.0.10.jar, osmdroid-third-party-3.0.10.jar, offlinemap-android.jar, slf4j-android-1.5.8.jar).
+You need put all library into *\Java\jdk1.7.0_25\jre\lib and configure CLASSPATH in System's environment variable.
+/****
+How to set environment variable
+	1)	Right click on the Computer icon on your Desktop and choose Properties option.
+	2)	In the System window click on Advanced system settings in the left pane as highlighted below
+	3)	In the System Properties window select Advanced tab and click on Environment Variables… button given at the bottom of the window as highlighted below.
+	4)	In the Environment Variables window you will notice two columns User variables for a username and System variables.
+	5)	Now to add a new System variable click on New… button. In the New System Variable dialog box type the Variable name and Variable value and click OK button.
+****/	
+You also need import these libraries to your project.
+
+[Know issue]
+1.Navigate function sometimes did not work, haven't found where the bug yet.
+2.If use the map too fast, the app might be crash. Use google api might solve this problem. (Because we directly access google map tiles now)
+3.If your device haven't get the GPS location yet, the app will  be crash. Need get GPS location first.(ex. Use Google map to get location first)
+
+[Enhancement]
+1.Replace the OSM api to Google api.
+2.Solve GPS location problem.

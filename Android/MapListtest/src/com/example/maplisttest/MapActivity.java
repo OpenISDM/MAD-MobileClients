@@ -164,7 +164,7 @@ public class MapActivity extends Activity
 
 		locationManager.requestLocationUpdates(provider, 10000, 10,
 											   locationListener);
-	
+		
 		inFile = new File(dir, "All.txt");
 		
 		if(inFile.exists())
@@ -276,10 +276,12 @@ public class MapActivity extends Activity
         	@Override
         	public void onClick(View v) 
         	{
+        		/* Click image configure button  */
 	        	int i = 0 ;
 	        	
 	        	if(shelterSwitch)
 	        	{
+	        		/* Set show shelter icon or not */
 	        		shelterSwitch = false;
 	        	}
 	        	else
@@ -289,9 +291,10 @@ public class MapActivity extends Activity
 	        	
 	        	while(!(facilities[i].fac_type.equals("School")))
 	        	{
+	        		/* re-process the information */
 	        		i++;
 	        	}
-	        	
+	        	/* redraw the map */
 	        	RouteMap(new GeoPoint(location.getLatitude(),
 	        						  location.getLongitude()),
 	        			 new GeoPoint(facilities[i].lat,facilities[i].lon),1);
@@ -437,7 +440,7 @@ public class MapActivity extends Activity
 	 *  @param: GeoPoint startPoint : The route's start point  
 	 			GeoPoint endPoint	: The route's end point
 	   			int type			: which type to do this function
-	                                  value 0 : navigate ,1 : initial 
+	                                  value 0 : navigate, 1 : initial 
 	 *  @return: N/A
 	**************************************************************************/
 	public void RouteMap(GeoPoint startPoint, GeoPoint endPoint, int type)
@@ -492,6 +495,7 @@ public class MapActivity extends Activity
 			
 			oitem.setMarker(setmarker(i));
 			
+			/* according previous condition set overlay item  */
 			if((facilities[i].fac_type.equals("School") 
 					&& shelterSwitch) 
 				|| (facilities[i].fac_type.equals("Hospital") 
