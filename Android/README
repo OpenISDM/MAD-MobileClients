@@ -1,3 +1,7 @@
+[Version 0.1.0]
+This version build basic frame and List/Map view function which can get government's open data and show on your device. 
+List/Map view function also contain text/map navigation feature. 
+
 [About]
 This version use OSMdroid and OSMand library (osmbonuspack_v3.4.jar, osmdroid-android-3.0.10.jar, osmdroid-packager-3.0.10.jar, osmdroid-third-party-3.0.10.jar, offlinemap-android.jar, slf4j-android-1.5.8.jar).
 You need put all library into *\Java\jdk1.7.0_25\jre\lib and configure CLASSPATH in System's environment variable.
