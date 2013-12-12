@@ -6,16 +6,14 @@ package com.example.maplisttest;
  *  Methods: N/A
  *  Functionality: Build data structure for project 
 ******************************************************************************/
-public class DataStructure 
-{
+public class DataStructure {
 	/**************************************************************************
 	 *  Class name: Facilities
 	 *  Inheritance: DataStructure
 	 *  Methods: N/A
 	 *  Functionality: Data structure for facilities information
 	**************************************************************************/
-	public static class Facilities
-	{
+	public static class Facilities{
 		public String name;
 		
 		public String fac_type;

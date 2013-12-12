@@ -10,11 +10,9 @@ import android.content.res.Configuration;
  *  Methods: onConfigurationChanged
  *  Functionality: Temporary EmergencyBoardActivity 
 ******************************************************************************/
-public class EmergencyBoardActivity extends Activity 
-{
+public class EmergencyBoardActivity extends Activity {
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.emergencyboard);
@@ -27,18 +25,13 @@ public class EmergencyBoardActivity extends Activity
 	 *  @return: N/A
 	**************************************************************************/
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
+    public void onConfigurationChanged(Configuration newConfig){
         super.onConfigurationChanged(newConfig);
         // Checks the orientation of the screen
-        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            
-        }
-        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT)
-        {
-            
-        }
+        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
+            }
+        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT){
+            }
         
     }
 

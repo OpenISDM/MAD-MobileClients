@@ -10,16 +10,13 @@ import android.content.res.Configuration;
  *  Methods: onConfigurationChanged
  *  Functionality: Temporary HotSpotActivity 
 ******************************************************************************/
-public class HotSpotActivity extends Activity 
-{
+public class HotSpotActivity extends Activity {
+	//熱點頁面
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.hotspot);
-
-	}
+}
 	/**************************************************************************
 	 *  Method name: onConfigurationChanged
 	 *  Functionality: Avoid execute onCreate when orientation change 
@@ -27,19 +24,13 @@ public class HotSpotActivity extends Activity
 	 *  @return: N/A
 	**************************************************************************/
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
+public void onConfigurationChanged(Configuration newConfig){
         super.onConfigurationChanged(newConfig);
         // Checks the orientation of the screen
-        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            
+        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
+            }
+        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT){
+            }
         }
-        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT)
-        {
-            
-        }
-        
-    }
 
 }

@@ -7,21 +7,40 @@ import android.content.res.Configuration;
 import android.view.Window;
 import android.widget.TabHost;
 
+/* </SOURCE_HEADER>
+ * 
+ * <NAME>
+ * <Academia Sinica MapListtest>
+ * </NAME>
+ * 
+ * <RCS_KEYWORD>
+ * $Source$
+ * $Revision: 1.0 $
+ * $Date: 2013/11/05 $
+ *</RCS_KEYWORD>
+ *
+ *<COPYRIGHT>
+ * The following source code is protected under all standard copyright laws.
+ *</COPYRIGHT>
+ *
+ *</SOURCE_HEADER>
+ */
 
-/******************************************************************************
- *  Class name: MainActivity
- *  Inheritance: N/A
- *  Methods: onConfigurationChanged
- *  Functionality: Use Activity Group to build Tab
-******************************************************************************/
+/**
+ * @author      Academia Sinica
+ * @version     $Revision: 1.0 $, $Date:  2013/11/05  $
+ * @since       
+ */
 @SuppressWarnings("deprecation")
-public class MainActivity extends ActivityGroup 
-{
+public class MainActivity extends ActivityGroup {
+	
 	private TabHost mTabHost = null;
-
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.ActivityGroup#onCreate(android.os.Bundle)
+	 */
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -36,20 +55,19 @@ public class MainActivity extends ActivityGroup
 	
 		mTabHost.addTab(mTabHost.newTabSpec("t1")
 				.setIndicator("DownLoad Information")
-				.setContent(new Intent(this, DownloadActivity.class)));
+				.setContent(new Intent(this, DownloadActivity.class)));//跳至下載頁面
 		
 		mTabHost.addTab(mTabHost.newTabSpec("t2").setIndicator("Map/List")
-				.setContent(new Intent(this, ListViewTab.class)));
+				.setContent(new Intent(this, ListViewTab.class)));//跳至地圖頁面
 		
 		mTabHost.addTab(mTabHost.newTabSpec("t3")
 				.setIndicator("Emergency Board")
-				.setContent(new Intent(this, EmergencyBoardActivity.class)));
+				.setContent(new Intent(this, EmergencyBoardActivity.class)));//跳至緊急求救頁面
 		
 		mTabHost.addTab(mTabHost.newTabSpec("t4").setIndicator("Host Server")
-				.setContent(new Intent(this, HotSpotActivity.class)));
+				.setContent(new Intent(this, HotSpotActivity.class)));//跳至熱點設定頁面
 		
-		mTabHost.setCurrentTabByTag("t2");
-
+		//mTabHost.setCurrentTabByTag("t2");//將目前的頁面設定誌地圖頁面tab2
 	}
 	/**************************************************************************
 	 *  Method name: onConfigurationChanged
@@ -58,18 +76,13 @@ public class MainActivity extends ActivityGroup
 	 *  @return: N/A
 	**************************************************************************/
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
+    public void onConfigurationChanged(Configuration newConfig){
         super.onConfigurationChanged(newConfig);
         // Checks the orientation of the screen
-        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            
-        }
-        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT)
-        {
-            
-        }
+        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
+            }
+        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT){
+            }
     }
 
 }

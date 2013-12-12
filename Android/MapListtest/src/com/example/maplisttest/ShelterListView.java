@@ -39,8 +39,7 @@ import android.widget.SimpleAdapter;
  *  Methods: onCreateView , LocationListener
  *  Functionality: Show the Shelter information from open data.  
 ******************************************************************************/
-public class ShelterListView extends Fragment 
-{
+public class ShelterListView extends Fragment {
 	private Builder builder,builderR;
 	
 	ArrayList<HashMap<String,Object>> list = 
@@ -54,8 +53,7 @@ public class ShelterListView extends Fragment
 
 	public Facilities [] facilities = new Facilities[300];
 	
-	public ShelterListView ()
-	{
+	public ShelterListView (){
 		for (int i=0; i < 300; ++i)
 		{
 			facilities[i] = new Facilities();
@@ -64,16 +62,14 @@ public class ShelterListView extends Fragment
 	}
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 	        // TODO Auto-generated method stub
 	        super.onCreate(savedInstanceState);	    
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	        Bundle savedInstanceState) 
-	{
+	        Bundle savedInstanceState) {
 		File dir = Config.context.getExternalFilesDir(null);	
 		//Get External Files Directory
 		
@@ -136,12 +132,10 @@ public class ShelterListView extends Fragment
 		
 		inFile = new File(dir, "Shelter.txt");
 		
-		if(inFile.exists())
-		{
+		if(inFile.exists()){
 			/* Check if file exist */
 			is = StreamTools.ReadFromFile(inFile);
-			try 
-			{
+			try {
 				StreamTools.GetJSONFromDevice(is,facilities);
 			} 
 			catch (Exception e) 
@@ -150,13 +144,11 @@ public class ShelterListView extends Fragment
 				e.printStackTrace();
 			}			
 		}
-		else
-		{
+		else{
 			/* If not, get data from IS */
 			os = null;
 
-		    try 
-		    {
+		    try {
 		    	StreamTools.GetJSONFromIS(Config.ShelterURL,facilities);
 		    	
 				StreamTools.SortByMinDistance(facilities,
@@ -165,8 +157,7 @@ public class ShelterListView extends Fragment
 				
 				os = StreamTools.JSONEncode(facilities);
 			} 
-		    catch (Exception e) 
-			{
+		    catch (Exception e) {
 				e.printStackTrace();
 			}
 
@@ -175,8 +166,7 @@ public class ShelterListView extends Fragment
 		    StreamTools.WriteToFile(outFile, os);
 		}
   
-	    while(facilities[length].name != null)
-	    {
+	    while(facilities[length].name != null){
 	    	/* Calculate the length of facilities data*/
 	    	length++;
 	    }
@@ -184,8 +174,7 @@ public class ShelterListView extends Fragment
 	    length--;
 	    
 	  
-		 for(int j=0; j<=length; j++)
-		 {
+		 for(int j=0; j<=length; j++){
 			 /* Add data into arraylist */
 			 HashMap<String,Object> item = new HashMap<String,Object>();
 			 	
@@ -201,8 +190,7 @@ public class ShelterListView extends Fragment
 		 
 		 ListView mListView = (ListView)v.findViewById(R.id.listView);
 		 
-		 if( mListView != null ) 
-		 {
+		 if( mListView != null ) {
 			 /* Set ListView content */
 			 mListView.setAdapter(new SimpleAdapter(
 					 			  getActivity(),list,
@@ -212,12 +200,10 @@ public class ShelterListView extends Fragment
 				 							 R.id.textView2 } ));
 		 }
 		 
-		 mListView.setOnItemClickListener(new OnItemClickListener()
-		 {   
+		 mListView.setOnItemClickListener(new OnItemClickListener(){   
 			 @Override
 		     public void onItemClick(AdapterView<?> parent, View view,
-		        		             final int position, long id)
-		     {
+		        		             final int position, long id){
 				 builder = new AlertDialog.Builder(getActivity());
 		            
 		         builder.setTitle("Detail Information");
@@ -233,11 +219,9 @@ public class ShelterListView extends Fragment
 		            
 		            
 		         builder.setPositiveButton(
-		        		 "Navigate",new DialogInterface.OnClickListener()
-		         { 
+		        		 "Navigate",new DialogInterface.OnClickListener(){ 
 		             @Override
-		             public void onClick(DialogInterface dialog, int which)
-		             {
+		             public void onClick(DialogInterface dialog, int which){
 		            	 /* To do when press "Navigate" */
 			             RoadManager roadManager = 
 			            		 new MapQuestRoadManager();
@@ -266,12 +250,10 @@ public class ShelterListView extends Fragment
 				         builderR.setCancelable(false);
 
 				         builderR.setNegativeButton(
-				        		 "Cancel",new DialogInterface.OnClickListener()
-				        		 {
+				        		 "Cancel",new DialogInterface.OnClickListener(){
 				        			 @Override
 				            		 public void onClick(
-				            				 DialogInterface dialog,int which)
-				            		 {
+				            				 DialogInterface dialog,int which){
 				            				/*To do when press Cancel*/
 				            		 }
 				            	 });
@@ -283,12 +265,10 @@ public class ShelterListView extends Fragment
 		            });
      
 		         builder.setNegativeButton(
-		        		 "Cancel",new DialogInterface.OnClickListener()
-		        		 {
+		        		 "Cancel",new DialogInterface.OnClickListener(){
 		        			 @Override
 		        			 public void onClick(DialogInterface dialog,
-		        					 			 int which)
-		        			 {
+		        					 			 int which){
 		        				 /*To do when press Cancel*/
 		        			 }
 		        		 });
@@ -309,24 +289,19 @@ public class ShelterListView extends Fragment
 	 *  @param: N/A
 	 *  @return: N/A
 	*******************************************************/
-	private final LocationListener locationListener = new LocationListener()
-	{ 
-		public void onLocationChanged(Location location) 
-		{ 
+	private final LocationListener locationListener = new LocationListener(){ 
+		public void onLocationChanged(Location location) { 
 			//updateWithNewLocation(location); 
 		} 
 
-		public void onProviderDisabled(String provider)
-		{ 
+		public void onProviderDisabled(String provider){ 
 			//updateWithNewLocation(null); 
 		} 
 
-		public void onProviderEnabled(String provider)
-		{ 
+		public void onProviderEnabled(String provider){ 
 			
 		} 
-		public void onStatusChanged(String provider,int status,Bundle extras)
-		{ 
+		public void onStatusChanged(String provider,int status,Bundle extras){ 
 			
 		} 
 	};

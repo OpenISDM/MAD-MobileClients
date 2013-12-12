@@ -6,8 +6,7 @@ package com.example.maplisttest;
  *  Methods: N/A
  *  Functionality: Configure project variable  
 ******************************************************************************/
-public final class Config 
-{
+public final class Config {
     public static ListViewTab context = null;
     
     public static String FacilitiesURL = "http://mad-is.iis.sinica.edu.tw/facilities.json";

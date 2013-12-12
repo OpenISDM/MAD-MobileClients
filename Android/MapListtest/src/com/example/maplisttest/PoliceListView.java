@@ -39,8 +39,8 @@ import android.widget.SimpleAdapter;
  *  Methods: onCreateView , LocationListener
  *  Functionality: Show the PoliceStation information from open data.  
 ******************************************************************************/
-public class PoliceListView extends Fragment 
-{
+public class PoliceListView extends Fragment {
+	//秀出警察局位置
 	private Builder builder,builderR;
 	
 	ArrayList<HashMap<String,Object>> list = 
@@ -54,26 +54,22 @@ public class PoliceListView extends Fragment
 
 	public Facilities [] facilities = new Facilities[300];
 	
-	public PoliceListView ()
-	{
-		for (int i=0; i < 300; ++i)
-		{
+	public PoliceListView (){
+		for (int i=0; i < 300; ++i){
 			facilities[i] = new Facilities();
 		}
 		
 	}
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 	        // TODO Auto-generated method stub
 	        super.onCreate(savedInstanceState);	    
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	        Bundle savedInstanceState) 
-	{
+	        Bundle savedInstanceState) {
 		File dir = Config.context.getExternalFilesDir(null);	
 		//Get External Files Directory
 		
@@ -136,27 +132,22 @@ public class PoliceListView extends Fragment
 		
 		inFile = new File(dir, "Police.txt");
 		
-		if(inFile.exists())
-		{
+		if(inFile.exists()){
 			/* Check if file exist */
 			is = StreamTools.ReadFromFile(inFile);
-			try 
-			{
+			try {
 				StreamTools.GetJSONFromDevice(is,facilities);
 			} 
-			catch (Exception e) 
-			{
+			catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
 		}
-		else
-		{
+		else{
 			/* If not, get data from IS */
 			os = null;
 
-		    try 
-		    {
+		    try {
 		    	StreamTools.GetJSONFromIS(Config.PoliceURL,facilities);
 		    	
 				StreamTools.SortByMinDistance(facilities,
@@ -165,8 +156,7 @@ public class PoliceListView extends Fragment
 				
 				os = StreamTools.JSONEncode(facilities);
 			} 
-		    catch (Exception e) 
-			{
+		    catch (Exception e) {
 				e.printStackTrace();
 			}
 
@@ -175,8 +165,7 @@ public class PoliceListView extends Fragment
 		    StreamTools.WriteToFile(outFile, os);
 		}
   
-	    while(facilities[length].name != null)
-	    {
+	    while(facilities[length].name != null){
 	    	/* Calculate the length of facilities data*/
 	    	length++;
 	    }
@@ -184,8 +173,7 @@ public class PoliceListView extends Fragment
 	    length--;
 	    
 	  
-		 for(int j=0; j<=length; j++)
-		 {
+		 for(int j=0; j<=length; j++){
 			 /* Add data into arraylist */
 			 HashMap<String,Object> item = new HashMap<String,Object>();
 			 	

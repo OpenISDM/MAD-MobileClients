@@ -32,46 +32,43 @@ import com.example.maplisttest.DataStructure.Facilities;
  *           GetJSONFromDevice, getContent
  *  Functionality: Show all the information on map.  
 ******************************************************************************/
-public class StreamTools 
-{
+
+/**
+ * @author      Academia Sinica
+ * @version     $Revision: 1.0 $, $Date:  2013/11/05  $
+ * @since       
+ * @classname	StreamTools
+ */
+public class StreamTools {
     /**************************************************************************
 	 *  Method name: ReadFromFile
 	 *  Functionality: Read data from file
 	 *  @param: File fin: input file
 	 *  @return: String
 	**************************************************************************/
-	public static String ReadFromFile(File fin) 
-	{
+	public static String ReadFromFile(File fin) {
 	     StringBuilder data = new StringBuilder();
 	     
 	     BufferedReader reader = null;
 	     
 	     String line;
 	     
-	     try 
-	     {
+	     try {
 	         reader = 
-	        		 new BufferedReader(new InputStreamReader(
-	        				 				new FileInputStream(fin),"utf-8"));
+	        		 new BufferedReader(new InputStreamReader(new FileInputStream(fin),"utf-8"));
 	         
-	         
-	         while ((line = reader.readLine()) != null) 
-	         {
+	         while ((line = reader.readLine()) != null) {
 	             data.append(line);
 	         }
 	     } 
-	     catch (Exception e) 
-	     {
+	     catch (Exception e) {
 	         ;
 	     } 
-	     finally 
-	     {
-	         try 
-	         {
+	     finally {
+	         try {
 	             reader.close();
 	         } 
-	         catch (Exception e) 
-	         {
+	         catch (Exception e) {
 	             ;
 	         }
 	     }
@@ -86,30 +83,24 @@ public class StreamTools
 	 *          String data : output data
 	 *  @return: N/A
 	**************************************************************************/	
-	public static void WriteToFile(File fout, String data) 
-	{
+	public static void WriteToFile(File fout, String data) {
 		 FileOutputStream osw = null;
 		 
-		 try 
-		 {
+		 try {
 			 osw = new FileOutputStream(fout);
 			 
 		     osw.write(data.getBytes());
 		     
 		     osw.flush();
 		 } 
-		 catch (Exception e) 
-		 {
+		 catch (Exception e) {
 		        ;
 		 } 
-		 finally 
-		 {
-			 try 
-			 {
+		 finally {
+			 try {
 				 osw.close();  
 			 } 
-			 catch (Exception e) 
-			 {
+			 catch (Exception e) {
 		            ;
 		     }
 		 }
@@ -121,13 +112,10 @@ public class StreamTools
 	 *  @param: Facilities[] facilities : facilities information
 	 *  @return: String
 	**************************************************************************/	
-	public static String JSONEncode(Facilities[] facilities) 
-			throws JSONException 
-	{ 
+	public static String JSONEncode(Facilities[] facilities) throws JSONException { 
 		 int length = 1 ;
 
-		 while(facilities[length].name != null)
-		 {
+		 while(facilities[length].name != null){
 		    length++;
 		 }
 		    
@@ -135,8 +123,7 @@ public class StreamTools
 		    
 	     JSONArray jsonArray = new JSONArray();
 	     
-	     for(int i = 0 ; i <= length ; i++)
-	     {
+	     for(int i = 0 ; i <= length ; i++){
 	            JSONObject jsonObject = new JSONObject();
 	            
 	            jsonObject.put("name", facilities[i].name);
@@ -165,8 +152,7 @@ public class StreamTools
 	 *  @param: Road road : Routed road
 	 *  @return: StringBuilder
 	**************************************************************************/	
-	public static StringBuilder CombineRoute(Road road)
-	{
+	public static StringBuilder CombineRoute(Road road){
 		int min = 0,sec;
 		
 		StringBuilder route = new StringBuilder("Step ").append("0 : \n");
@@ -175,8 +161,7 @@ public class StreamTools
 		
 		sec = (int)(node.mDuration);
 		
-		if(sec >= 60)
-		{
+		if(sec >= 60){
 			min = sec/60;
 			
 			sec = sec - min*60;
@@ -185,8 +170,7 @@ public class StreamTools
 		
 		route = route.append(node.mInstructions).append("\n");
 		
-		if(min >0)
-		{
+		if(min >0){
 			/* spend over 1 minute */
 			route = route.append("Distance : ")
 						 .append((int)((node.mLength)*1000))
@@ -194,8 +178,7 @@ public class StreamTools
 						 .append(min)
 						 .append("min\n");
 		}
-		else
-		{
+		else{
 			route = route.append("Distance : ")
 						 .append((int)((node.mLength)*1000))
 						 .append("m , Duration : ")
@@ -205,14 +188,12 @@ public class StreamTools
 		
 		route = route.append("---\n");
 		
-		for (int i=1; i<road.mNodes.size(); i++)
-		{	
+		for (int i=1; i<road.mNodes.size(); i++){	
 	 		node = road.mNodes.get(i);
 	 		
 	 		sec = (int)(node.mDuration);
 			
-			if(sec >= 60)
-			{
+			if(sec >= 60){
 				min = sec/60;
 				
 				sec = sec - min*60;
@@ -221,16 +202,14 @@ public class StreamTools
 			
 	 		route = route.append("Step ").append(i).append(" : \n");
 	 		route = route.append(node.mInstructions).append("\n");
-	 		if(min >0)
-			{
+	 		if(min >0){
 				route = route.append("Distance : ")
 							 .append((int)((node.mLength)*1000))
 							 .append("m , Duration : ")
 							 .append(min)
 							 .append("min\n");
 			}
-			else
-			{
+			else{
 				route = route.append("Distance : ")
 							 .append((int)((node.mLength)*1000))
 							 .append("m , Duration : ")
@@ -252,16 +231,14 @@ public class StreamTools
 	 *  @return: N/A
 	**************************************************************************/
 	public static void SortByMinDistance(Facilities facilities[],
-										 double userlat,double userlon)
-	{
+										 double userlat,double userlon){
 		int length = 0;
 			
 		int count;
 			
 		Facilities temp = new Facilities();
 			
-		while(facilities[length].name != null)
-		{
+		while(facilities[length].name != null){
 			facilities[length].dist = (int) getDistance(facilities[length].lat,
 														facilities[length].lon,
 														userlat, userlon);
@@ -271,16 +248,10 @@ public class StreamTools
 			
 		count = length;
 			
-		for(int j = 0 ; j < length ; j++)
-		{
+		for(int j = 0 ; j < length ; j++){
 			/* Bubble Sort */
-			for(int i = 0 ; i < count ; i++)
-			{
-				if(getDistance(facilities[i].lat, facilities[i].lon,
-							   userlat, userlon ) 
-					> (getDistance(facilities[i+1].lat, facilities[i+1].lon,
-							       userlat, userlon)))
-				{
+			for(int i = 0 ; i < count ; i++){
+				if(getDistance(facilities[i].lat, facilities[i].lon,userlat, userlon ) > (getDistance(facilities[i+1].lat, facilities[i+1].lon,userlat, userlon))){
 					temp = facilities[i];
 						
 					facilities[i] = facilities[i+1];
@@ -304,8 +275,7 @@ public class StreamTools
 	 *  @return: double
 	**************************************************************************/
 	private static double getDistance(double lat1, double lon1,
-			                          double lat2, double lon2) 
-	{  
+			                          double lat2, double lon2) {  
 		float[] results=new float[1];  
 			
 		Location.distanceBetween(lat1, lon1, lat2, lon2, results); 
@@ -321,14 +291,12 @@ public class StreamTools
 	 *  @return: N/A
 	**************************************************************************/
 	public static void GetJSONFromIS (String url, Facilities facilities[]) 
-			throws Exception
-	{
+			throws Exception{
     	String body = getContent(url);
     	
     	JSONArray jArray = new JSONArray(body);
     	
-       	for(int i=0; i<jArray.length(); i++)
-    	{
+       	for(int i=0; i<jArray.length(); i++){
     		JSONObject obj = jArray.getJSONObject(i);
     		
     		facilities[i].name = obj.getString("name");
@@ -352,13 +320,10 @@ public class StreamTools
 	   			Facilities facilities[] : facilities information
 	 *  @return: N/A
 	**************************************************************************/
-	public static void GetJSONFromDevice(String data, Facilities facilities[])
-			throws Exception
-	{
+	public static void GetJSONFromDevice(String data, Facilities facilities[])throws Exception{
     	JSONArray jArray = new JSONArray(data);
     	
-       	for(int i=0; i<jArray.length(); i++)
-    	{
+       	for(int i=0; i<jArray.length(); i++){
     		JSONObject obj = jArray.getJSONObject(i);
     		
     		facilities[i].name = obj.getString("name");
@@ -383,8 +348,7 @@ public class StreamTools
 	 *  @param: String url 
 	 *  @return: string
 	**************************************************************************/
-	private static String getContent(String url) throws Exception
-	{
+	private static String getContent(String url) throws Exception{
 		StringBuilder sb = new StringBuilder();
 
 		HttpClient client = new DefaultHttpClient();
@@ -399,16 +363,14 @@ public class StreamTools
 		
 		HttpEntity entity = response.getEntity();
 		
-		if (entity != null) 
-		{
+		if (entity != null) {
 			BufferedReader reader = 
 					new BufferedReader(new InputStreamReader(
 										entity.getContent(), "UTF-8"), 8192);
 
 			String line = null;
 			
-			while ((line = reader.readLine())!= null)
-			{
+			while ((line = reader.readLine())!= null){
 				sb.append(line + "\n");
 			}
 			

@@ -18,8 +18,14 @@ import android.widget.TabHost;
  *  Methods: TabInfo, DummyTabFactory, addTab, onTabChanged
  *  Functionality: Manage TabHost 
 ******************************************************************************/
-public class TabManager implements TabHost.OnTabChangeListener
-{
+/**
+ * @author      Academia Sinica
+ * @version     $Revision: 1.0 $, $Date:  2013/11/05  $
+ * @since       
+ * @classname	TabManager
+ */
+public class TabManager implements TabHost.OnTabChangeListener{
+	//分業管理
     private final FragmentActivity mActivity;
     
     private final TabHost mTabHost;
@@ -37,8 +43,8 @@ public class TabManager implements TabHost.OnTabChangeListener
 	 *  @param: N/A
 	 *  @return: N/A
 	**************************************************************************/
-    static final class TabInfo 
-    {
+    static final class TabInfo {
+    	//分業的資訊
         private final String tag;
         
         private final Class<?> clss;
@@ -47,8 +53,7 @@ public class TabManager implements TabHost.OnTabChangeListener
         
         private Fragment fragment;
 
-        TabInfo(String _tag, Class<?> _class, Bundle _args) 
-        {
+        TabInfo(String _tag, Class<?> _class, Bundle _args) {
             tag = _tag;
             clss = _class;
             args = _args;
@@ -61,18 +66,15 @@ public class TabManager implements TabHost.OnTabChangeListener
 	 *  @param: N/A
 	 *  @return: N/A
 	**************************************************************************/
-    static class DummyTabFactory implements TabHost.TabContentFactory 
-    {
+    static class DummyTabFactory implements TabHost.TabContentFactory {
         private final Context mContext;
 
-        public DummyTabFactory(Context context) 
-        {
+        public DummyTabFactory(Context context) {
             mContext = context;
         }
 
         @Override
-        public View createTabContent(String tag) 
-        {
+        public View createTabContent(String tag) {
             View v = new View(mContext);
             
             v.setMinimumWidth(0);
@@ -85,8 +87,7 @@ public class TabManager implements TabHost.OnTabChangeListener
 
     
     public TabManager(FragmentActivity activity, TabHost tabHost,
-    		          int containerId) 
-    {
+    		          int containerId) {
         mActivity = activity;
         
         mTabHost = tabHost;
@@ -102,8 +103,7 @@ public class TabManager implements TabHost.OnTabChangeListener
 	 *  @param: TabHost.TabSpec tabSpec, Class<?> clss, Bundle args
 	 *  @return: N/A
 	**************************************************************************/
-    public void addTab(TabHost.TabSpec tabSpec, Class<?> clss, Bundle args) 
-    {
+    public void addTab(TabHost.TabSpec tabSpec, Class<?> clss, Bundle args) {
         tabSpec.setContent(new DummyTabFactory(mActivity));
         
         String tag = tabSpec.getTag();
@@ -113,8 +113,7 @@ public class TabManager implements TabHost.OnTabChangeListener
         info.fragment = 
         		mActivity.getSupportFragmentManager().findFragmentByTag(tag);
         
-        if (info.fragment != null && !info.fragment.isDetached()) 
-        {
+        if (info.fragment != null && !info.fragment.isDetached()) {
             FragmentTransaction ft = 
             		mActivity.getSupportFragmentManager().beginTransaction();
             
@@ -134,37 +133,30 @@ public class TabManager implements TabHost.OnTabChangeListener
 	 *  @return: N/A
 	**************************************************************************/
     @Override
-    public void onTabChanged(String tabId) 
-    {
+    public void onTabChanged(String tabId) {
         TabInfo newTab = mTabs.get(tabId);
         
-        if (mLastTab != newTab) 
-        {
+        if (mLastTab != newTab) {
              FragmentTransaction ft =
             		 mActivity.getSupportFragmentManager().beginTransaction();
                 
-             if (mLastTab != null) 
-             {
-                 if (mLastTab.fragment != null)
-                 {
+             if (mLastTab != null) {
+                 if (mLastTab.fragment != null){
                      ft.detach(mLastTab.fragment);
                  }
              }
 
-             if (newTab != null)
-             {
+             if (newTab != null){
                  newTab.fragment = 
                 		 Fragment.instantiate(mActivity,newTab.clss.getName(),
                 				              newTab.args);
                  
                  ft.add(mContainerId, newTab.fragment, newTab.tag);
                  
-                 if (newTab.fragment == null) 
-                 {
+                 if (newTab.fragment == null) {
                      ft.detach(mLastTab.fragment);
                  } 
-                 else 
-                 {
+                 else {
                      ft.replace(mContainerId, newTab.fragment);
                      
                      ft.attach(newTab.fragment);

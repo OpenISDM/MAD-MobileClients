@@ -32,48 +32,39 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
+/**
+ * @author      Academia Sinica
+ * @version     $Revision: 1.0 $, $Date:  2013/11/05  $
+ * @since       
+ */
 /******************************************************************************
  *  Class name: AllListView
  *  Inheritance: ListViewTab
  *  Methods: onCreateView , LocationListener
  *  Functionality: Show all the information from open data.  
 ******************************************************************************/
-public class AllListView extends Fragment 
-{
+public class AllListView extends Fragment {
 	private Builder builder,builderR;
-	
-	ArrayList<HashMap<String,Object>> list = 
-			 new ArrayList<HashMap<String,Object>>();
-	
-	private View v;
-		
+	ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+	private View v;	
 	public Location location;
-	
 	public JSONArray jArray;
-
 	public Facilities [] facilities = new Facilities[300];
 	
-	public AllListView ()
-	{
-		for (int i=0; i < 300; ++i)
-		{
+	public AllListView (){
+		for (int i=0; i < 300; ++i){
 			facilities[i] = new Facilities();
 		}
-		
 	}
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 	        // TODO Auto-generated method stub
 	        super.onCreate(savedInstanceState);	    
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	        Bundle savedInstanceState) 
-	{
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		File dir = Config.context.getExternalFilesDir(null);	
 		//Get External Files Directory
 		
@@ -138,27 +129,22 @@ public class AllListView extends Fragment
 		
 		inFile = new File(dir, "All.txt");
 		
-		if(inFile.exists())
-		{
+		if(inFile.exists()){
 			/* Check if file exist */
 			is = StreamTools.ReadFromFile(inFile);
-			try 
-			{
+			try {
 				StreamTools.GetJSONFromDevice(is,facilities);
 			} 
-			catch (Exception e) 
-			{
+			catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
 		}
-		else
-		{
+		else{
 			/* If not, get data from IS */
 			os = null;
 
-		    try 
-		    {
+		    try {
 		    	StreamTools.GetJSONFromIS(Config.FacilitiesURL,facilities);
 		    	
 				StreamTools.SortByMinDistance(facilities,
@@ -167,8 +153,7 @@ public class AllListView extends Fragment
 				
 				os = StreamTools.JSONEncode(facilities);
 			} 
-		    catch (Exception e) 
-			{
+		    catch (Exception e) {
 				e.printStackTrace();
 			}
 
@@ -177,8 +162,7 @@ public class AllListView extends Fragment
 		    StreamTools.WriteToFile(outFile, os);
 		}
   
-	    while(facilities[length].name != null)
-	    {
+	    while(facilities[length].name != null){
 	    	/* Calculate the length of facilities data*/
 	    	length++;
 	    }
@@ -186,56 +170,40 @@ public class AllListView extends Fragment
 	    length--;
 	    
 	  
-		 for(int j=0; j<=length; j++)
-		 {
+		 for(int j=0; j<=length; j++){
 			 /* Add data into arraylist */
 			 HashMap<String,Object> item = new HashMap<String,Object>();
 			 
-			 if(facilities[j].fac_type.equals("FireStation"))
-			 {
+			 if(facilities[j].fac_type.equals("FireStation")){
 				 item.put("pic", R.drawable.fire);
 			 }
-			 else if(facilities[j].fac_type.equals("Hospital"))
-			 {
+			 else if(facilities[j].fac_type.equals("Hospital")){
 				 item.put("pic", R.drawable.h);
 			 }
-			 else if(facilities[j].fac_type.equals("Police"))
-			 {
+			 else if(facilities[j].fac_type.equals("Police")){
 				 item.put("pic", R.drawable.police);
 			 }
-			 else if(facilities[j].fac_type.equals("School") || 
-					 facilities[j].fac_type.equals("Sport"))
-			 {
+			 else if(facilities[j].fac_type.equals("School") || facilities[j].fac_type.equals("Sport")){
 				 item.put("pic", R.drawable.shelter);
 			 }
 			 
 			 item.put( "Fac_Name", facilities[j].name);
 			
-			 item.put("Distance", 
-					  "Distance:"+Integer.toString(facilities[j].dist)+"m");
+			 item.put("Distance","Distance:"+Integer.toString(facilities[j].dist)+"m");
 			 
 			 list.add( item );
 		 }
 		 
 		 ListView mListView = (ListView)v.findViewById(R.id.listView);
 		 
-		 if( mListView != null ) 
-		 {
+		 if( mListView != null ){
 			 /* Set ListView content */
-			 mListView.setAdapter(new SimpleAdapter(
-					 			  getActivity(),list,
-		        				  R.layout.mylayout1,
-		        				  new String[] {"pic","Fac_Name","Distance"},
-				 				  new int[] {R.id.imageView1,R.id.textView1,
-				 							 R.id.textView2 } ));
+			 mListView.setAdapter(new SimpleAdapter(getActivity(),list,R.layout.mylayout1,new String[] {"pic","Fac_Name","Distance"},new int[] {R.id.imageView1,R.id.textView1,R.id.textView2 } ));
 		 }
 		 
-		 mListView.setOnItemClickListener(new OnItemClickListener()
-		 {   
+		 mListView.setOnItemClickListener(new OnItemClickListener(){   
 			 @Override
-		     public void onItemClick(AdapterView<?> parent, View view,
-		        		             final int position, long id)
-		     {
+		     public void onItemClick(AdapterView<?> parent, View view,final int position, long id){
 				 builder = new AlertDialog.Builder(getActivity());
 		            
 		         builder.setTitle("Detail Information");
@@ -251,11 +219,9 @@ public class AllListView extends Fragment
 		            
 		            
 		         builder.setPositiveButton(
-		        		 "Navigate",new DialogInterface.OnClickListener()
-		         { 
+		        		 "Navigate",new DialogInterface.OnClickListener(){ 
 		             @Override
-		             public void onClick(DialogInterface dialog, int which)
-		             {
+		             public void onClick(DialogInterface dialog, int which){
 		            	 /* To do when press "Navigate" */
 			             RoadManager roadManager = 
 			            		 new MapQuestRoadManager();
@@ -284,12 +250,10 @@ public class AllListView extends Fragment
 				         builderR.setCancelable(false);
 
 				         builderR.setNegativeButton(
-				        		 "Cancel",new DialogInterface.OnClickListener()
-				        		 {
+				        		 "Cancel",new DialogInterface.OnClickListener(){
 				        			 @Override
 				            		 public void onClick(
-				            				 DialogInterface dialog,int which)
-				            		 {
+				            				 DialogInterface dialog,int which){
 				            				/*To do when press Cancel*/
 				            		 }
 				            	 });
@@ -301,12 +265,9 @@ public class AllListView extends Fragment
 		            });
      
 		         builder.setNegativeButton(
-		        		 "Cancel",new DialogInterface.OnClickListener()
-		        		 {
+		        		 "Cancel",new DialogInterface.OnClickListener(){
 		        			 @Override
-		        			 public void onClick(DialogInterface dialog,
-		        					 			 int which)
-		        			 {
+		        			 public void onClick(DialogInterface dialog,int which){
 		        				 /*To do when press Cancel*/
 		        			 }
 		        		 });
@@ -327,26 +288,19 @@ public class AllListView extends Fragment
 	 *  @param: N/A
 	 *  @return: N/A
 	*******************************************************/
-	private final LocationListener locationListener = new LocationListener()
-	{ 
-		public void onLocationChanged(Location location) 
-		{ 
+	private final LocationListener locationListener = new LocationListener(){ 
+		public void onLocationChanged(Location location) { 
 			//updateWithNewLocation(location); 
-		} 
+			} 
 
-		public void onProviderDisabled(String provider)
-		{ 
+		public void onProviderDisabled(String provider){ 
 			//updateWithNewLocation(null); 
-		} 
-
-		public void onProviderEnabled(String provider)
-		{ 
-			
-		} 
-		public void onStatusChanged(String provider,int status,Bundle extras)
-		{ 
-			
-		} 
+			} 
+		
+		public void onProviderEnabled(String provider){ 
+			} 
+		public void onStatusChanged(String provider,int status,Bundle extras){ 
+			} 
 	};
 
 }

@@ -14,13 +14,11 @@ import android.widget.TabHost;
  *  Functionality: Use Activity Group to build Tab
 ******************************************************************************/
 @SuppressWarnings("deprecation")
-public class MapMainActivity extends ActivityGroup 
-{
+public class MapMainActivity extends ActivityGroup {
 	private TabHost mTabHost = null;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
@@ -58,16 +56,13 @@ public class MapMainActivity extends ActivityGroup
 	 *  @return: N/A
 	**************************************************************************/
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
+    public void onConfigurationChanged(Configuration newConfig){
         super.onConfigurationChanged(newConfig);
         // Checks the orientation of the screen
-        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE)
-        {
+        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
             
         }
-        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT)
-        {
+        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT){
             
         }
     }

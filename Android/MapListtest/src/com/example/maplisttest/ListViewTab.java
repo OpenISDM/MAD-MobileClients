@@ -11,22 +11,40 @@ import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 
+/**
+ * @author      Academia Sinica
+ * @version     $Revision: 1.0 $, $Date:  2013/11/05  $
+ * @since       
+ * @classname	ListViewTab
+ */
 
-
-/******************************************************************************
- *  Class name: ListViewTab
- *  Inheritance: N/A
- *  Methods: onConfigurationChanged
- *  Functionality: Use Fragment to build ListView Tab
-******************************************************************************/
-public class ListViewTab extends FragmentActivity
-{
+public class ListViewTab extends FragmentActivity{
+	//Tab 清單建立
     private TabHost mTabHost;
     private TabManager mTabManager;
 
+    /*******************************************************
+   	 *  Method name: onConfigurationChanged
+   	 *  Functionality: Avoid execute onCreate when orientation change 
+   	 *  @param: Configuration
+   	 *  @return: N/A
+   	*******************************************************/
     @Override
-    protected void onCreate(Bundle savedInstanceState) 
-    {
+    public void onConfigurationChanged(Configuration newConfig){
+        super.onConfigurationChanged(newConfig);
+        // Checks the orientation of the screen
+        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
+            
+        }
+        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT){
+            
+        }
+    }
+    //———————————————————————-
+    // protected interface
+    //———————————————————————-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.tabhost1);
@@ -71,8 +89,7 @@ public class ListViewTab extends FragmentActivity
         int count = tabWidget.getChildCount();  
         
         if (count > 3) {   
-            for (int i = 0; i < count; i++) 
-            {   
+            for (int i = 0; i < count; i++) {   
             	/* Set tab's width */
                 tabWidget.getChildTabViewAt(i)
                       .setMinimumWidth((screenWidth)/6);  
@@ -81,11 +98,9 @@ public class ListViewTab extends FragmentActivity
         
         Button button = (Button)findViewById(R.id.button01); 
         
-        button.setOnClickListener(new Button.OnClickListener()
-        {
+        button.setOnClickListener(new Button.OnClickListener(){
         	@Override
-        	public void onClick(View v) 
-        	{
+        	public void onClick(View v) {
         		// TODO Auto-generated method stub 
        
         		Intent intent = new Intent();
@@ -98,25 +113,7 @@ public class ListViewTab extends FragmentActivity
         });
         
     }
-    /*******************************************************
-	 *  Method name: onConfigurationChanged
-	 *  Functionality: Avoid execute onCreate when orientation change 
-	 *  @param: Configuration
-	 *  @return: N/A
-	*******************************************************/
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-        // Checks the orientation of the screen
-        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE)
-        {
-            
-        }
-        else if(newConfig.orientation ==Configuration.ORIENTATION_PORTRAIT)
-        {
-            
-        }
-    }
+   
+   
     
 }
