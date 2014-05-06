@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="app_name">MobileMAD</string>
+
+  <!-- Tab Strings -->
+  <string name="ui_tabname_maps">Maps</string>
+  <string name="ui_tabname_image">Image</string>
+  <string name="ui_tabname_data">Data</string>
+  <string name="ui_tabname_list">List</string>
+  <string name="ui_tabname_settings">Settings</string>
+
+  <!-- Menu Strings -->
+  <string name="ui_menu_about">About</string>
+  <string name="ui_menu_quit">Quit</string>
+
+</resources>
