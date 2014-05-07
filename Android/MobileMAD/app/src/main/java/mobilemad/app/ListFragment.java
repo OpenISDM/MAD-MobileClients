@@ -124,6 +124,7 @@ public class ListFragment extends Fragment {
           msg += "Address: " + address + "\n";
 
           alertDlgFragment = alertDialogFragment.newInstance("Detail Information", msg, 1);
+          alertDlgFragment.setCancelable(false);
           alertDialogFragment.name = name;
           alertDialogFragment.type = type;
           alertDialogFragment.telephone = telephone;

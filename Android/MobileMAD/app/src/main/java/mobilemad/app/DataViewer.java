@@ -1,11 +1,14 @@
 package mobilemad.app;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.JsonReader;
 import android.util.JsonToken;
 import android.util.Log;
 import android.util.Xml;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -491,4 +494,11 @@ public class DataViewer {
     return results;
   }
 
+  protected void showMessage(Context context, String msg) {
+    /*context = getActivity().getApplicationContext();*/
+    int duration = Toast.LENGTH_SHORT;
+    Toast toast = Toast.makeText(context, msg, duration);
+    toast.setGravity(Gravity.CENTER, 0, 0);
+    toast.show();
+  }
 }

@@ -20,7 +20,7 @@ public class ImageFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    rootView = inflater.inflate(R.layout.maps_fragment, container, false);
+    rootView = inflater.inflate(R.layout.image_fragment, container, false);
 
     ivMaps = (ImageView) rootView.findViewById(R.id.ivMaps);
     ivMaps.setImageBitmap(null);

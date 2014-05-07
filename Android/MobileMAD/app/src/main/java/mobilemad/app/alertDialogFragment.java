@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 
 /**
@@ -37,7 +39,6 @@ public class alertDialogFragment extends DialogFragment {
     alertDialog = new AlertDialog.Builder(getActivity());
     alertDialog.setTitle(title);
     alertDialog.setMessage(msg);
-    alertDialog.setCancelable(false);
 
     switch (button) {
       case 0:
@@ -72,12 +73,29 @@ public class alertDialogFragment extends DialogFragment {
             }
           );
         alertDialog.setNegativeButton("Cancel",
-            new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-              }
+          new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+              dialog.dismiss();
             }
-          );
+          }
+        );
+        break;
+      case 2:
+        alertDialog.setPositiveButton("Settings",
+          new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+              Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+              startActivity(intent);
+            }
+          }
+        );
+        alertDialog.setNegativeButton("Cancel",
+          new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+              dialog.dismiss();
+            }
+          }
+        );
         break;
     }
 

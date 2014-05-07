@@ -93,6 +93,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
       case R.id.menuitem_about:
         Calendar calendar = Calendar.getInstance();
         alertDlgFragment = alertDialogFragment.newInstance("Academia Sinica - OPENISDM", "Mobile MAD App ©" + String.valueOf(calendar.get(Calendar.YEAR)), 0);
+        alertDlgFragment.setCancelable(false);
         alertDlgFragment.show(getFragmentManager(), "dialog");
         return true;
       case R.id.menuitem_quit:

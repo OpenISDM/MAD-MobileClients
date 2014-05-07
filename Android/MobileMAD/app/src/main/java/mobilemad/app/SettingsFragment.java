@@ -229,6 +229,7 @@ public class SettingsFragment extends Fragment {
           file.delete();
         }
         alertDlgFragment = alertDialogFragment.newInstance("Delete Internal Storage Files", "Success", 0);
+        alertDlgFragment.setCancelable(false);
         alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
       }
     });
