@@ -51,7 +51,7 @@ public class alertDialogFragment extends DialogFragment {
           );
         break;
       case 1:
-        alertDialog.setPositiveButton("Navigate",
+        alertDialog.setPositiveButton("Show",
             new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int whichButton) {
                 MapsFragment.name = name;
