@@ -28,7 +28,7 @@ public class DataFragment extends Fragment {
 
   private void getContent() {
     txtData.setText("");
-    content = dataViewer.showData("dataFiles.rdf");
+    content = dataViewer.showData("dataFiles.json");
     if (content.trim().length() > 0) {
       txtData.setText(content);
     }
@@ -85,9 +85,9 @@ public class DataFragment extends Fragment {
     super.setMenuVisibility(visible);
     if (visible) {
       if (rootView != null) {
-        /*getContent();*/
+        getContent();
         /*contentJSON();*/
-        contentRDF();
+        /*contentRDF();*/
       }
     }
   }
@@ -95,6 +95,9 @@ public class DataFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) { // 1
     super.onCreate(savedInstanceState);
+
+    dataViewer = new DataViewer();
+    result = new HashMap<Integer, HashMap<String, Object>>();
   }
 
   @Override
@@ -104,12 +107,9 @@ public class DataFragment extends Fragment {
 
     txtData = (EditText) rootView.findViewById(R.id.txtData);
 
-    dataViewer = new DataViewer();
-    result = new HashMap<Integer, HashMap<String, Object>>();
-
-    /*getContent();*/
+    getContent();
     /*contentJSON();*/
-    contentRDF();
+    /*contentRDF();*/
 
     return rootView;
   }

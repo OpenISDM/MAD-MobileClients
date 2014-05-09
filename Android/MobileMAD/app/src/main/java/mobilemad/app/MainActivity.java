@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -92,7 +91,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     switch (item.getItemId()) {
       case R.id.menuitem_about:
         Calendar calendar = Calendar.getInstance();
-        alertDlgFragment = alertDialogFragment.newInstance("Academia Sinica - OPENISDM", "Mobile MAD App ©" + String.valueOf(calendar.get(Calendar.YEAR)), 0);
+        alertDlgFragment = AlertDialogFragment.newInstance("Academia Sinica - OPENISDM", "Mobile MAD App ©" + String.valueOf(calendar.get(Calendar.YEAR)), 0);
         alertDlgFragment.setCancelable(false);
         alertDlgFragment.show(getFragmentManager(), "dialog");
         return true;

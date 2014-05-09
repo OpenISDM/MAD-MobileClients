@@ -35,7 +35,6 @@ public class DataViewer {
     try {
       String path = Config.path + File.separator + "data";
       String files = path + File.separator + fileName;
-      /*fIn = getActivity().openFileInput(fileName);*/
       fIn = new FileInputStream(files);
       isr = new InputStreamReader(fIn);
       is = fIn;
@@ -69,7 +68,6 @@ public class DataViewer {
       XmlPullParser parser = Xml.newPullParser();
       String path = Config.path + File.separator + "data";
       String files = path + File.separator + fileName;
-      /*fIn = getActivity().openFileInput(fileName);*/
       fIn = new FileInputStream(files);
       isr = new InputStreamReader(fIn);
 
@@ -122,7 +120,6 @@ public class DataViewer {
 
       result = textContent(fileName);
 
-      /*fIn = getActivity().openFileInput(fileName);*/
       fIn = new FileInputStream(files);
       isr = new InputStreamReader(fIn);
       jReader = new JsonReader(isr);
@@ -295,8 +292,6 @@ public class DataViewer {
     HashMap<Integer, HashMap<String, Object>> results = new HashMap<Integer, HashMap<String, Object>>();
     FileInputStream fIn = null;
     InputStreamReader isr = null;
-    String name = "";
-    int ctr = 0;
 
     try {
       XmlPullParser parser = Xml.newPullParser();
@@ -440,18 +435,16 @@ public class DataViewer {
 
   protected String textContent(String fileName) {
     String results = "";
-    BufferedReader reader = null;
     FileInputStream fIn = null;
     InputStreamReader isr = null;
 
     try {
       String path = Config.path + File.separator + "data";
       String files = path + File.separator + fileName;
-      /*fIn = getActivity().openFileInput(fileName);*/
       fIn = new FileInputStream(files);
       isr = new InputStreamReader(fIn);
 
-      reader = new BufferedReader(isr);
+      BufferedReader reader = new BufferedReader(isr);
       StringBuilder sb = new StringBuilder();
       String line = null;
 
@@ -459,20 +452,22 @@ public class DataViewer {
         sb.append(line + "\n");
       }
 
+      reader.close();
+
       results = sb.toString();
     } catch (Exception e){
       Log.i("textContent Error: ", e.getMessage());
     } finally {
       try {
-        if (reader != null) {
-          reader.close();
-        }
-        if (isr != null) {
+        isr.close();
+        fIn.close();
+
+        /*if (isr != null) {
           isr.close();
         }
         if (fIn != null) {
           fIn.close();
-        }
+        }*/
       } catch(Exception ex) {}
     }
 
@@ -495,7 +490,6 @@ public class DataViewer {
   }
 
   protected void showMessage(Context context, String msg) {
-    /*context = getActivity().getApplicationContext();*/
     int duration = Toast.LENGTH_SHORT;
     Toast toast = Toast.makeText(context, msg, duration);
     toast.setGravity(Gravity.CENTER, 0, 0);

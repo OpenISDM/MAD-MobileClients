@@ -7,12 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 
 /**
  * Created by Andre on 05/01/2014.
  */
-public class alertDialogFragment extends DialogFragment {
+public class AlertDialogFragment extends DialogFragment {
 
   private AlertDialog.Builder alertDialog;
 
@@ -21,8 +20,8 @@ public class alertDialogFragment extends DialogFragment {
   protected static String name, type, telephone, district, address;
   protected static double latitude, longitude;
 
-  protected static alertDialogFragment newInstance(String title, String msg, int button) {
-    alertDialogFragment frag = new alertDialogFragment();
+  protected static AlertDialogFragment newInstance(String title, String msg, int button) {
+    AlertDialogFragment frag = new AlertDialogFragment();
     Bundle args = new Bundle();
     args.putString("title", title);
     args.putString("msg", msg);
