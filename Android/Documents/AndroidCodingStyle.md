@@ -89,8 +89,7 @@ Import statements are **not line-wrapped**. The column limit (Section 4.4, Colum
 Import statements are divided into the following groups, in this order, with each group separated by a single blank line:
 1. All static imports in a single group
 2. `com.google` imports (only if this source file is in the `com.google` package space)
-3. Third-party imports, one group per top-level package, in ASCII sort order
-   for example: `android`, `com`, `junit`, `org`, `sun`
+3. Third-party imports, one group per top-level package, in ASCII sort order. For example: `android`, `com`, `junit`, `org`, `sun`
 4. `java` imports
 5. `javax` imports
 
