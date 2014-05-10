@@ -602,3 +602,7 @@ Other classes and members still have Javadoc as *needed*. Whenever an implementa
 Javadoc is optional for "simple, obvious" methods like `getFoo`, in cases where there *really* and *truly* is nothing else worthwhile to say but "Returns the foo".
 
 **Important**: it is not appropriate to cite this exception to justify omitting relevant information that a typical reader might need to know. For example, for a method named `getCanonicalName`, don't omit its documentation (with the rationale that it would say only `/** Returns the canonical name. */`) if a typical reader may have no idea what the term "canonical name" means!
+
+#### 7.3.2 Exception: overrides
+
+Javadoc is not always present on a method that overrides a supertype method.
