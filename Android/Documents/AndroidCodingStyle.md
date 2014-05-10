@@ -90,6 +90,7 @@ Import statements are divided into the following groups, in this order, with eac
 1. All static imports in a single group
 2. `com.google` imports (only if this source file is in the `com.google` package space)
 3. Third-party imports, one group per top-level package, in ASCII sort order.
+    * for example: `android`, `com`, `junit`, `org`, `sun`
 4. `java` imports
 5. `javax` imports
 
