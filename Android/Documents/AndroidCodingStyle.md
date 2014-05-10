@@ -89,7 +89,8 @@ Import statements are **not line-wrapped**. The column limit (Section 4.4, Colum
 Import statements are divided into the following groups, in this order, with each group separated by a single blank line:
 1. All static imports in a single group
 2. `com.google` imports (only if this source file is in the `com.google` package space)
-3. Third-party imports, one group per top-level package, in ASCII sort order. For example: `android`, `com`, `junit`, `org`, `sun`
+3. Third-party imports, one group per top-level package, in ASCII sort order.
+    * for example: `android`, `com`, `junit`, `org`, `sun`
 4. `java` imports
 5. `javax` imports
 
@@ -188,9 +189,9 @@ There is no comprehensive, deterministic formula showing exactly how to line-wra
 
 The prime directive of line-wrapping is: prefer to break at a **higher syntactic level**. Also:
 1. When a line is broken at a *non-assignment* operator the break comes *before* the symbol. (Note that this is not the same practice used in Google style for other languages, such as C++ and JavaScript.)
-   * This also applies to the following "operator-like" symbols: the dot separator (`.`), the ampersand in type bounds (`<T extends Foo & Bar>`), and the pipe in catch blocks (`catch (FooException | BarException e)`).
+    * This also applies to the following "operator-like" symbols: the dot separator (`.`), the ampersand in type bounds (`<T extends Foo & Bar>`), and the pipe in catch blocks (`catch (FooException | BarException e)`).
 2. When a line is broken at an *assignment* operator the break typically comes *after* the symbol, but either way is acceptable.
-   * This also applies to the "assignment-operator-like" colon in an enhanced `for` ("foreach") statement.
+    * This also applies to the "assignment-operator-like" colon in an enhanced `for` ("foreach") statement.
 3. A method or constructor name stays attached to the open parenthesis (`(`) that follows it.
 4. A comma (`,`) stays attached to the token that precedes it.
 
@@ -208,7 +209,7 @@ Section 4.6.3 on Horizontal alignment addresses the discouraged practice of usin
 
 A single blank line appears:
 1. *Between* consecutive members (or initializers) of a class: fields, constructors, methods, nested classes, static initializers, instance initializers.
-   * **Exception**: A blank line between two consecutive fields (having no other code between them) is optional. Such blank lines are used as needed to create *logical groupings* of fields.
+    * **Exception**: A blank line between two consecutive fields (having no other code between them) is optional. Such blank lines are used as needed to create *logical groupings* of fields.
 2. Within method bodies, as needed to create *logical groupings* of statements.
 3. *Optionally* before the first member or after the last member of the class (neither encouraged nor discouraged).
 4. As required by other sections of this document (such as Section 3.3, Import statements).
@@ -221,17 +222,17 @@ Beyond where required by the language or other style rules, and apart from liter
 1. Separating any reserved word, such as `if`, `for` or `catch`, from an open parenthesis (`(`) that follows it on that line
 2. Separating any reserved word, such as `else` or `catch`, from a closing curly brace (`}`) that precedes it on that line
 3. Before any open curly brace (`(`), with two exceptions:
-   * `@SomeAnnotation({a, b})` (no space is used)
-   * `String[][] x = {{"foo"}};` (no space is required between `{{`, by item 8 below)
+    * `@SomeAnnotation({a, b})` (no space is used)
+    * `String[][] x = {{"foo"}};` (no space is required between `{{`, by item 8 below)
 4. On both sides of any binary or ternary operator. This also applies to the following "operator-like" symbols:
-   * the ampersand in a conjunctive type bound: `<T extends Foo & Bar>`
-   * the pipe for a catch block that handles multiple exceptions: `catch (FooException | BarException e)`
-   * the colon (`:`) in an enhanced `for` ("foreach") statement
+    * the ampersand in a conjunctive type bound: `<T extends Foo & Bar>`
+    * the pipe for a catch block that handles multiple exceptions: `catch (FooException | BarException e)`
+    * the colon (`:`) in an enhanced `for` ("foreach") statement
 5. After `,:;` or the closing parenthesis (`)`) of a cast
 6. On both sides of the double slash (`//`) that begins an end-of-line comment. Here, multiple spaces are allowed, but not required.
 7. Between the type and variable of a declaration: `List<String> list`
 8. *Optional* just inside both braces of an array initializer
-   * `new int[] {5, 6}` and `new int[] { 5, 6 }` are both valid
+    * `new int[] {5, 6}` and `new int[] { 5, 6 }` are both valid
 
 **Note**: This rule never requires or forbids additional space at the start or end of a line, only *interior* space.
 
@@ -478,10 +479,10 @@ Sometimes there is more than one reasonable way to convert an English phrase int
 Beginning with the prose form of the name:
 1. Convert the phrase to plain ASCII and remove any apostrophes. For example, "Müller's algorithm" might become "Muellers algorithm".
 2. Divide this result into words, splitting on spaces and any remaining punctuation (typically hyphens).
-   * *Recommended*: if any word already has a conventional camel-case appearance in common usage, split this into its constituent parts (e.g., "AdWords" becomes "ad words"). Note that a word such as "iOS" is not really in camel case *per se*; it defies any convention, so this recommendation does not apply.
+    * *Recommended*: if any word already has a conventional camel-case appearance in common usage, split this into its constituent parts (e.g., "AdWords" becomes "ad words"). Note that a word such as "iOS" is not really in camel case *per se*; it defies any convention, so this recommendation does not apply.
 3. Now lowercase *everything* (including acronyms), then uppercase only the first character of:
-   * ... each word, to yield *upper camel case*, or
-   * ... each word except the first, to yield *lower camel case*
+    * ... each word, to yield *upper camel case*, or
+    * ... each word except the first, to yield *lower camel case*
 4. Finally, join all the words into a single identifier.
 
 Note that the casing of the original words is almost entirely disregarded. Examples:
