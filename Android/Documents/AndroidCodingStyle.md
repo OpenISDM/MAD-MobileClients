@@ -108,6 +108,10 @@ The ordering of the members of a class can have a great effect on learnability, 
 
 What is important is that each class order its members in **some logical order**, which its maintainer could explain if asked. For example, new methods are not just habitually added to the end of the class, as that would yield "chronological by date added" ordering, which is not a logical ordering.
 
+##### 3.4.2.1 Overloads: never split
+
+When a class has multiple constructors, or multiple methods with the same name, these appears sequentially, with no intervening members.
+
 ## 4 Formatting
 
 **Terminology Note**: *block-like construct* refers to the body of a class, method or constructor. Note that, by Section 4.8.3.1 on array initializers, any array initializer *may* optionally be treated as if it were a block-like construct.
