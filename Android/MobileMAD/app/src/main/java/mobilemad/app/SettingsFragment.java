@@ -1,8 +1,38 @@
 package mobilemad.app;
 
+/**
+ * Copyright (c) 2014  OpenISDM
+ *
+ * Project Name:
+ *   Mobile Clients for MAD
+ *
+ * Version:
+ *   1.0
+ *
+ * File Name:
+ *   SettingsFragment.java
+ *
+ * Abstract:
+ *   SettingsFragment.java is the tab Settings in Mobile Clients for MAD project.
+ *   Settings will be use for download the data from POS based on IP that provided by user (For now.
+ *   In the future, this tab will be hide or delete, and download data will be done automatically).
+ *
+ * Authors:
+ *   Andre Lukito, routhsauniere@gmail.com
+ *
+ * License:
+ *  GPL 3.0 This file is subject to the terms and conditions defined
+ *  in file 'COPYING.txt', which is part of this source code package.
+ *
+ * Major Revision History:
+ *   2014/5/13: complete version 1.0
+ */
+
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,6 +67,9 @@ public class SettingsFragment extends Fragment {
       pgDialog.show();
     }
 
+    /**
+     * Fetching the data from server.
+     */
     @Override
     protected Void doInBackground(String... urls) {
       InputStream downloadStream = null;
@@ -89,7 +122,6 @@ public class SettingsFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
     rootView = inflater.inflate(R.layout.settings_fragment, container, false);
 
     txtImageLocation = (EditText) rootView.findViewById(R.id.txtImageLocation);
@@ -105,22 +137,40 @@ public class SettingsFragment extends Fragment {
     btnDownloadFiles.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        new DownloadData().execute("imgMaps.png", txtImageLocation.getText().toString(), "image");
-        new DownloadData().execute("dataFiles.json", txtDataLocation.getText().toString(), "text");
+
+        /**
+         * Check availability of Connectivity services (Wi-Fi or mobile) before
+         * downloading the data.
+         */
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (downloaderHTTP.isNetworkAvailable(connectivityManager)) {
+
+          /**
+           * Invokes the thread for download the data from the server and saved file locally.
+           */
+          new DownloadData().execute("imgMaps.png", txtImageLocation.getText().toString(), "image");
+          new DownloadData().execute("dataFiles.json", txtDataLocation.getText().toString(), "text");
+        } else {
+          alertDlgFragment = AlertDialogFragment.newInstance("No Network Available", "Please enable the Mobile Data or Wi-Fi", 3);
+          alertDlgFragment.setCancelable(false);
+          alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
+        }
       }
     });
 
     btnDeleteFiles.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+
+        /**
+         * delete every files in storage with specific path.
+         */
         String path = Config.path + File.separator + "data";
         File dirFiles = new File(path);
 
         for (String strFile : dirFiles.list()) {
           File file = new File(dirFiles, strFile);
-          if ((strFile.equals("imgMaps.png")) || (strFile.equals("dataFiles.json"))) {
-            file.delete();
-          }
+          file.delete();
         }
 
         alertDlgFragment = AlertDialogFragment.newInstance("Delete Internal Storage Files", "Success", 0);

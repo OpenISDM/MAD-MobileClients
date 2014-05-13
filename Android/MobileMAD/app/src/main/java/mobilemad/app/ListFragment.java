@@ -1,5 +1,33 @@
 package mobilemad.app;
 
+/**
+ * Copyright (c) 2014  OpenISDM
+ *
+ * Project Name:
+ *   Mobile Clients for MAD
+ *
+ * Version:
+ *   1.0
+ *
+ * File Name:
+ *   ListFragment.java
+ *
+ * Abstract:
+ *   ListFragment.java is the tab List in Mobile Clients for MAD project.
+ *   List will show all facilities, detail for each facility, and show the location on
+ *   Google Maps when user select the facility.
+ *
+ * Authors:
+ *   Andre Lukito, routhsauniere@gmail.com
+ *
+ * License:
+ *  GPL 3.0 This file is subject to the terms and conditions defined
+ *  in file 'COPYING.txt', which is part of this source code package.
+ *
+ * Major Revision History:
+ *   2014/5/13: complete version 1.0
+ */
+
 import android.app.DialogFragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +40,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,10 +56,24 @@ public class ListFragment extends Fragment {
   private HashMap<String, Object> data;
   private ArrayList<HashMap<String, Object>> listData;
 
-  private void contentData(String... fileName) {
-    result = dataViewer.RDFFacilities(fileName[0]);
+  /**
+   * Procedure Name:
+   *   contentData
+   *
+   * Procedure Description:
+   *   Make list from parsed JSON or RDF data to put into list view.
+   *
+   * Parameters:
+   *   String[] fileName - Array of String for filename.
+   *   If the parsed data is empty, list view will empty.
+   *
+   * Possible Error Code or Exception:
+   *   none
+   */
+  private void contentData(String... fileName) throws IOException {
+    result = dataViewer.JSONFacilities(fileName[0]);
     if (result.isEmpty()) {
-      result = dataViewer.JSONFacilities(fileName[1]);
+      result = dataViewer.RDFFacilities(fileName[1]);
     }
 
     listData.clear();
@@ -48,6 +91,8 @@ public class ListFragment extends Fragment {
           data.put("Name", value1);
         } else if (key1.equalsIgnoreCase("Type")) {
           data.put("Type", value1);
+        } else if (key1.equalsIgnoreCase("Category")) {
+          data.put("Category", dataViewer.resourceIcon(value1.toString()));
         }
       }
 
@@ -62,7 +107,11 @@ public class ListFragment extends Fragment {
 
     @Override
     protected Void doInBackground(String... fileName) {
-      contentData(fileName);
+      try {
+        contentData(fileName);
+      } catch (IOException e) {
+        Log.i("ListFragment - contentViewer - IOException", e.getMessage());
+      }
 
       return null;
     }
@@ -70,7 +119,12 @@ public class ListFragment extends Fragment {
     @Override
     protected void onPostExecute(Void unused) {
       if (!result.isEmpty()) {
-        sAdapter = new SimpleAdapter(getActivity(), listData, R.layout.list_view_data, new String[] {"Name", "Type"}, new int[] {R.id.txtName, R.id.txtType});
+
+        /**
+         * Create Simple Adapter to put the value from list (after contentData called).
+         * Show it on list view.
+         */
+        sAdapter = new SimpleAdapter(getActivity(), listData, R.layout.list_view_data, new String[] {"Name", "Type", "Category"}, new int[] {R.id.txtName, R.id.txtType, R.id.ivIcon});
         lvData.setAdapter(sAdapter);
       }
     }
@@ -80,8 +134,13 @@ public class ListFragment extends Fragment {
   public void setMenuVisibility(final boolean visible) {
     super.setMenuVisibility(visible);
     if (visible) {
+
+      /**
+       * Check if default view not null.
+       * Invokes the thread for show the data on list view when user return to tab List.
+       */
       if (rootView != null) {
-        new contentViewer().execute("dataFiles.rdf", "dataFiles.json");
+        new contentViewer().execute("dataFiles.json", "dataFiles.rdf");
       }
     }
   }
@@ -98,7 +157,6 @@ public class ListFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
     rootView = inflater.inflate(R.layout.list_fragment, container, false);
 
     lvData = (ListView) rootView.findViewById(R.id.lvData);
@@ -106,35 +164,47 @@ public class ListFragment extends Fragment {
     lvData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
         if ((lvData != null)) {
-          String name, type, telephone, district, address, msg;
+          String name, type, category, telephone, district, address, msg;
 
+          /**
+           * Get value from list based on position when list view item clicked.
+           */
           name = result.get(position).get("Name").toString();
           type = result.get(position).get("Type").toString();
-          telephone = result.get(position).get("Telphone").toString();
+          category = result.get(position).get("Category").toString();
           district = result.get(position).get("District").toString();
           address = result.get(position).get("Address").toString();
+          telephone = result.get(position).get("Telephone").toString();
 
           msg = "Name: " + name + "\n";
           msg += "Type: " + type + "\n";
-          msg += "Telephone: " + telephone + "\n";
           msg += "District: " + district + "\n";
           msg += "Address: " + address + "\n";
+          msg += "Telephone: " + telephone + "\n";
+
+          /**
+           * Passing the data into class AlertDialogFragment
+           */
+          AlertDialogFragment.name = name;
+          AlertDialogFragment.type = type;
+          AlertDialogFragment.category = category;
+          AlertDialogFragment.district = district;
+          AlertDialogFragment.address = address;
+          AlertDialogFragment.telephone = telephone;
+          AlertDialogFragment.latitude = Double.valueOf(result.get(position).get("Latitude").toString());
+          AlertDialogFragment.longitude = Double.valueOf(result.get(position).get("Longitude").toString());
 
           alertDlgFragment = AlertDialogFragment.newInstance("Detail Information", msg, 1);
           alertDlgFragment.setCancelable(false);
-          AlertDialogFragment.name = name;
-          AlertDialogFragment.type = type;
-          AlertDialogFragment.telephone = telephone;
-          AlertDialogFragment.district = district;
-          AlertDialogFragment.address = address;
-          AlertDialogFragment.latitude = Double.valueOf(result.get(position).get("Latitude").toString());
-          AlertDialogFragment.longitude = Double.valueOf(result.get(position).get("Longitude").toString());
           alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
         }
       }
     });
 
-    new contentViewer().execute("dataFiles.rdf", "dataFiles.json");
+    /**
+     * Invokes the thread for show the data on list view for the first time.
+     */
+    new contentViewer().execute("dataFiles.json", "dataFiles.rdf");
 
     return rootView;
   }

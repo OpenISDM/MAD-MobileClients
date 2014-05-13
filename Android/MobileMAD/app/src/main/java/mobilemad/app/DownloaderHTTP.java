@@ -1,7 +1,10 @@
 package mobilemad.app;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import java.io.File;
@@ -16,6 +19,19 @@ import java.net.URL;
  * Created by Andre on 05/09/2014.
  */
 public class DownloaderHTTP {
+
+  protected boolean isNetworkAvailable(ConnectivityManager connectivityManager) {
+    boolean result = false;
+    NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+    if ((networkInfo != null) && (networkInfo.isConnected())) {
+      result = true;
+    }
+
+    return result;
+  }
+
+
   // Given a string representation of a URL, sets up a connection and gets
   // an input stream.
   protected InputStream downloadUrl(String urlString) {

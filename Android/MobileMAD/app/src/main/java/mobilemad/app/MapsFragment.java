@@ -1,5 +1,33 @@
 package mobilemad.app;
 
+/**
+ * Copyright (c) 2014  OpenISDM
+ *
+ * Project Name:
+ *   Mobile Clients for MAD
+ *
+ * Version:
+ *   1.0
+ *
+ * File Name:
+ *   MapsFragment.java
+ *
+ * Abstract:
+ *   MapsFragment.java is the tab Maps in Mobile Clients for MAD project.
+ *   It will be associate with Google Maps to show current location and navigation from selected
+ *   item on tab List.
+ *
+ * Authors:
+ *   Andre Lukito, routhsauniere@gmail.com
+ *
+ * License:
+ *  GPL 3.0 This file is subject to the terms and conditions defined
+ *  in file 'COPYING.txt', which is part of this source code package.
+ *
+ * Major Revision History:
+ *   2014/5/13: complete version 1.0
+ */
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,11 +43,15 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,9 +73,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/*
-MapsFragment class as user view for maps.
- */
 public class MapsFragment extends Fragment implements LocationListener {
   private View rootView;
   private SupportMapFragment supportMapFragment;
@@ -56,27 +85,20 @@ public class MapsFragment extends Fragment implements LocationListener {
   private ImageView ivIcon;
 
   private DownloaderHTTP downloaderHTTP;
-  protected static String name, type, telephone, district, address;
+  private DataViewer dataViewer;
+  protected static String name, type, category, telephone, district, address;
   protected static double latitude, longitude, deviceLatitude, deviceLongitude;
   private String provider;
   final int RQS_GooglePlayServices = 10;
 
-  /*
-  Refresh the view when user back to this page. Override method from Fragment.
-  Show message in Log that passed by ListFragment.
+  /**
+   * Returns direction URL that created to match with Google APIs for Maps.
    */
-
-  private String getDirectionsUrl(LatLng origin,LatLng dest){
-    // Origin of route
+  private String getDirectionsUrl(LatLng origin, LatLng dest) {
     String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
-
-    // Destination of route
     String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
-
-    // Sensor enabled
     String sensor = "sensor=false";
 
-    // Waypoints
     /*String waypoints = "";
     for(int i = 2; i < markerPoints.size(); i++) {
       LatLng point  = (LatLng) markerPoints.get(i);
@@ -85,29 +107,24 @@ public class MapsFragment extends Fragment implements LocationListener {
       waypoints += point.latitude + "," + point.longitude + "|";
     }*/
 
-    // Building the parameters to the web service
     String parameters = str_origin + "&" + str_dest + "&" + sensor/* + "&" + waypoints*/;
-
-    // Output format
     String output = "json";
-
-    // Building the url to the web service
     String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
 
     return url;
   }
 
-  // Fetches data from url passed
   private class DownloadDirection extends AsyncTask<String, Void, String> {
-    // Downloading data in non-ui thread
+
+    /**
+     * Fetching the data from web service.
+     */
     @Override
     protected String doInBackground(String... urls) {
-      // For storing data from web service
       String data = "";
       InputStream downloadStream = null;
 
       try {
-        // Fetching the data from web service
         downloadStream = downloaderHTTP.downloadUrl(urls[0]);
 
         if (downloadStream != null) {
@@ -128,29 +145,33 @@ public class MapsFragment extends Fragment implements LocationListener {
         Log.d("DownloadTask", ex.getMessage());
       } finally {
         try {
-          downloadStream.close();
+          if (downloadStream != null) {
+            downloadStream.close();
+          }
         } catch (IOException e) {}
       }
 
       return data;
     }
 
-    // Executes in UI thread, after the execution of
-    // doInBackground()
     @Override
     protected void onPostExecute(String result) {
       super.onPostExecute(result);
 
       ParserTask parserTask = new ParserTask();
 
-      // Invokes the thread for parsing the JSON data
+      /**
+       * Invokes the thread for parsing the JSON data
+       */
       parserTask.execute(result);
     }
   }
 
-  /** A class to parse the Google Places in JSON format */
   private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
-    // Parsing the data in non-ui thread
+
+    /**
+     * Parse the Google Places in JSON format
+     */
     @Override
     protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
       JSONObject jObject;
@@ -160,7 +181,6 @@ public class MapsFragment extends Fragment implements LocationListener {
         jObject = new JSONObject(jsonData[0]);
         DirectionsJSONParser parser = new DirectionsJSONParser();
 
-        // Starts parsing data
         routes = parser.parse(jObject);
       } catch(Exception e) {
         e.printStackTrace();
@@ -169,22 +189,27 @@ public class MapsFragment extends Fragment implements LocationListener {
       return routes;
     }
 
-    // Executes in UI thread, after the parsing process
     @Override
     protected void onPostExecute(List<List<HashMap<String, String>>> result) {
 
       ArrayList<LatLng> points = null;
       PolylineOptions lineOptions = null;
 
-      // Traversing through all the routes
+      /**
+       * Traversing through all the routes
+       */
       for (int i = 0; i < result.size(); i++) {
         points = new ArrayList<LatLng>();
         lineOptions = new PolylineOptions();
 
-        // Fetching i-th route
+        /**
+         * Fetching i-th route
+         */
         List<HashMap<String, String>> path = result.get(i);
 
-        // Fetching all the points in i-th route
+        /**
+         * Fetching all the points in i-th route
+         */
         for (int j = 0; j < path.size(); j++) {
           HashMap<String,String> point = path.get(j);
 
@@ -195,13 +220,17 @@ public class MapsFragment extends Fragment implements LocationListener {
           points.add(position);
         }
 
-        // Adding all the points in the route to LineOptions
+        /**
+         * Adding all the points in the route to LineOptions
+         */
         lineOptions.addAll(points);
         lineOptions.width(2);
         lineOptions.color(Color.RED);
       }
 
-      // Drawing polyline in the Google Map for the i-th route
+      /**
+       * Drawing polyline in the Google Map for the i-th route
+       */
       googleMap.addPolyline(lineOptions);
     }
   }
@@ -211,28 +240,47 @@ public class MapsFragment extends Fragment implements LocationListener {
     super.onCreate(savedInstanceState);
 
     downloaderHTTP = new DownloaderHTTP();
+    dataViewer = new DataViewer();
 
-    // Get the location manager
+    /**
+     * Get the location manager
+     */
     locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-    // Define the criteria how to select the location provider -> use default
+    /**
+     * Define the criteria how to select the location provider -> use default
+     */
     Criteria criteria = new Criteria();
     provider = locationManager.getBestProvider(criteria, false);
-    hLocation = locationManager.getLastKnownLocation(provider);
 
-    // Initialize the location fields
-    if (hLocation != null) {
-      Log.i("location", "Provider " + provider + " has been selected.");
-      onLocationChanged(hLocation);
+    if ((provider != null) && (!provider.equals(""))) {
+
+      /**
+       * Get the location from the given provider
+       */
+      hLocation = locationManager.getLastKnownLocation(provider);
+      locationManager.requestLocationUpdates(provider, 20000, 1, this);
+
+      if (hLocation != null) {
+        Log.i("location", "Provider " + provider + " has been selected.");
+
+        /**
+         * Initialize the location fields
+         */
+        onLocationChanged(hLocation);
+      } else {
+        Log.i("location", "Location not available");
+        dataViewer.showMessage(getActivity().getApplicationContext(), "Location can't be retrieved");
+      }
+
     } else {
-      Log.i("location", "Location not available");
-      alertDlgFragment = AlertDialogFragment.newInstance("Location Services Not Active", "Please enable Location Services and GPS", 2);
+      alertDlgFragment = AlertDialogFragment.newInstance("Location Services Not Active",
+          "Please enable Location Services and GPS", 2);
       alertDlgFragment.setCancelable(false);
       alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
     }
   }
 
-  // Inflate the layout for this fragment
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     rootView = inflater.inflate(R.layout.maps_fragment, container, false);
@@ -244,6 +292,9 @@ public class MapsFragment extends Fragment implements LocationListener {
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
+    /**
+     * Get child fragment inside MapsFragment to show the maps in the child fragment.
+     */
     FragmentManager fm = getChildFragmentManager();
     supportMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.mapView);
 
@@ -265,7 +316,10 @@ public class MapsFragment extends Fragment implements LocationListener {
     super.onResume();
 
     int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
-    // If Google Play services is available
+
+    /**
+     * Check availability of Google Play services.
+     */
     if (resultCode == ConnectionResult.SUCCESS) {
       if (googleMap == null) {
         double lat, lng;
@@ -274,13 +328,11 @@ public class MapsFragment extends Fragment implements LocationListener {
         googleMap.setMyLocationEnabled(true);
 
         googleMap.setInfoWindowAdapter(new InfoWindowAdapter() {
-          // Use default InfoWindow frame
           @Override
           public View getInfoWindow(Marker arg0) {
             return null;
           }
 
-          // Defines the contents of the InfoWindow
           @Override
           public View getInfoContents(Marker arg0) {
             View v = getLayoutInflater(getArguments()).inflate(R.layout.map_view_data, null);
@@ -292,13 +344,16 @@ public class MapsFragment extends Fragment implements LocationListener {
             txtDistrict = (TextView) v.findViewById(R.id.txtDistrict);
             txtAddress = (TextView) v.findViewById(R.id.txtAddress);
 
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+                dataViewer.resourceIcon(category));
+
+            ivIcon.setImageBitmap(bitmap);
             txtName.setText(name);
             txtType.setText("Type:" + type);
-            txtTelephone.setText("Telephone:" + telephone);
             txtDistrict.setText("District:" + district);
             txtAddress.setText("Address:" + address);
+            txtTelephone.setText("Telephone:" + telephone);
 
-            // Returning the view containing InfoWindow contents
             return v;
           }
         });
@@ -306,42 +361,80 @@ public class MapsFragment extends Fragment implements LocationListener {
         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
           @Override
           public void onInfoWindowClick(Marker marker) {
-            LatLng origin = new LatLng(deviceLatitude, deviceLongitude);
-            LatLng dest = new LatLng(latitude, longitude);
+            ConnectivityManager connectivityManager = (ConnectivityManager) getActivity()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
 
-            // Getting URL to the Google Directions API
-            String url = getDirectionsUrl(origin, dest);
+            /**
+             * Check availability of Connectivity services (Wi-Fi or mobile) before
+             * downloading the data.
+             */
+            if (downloaderHTTP.isNetworkAvailable(connectivityManager)) {
+              LatLng origin = new LatLng(deviceLatitude, deviceLongitude);
+              LatLng dest = new LatLng(latitude, longitude);
 
-            DownloadDirection downloadDirection = new DownloadDirection();
+              /**
+               * Getting URL to the Google Directions API
+               */
+              String url = getDirectionsUrl(origin, dest);
 
-            // Start downloading json data from Google Directions API
-            downloadDirection.execute(url);
+              DownloadDirection downloadDirection = new DownloadDirection();
+
+              /**
+               * Start downloading json data from Google Directions API
+               */
+              downloadDirection.execute(url);
+            } else {
+              alertDlgFragment = AlertDialogFragment.newInstance("No Network Available",
+                  "Please enable the Mobile Data or Wi-Fi", 3);
+              alertDlgFragment.setCancelable(false);
+              alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
+            }
           }
         });
 
-        locationManager.requestLocationUpdates(provider, 400, 1, this);
+        /**
+         * Request to update the location based on selected provider every minimum time with the
+         * Location listener.
+         */
+        locationManager.requestLocationUpdates(provider, 20000, 1, this);
 
         lat = deviceLatitude;
         lng = deviceLongitude;
 
         if ((latitude > 0) && (longitude > 0)) {
 
-          marker = googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).icon(BitmapDescriptorFactory.fromResource(R.drawable.icon)));
+          /**
+           * Put marker on Google Maps based on latitude and longitude from selected item on tab List.
+           */
+          marker = googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude))
+              .icon(BitmapDescriptorFactory.fromResource(dataViewer.resourceIcon(category))));
+
+          /**
+           * Show detailed info on marker in Google Maps.
+           */
           marker.showInfoWindow();
 
           lat = latitude;
           lng = longitude;
         }
 
+        /**
+         * Move Camera into new location (latitude and longitude).
+         */
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 14.0f));
       }
     } else {
-      // Google Play services was not available for some reason
-      Dialog dialog = GooglePlayServicesUtil.getErrorDialog(resultCode, getActivity(), RQS_GooglePlayServices);
+
+      /**
+       * Google Play services was not available for some reason.
+       */
+      Dialog dialog = GooglePlayServicesUtil.getErrorDialog(resultCode, getActivity(),
+          RQS_GooglePlayServices);
       dialog.setCancelable(false);
       dialog.show();
     }
   }
+
   @Override
   public void onLocationChanged(Location location) {
     deviceLatitude = location.getLatitude();

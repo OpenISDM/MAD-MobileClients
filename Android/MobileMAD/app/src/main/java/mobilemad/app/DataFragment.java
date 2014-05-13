@@ -1,5 +1,32 @@
 package mobilemad.app;
 
+/**
+ * Copyright (c) 2014  OpenISDM
+ *
+ * Project Name:
+ *   Mobile Clients for MAD
+ *
+ * Version:
+ *   1.0
+ *
+ * File Name:
+ *   DataFragment.java
+ *
+ * Abstract:
+ *   DataFragment.java is the hidden tab Data in Mobile Clients for MAD project.
+ *   Data will be use for development only before used in the real thing.
+ *
+ * Authors:
+ *   Andre Lukito, routhsauniere@gmail.com
+ *
+ * License:
+ *  GPL 3.0 This file is subject to the terms and conditions defined
+ *  in file 'COPYING.txt', which is part of this source code package.
+ *
+ * Major Revision History:
+ *   2014/5/13: complete version 1.0
+ */
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,13 +35,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
-DataFragment class that used for development only. Show result of parse data.
-Experiment with the Override method from Fragment.
- */
 public class DataFragment extends Fragment {
 
   private View rootView;
@@ -23,10 +47,8 @@ public class DataFragment extends Fragment {
   private DataViewer dataViewer;
   private HashMap<Integer, HashMap<String, Object>> result;
   private String content;
-  private Boolean resume;
-  private int ctr;
 
-  private void getContent() {
+  private void getContent() throws IOException {
     txtData.setText("");
     content = dataViewer.showData("dataFiles.json");
     if (content.trim().length() > 0) {
@@ -34,7 +56,7 @@ public class DataFragment extends Fragment {
     }
   }
 
-  private void contentJSON() {
+  private void contentJSON() throws IOException {
     String results = "";
 
     txtData.setText("");
@@ -57,7 +79,7 @@ public class DataFragment extends Fragment {
     txtData.setText(results);
   }
 
-  private void contentRDF() {
+  private void contentRDF() throws IOException {
     String results = "";
 
     txtData.setText("");
@@ -85,7 +107,11 @@ public class DataFragment extends Fragment {
     super.setMenuVisibility(visible);
     if (visible) {
       if (rootView != null) {
-        getContent();
+        try {
+          getContent();
+        } catch (IOException e) {
+          Log.i("DataFragment - setMenuVisibility - IOException", e.getMessage());
+        }
         /*contentJSON();*/
         /*contentRDF();*/
       }
@@ -102,12 +128,15 @@ public class DataFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { // 2
-    // Inflate the layout for this fragment
     rootView = inflater.inflate(R.layout.data_fragment, container, false);
 
     txtData = (EditText) rootView.findViewById(R.id.txtData);
 
-    getContent();
+    try {
+      getContent();
+    } catch (IOException e) {
+      Log.i("DataFragment - onCreateView - IOException", e.getMessage());
+    }
     /*contentJSON();*/
     /*contentRDF();*/
 

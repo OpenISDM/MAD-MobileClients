@@ -1,5 +1,38 @@
 package mobilemad.app;
 
+/**
+ * Copyright (c) 2014  OpenISDM
+ *
+ * Project Name:
+ *   Mobile Clients for MAD
+ *
+ * Version:
+ *   1.0
+ *
+ * File Name:
+ *   DataViewer.java
+ *
+ * Abstract:
+ *   DataViewer.java is the class files in Mobile Clients for MAD project.
+ *   DataViewer will be used for Data Viewer in Mobile Clients for MAD app. It can:
+ *   1. Show bitmap
+ *   2. Parse standard format of XML and JSON
+ *   3. Parse MAD data format in JSON and RDF/XML
+ *   4. Show raw text content
+ *   5. Show message in Toast
+ *   6. Get the resource icon for image.
+ *
+ * Authors:
+ *   Andre Lukito, routhsauniere@gmail.com
+ *
+ * License:
+ *  GPL 3.0 This file is subject to the terms and conditions defined
+ *  in file 'COPYING.txt', which is part of this source code package.
+ *
+ * Major Revision History:
+ *   2014/5/13: complete version 1.0
+ */
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,7 +59,24 @@ public class DataViewer {
   private StringBuffer sb2;
   private static final String ns = null;
 
-  protected Bitmap imgViewer(String fileName) {
+  /**
+   * Function Name:
+   *   imgViewer
+   *
+   * Function Description:
+   *   Open image file in specific path and put into bitmap variable
+   *
+   * Parameters:
+   *   String fileName - filename of image file.
+   *
+   * Returned Value:
+   *   If the function returned normally, the returned is Bitmap;
+   *   otherwise, the returned value is null.
+   *
+   * Possible Error Code or Exception:
+   *   File not found.
+   */
+  protected Bitmap imgViewer(String fileName) throws IOException {
     Bitmap results = null;
     FileInputStream fIn = null;
     InputStreamReader isr = null;
@@ -43,23 +93,38 @@ public class DataViewer {
     } catch (Exception e){
       Log.i("imgViewer Error: ", e.getMessage());
     } finally {
-      try {
-        if (is != null) {
-          is.close();
-        }
-        if (isr != null) {
-          isr.close();
-        }
-        if (fIn != null) {
-          fIn.close();
-        }
-      } catch (IOException e) {}
+      if (is != null) {
+        is.close();
+      }
+      if (isr != null) {
+        isr.close();
+      }
+      if (fIn != null) {
+        fIn.close();
+      }
     }
 
     return results;
   }
 
-  protected String XMLParser(String fileName) {
+  /**
+   * Function Name:
+   *   XMLParser
+   *
+   * Function Description:
+   *   Parse every XML file format with standard format
+   *
+   * Parameters:
+   *   String fileName - filename of XML file.
+   *
+   * Returned Value:
+   *   If the function returned normally, the returned is String;
+   *   otherwise, the returned value is empty String.
+   *
+   * Possible Error Code or Exception:
+   *   File not found.
+   */
+  protected String XMLParser(String fileName) throws IOException {
     String results = "";
     FileInputStream fIn = null;
     InputStreamReader isr = null;
@@ -95,20 +160,35 @@ public class DataViewer {
     } catch (Exception e){
       Log.i("XMLParser Error: ", e.getMessage());
     } finally {
-      try {
-        if (isr != null) {
-          isr.close();
-        }
-        if (fIn != null) {
-          fIn.close();
-        }
-      } catch (IOException e) {}
+      if (isr != null) {
+        isr.close();
+      }
+      if (fIn != null) {
+        fIn.close();
+      }
     }
 
     return results;
   }
 
-  protected String JSONParser(String fileName) {
+  /**
+   * Function Name:
+   *   JSONParser
+   *
+   * Function Description:
+   *   Parse every JSON file format with standard format
+   *
+   * Parameters:
+   *   String fileName - filename of JSON file.
+   *
+   * Returned Value:
+   *   If the function returned normally, the returned is String;
+   *   otherwise, the returned value is empty String.
+   *
+   * Possible Error Code or Exception:
+   *   File not found.
+   */
+  protected String JSONParser(String fileName) throws IOException {
     String result, results = "";
     JsonReader jReader = null;
     FileInputStream fIn = null;
@@ -126,6 +206,10 @@ public class DataViewer {
       jReader.setLenient(true);
       sb2 = new StringBuffer("");
 
+      /**
+       * Check file format, whether it is start JSON with Array or Object,
+       * otherwise it is not JSON file.
+       */
       if(result.charAt(0) == '['){
         JSONArray(jReader);
         results = sb2.toString();
@@ -138,22 +222,36 @@ public class DataViewer {
     } catch (Exception e){
       Log.i("JSONParser Error: ", e.getMessage());
     } finally {
-      try {
-        if (isr != null) {
-          isr.close();
-        }
-        if (fIn != null) {
-          fIn.close();
-        }
-        if (jReader != null) {
-          jReader.close();
-        }
-      } catch(Exception ex) {}
+      if (isr != null) {
+        isr.close();
+      }
+      if (fIn != null) {
+        fIn.close();
+      }
+      if (jReader != null) {
+        jReader.close();
+      }
     }
 
     return results;
   }
 
+  /**
+   * Procedure Name:
+   *   JSONArray
+   *
+   * Procedure Description:
+   *   This procedure called when next JSON format are in array format.
+   *   Check with "peek()" method to see what is the type for next value and then get the next value
+   *   based on type from "peek()" method.
+   *   Every value will be put into global private variable sb2 as StringBuffer Object.
+   *
+   * Parameters:
+   *   JsonReader jReader - Next content from JSON (whether it is an Array or Object).
+   *
+   * Possible Error Code or Exception:
+   *   None.
+   */
   private void JSONArray(JsonReader jReader) throws IOException {
     JsonToken jToken;
     jReader.beginArray();
@@ -181,6 +279,22 @@ public class DataViewer {
     jReader.endArray();
   }
 
+  /**
+   * Procedure Name:
+   *   JSONObject
+   *
+   * Procedure Description:
+   *   This procedure called when next JSON format are in object format.
+   *   Check with "peek()" method to see what is the type for next value and then get the next value
+   *   based on type from "peek()" method.
+   *   Every value will be put into global private variable sb2 as StringBuffer Object.
+   *
+   * Parameters:
+   *   JsonReader jReader - Next content from JSON (whether it is an Array or Object).
+   *
+   * Possible Error Code or Exception:
+   *   None.
+   */
   private void JSONObject(JsonReader jReader) throws IOException {
     JsonToken jToken;
     jReader.beginObject();
@@ -208,7 +322,7 @@ public class DataViewer {
     jReader.endObject();
   }
 
-  protected HashMap<Integer, HashMap<String, Object>> JSONFacilities(String fileName) {
+  protected HashMap<Integer, HashMap<String, Object>> JSONFacilities(String fileName) throws IOException {
     HashMap<Integer, HashMap<String, Object>> results = new HashMap<Integer, HashMap<String, Object>>();
     HashMap<String, Object> result = new HashMap<String, Object>();
     JsonReader jReader = null;
@@ -221,7 +335,6 @@ public class DataViewer {
       String path = Config.path + File.separator + "data";
       String files = path + File.separator + fileName;
 
-      /*fIn = getActivity().openFileInput(fileName);*/
       fIn = new FileInputStream(files);
       isr = new InputStreamReader(fIn);
       jReader = new JsonReader(isr);
@@ -243,17 +356,15 @@ public class DataViewer {
     } catch (Exception e){
       Log.i("JSONFacilities Error: ", e.getMessage());
     } finally {
-      try {
-        if (isr != null) {
-          isr.close();
-        }
-        if (fIn != null) {
-          fIn.close();
-        }
-        if (jReader != null) {
-          jReader.close();
-        }
-      } catch(Exception ex) {}
+      if (isr != null) {
+        isr.close();
+      }
+      if (fIn != null) {
+        fIn.close();
+      }
+      if (jReader != null) {
+        jReader.close();
+      }
     }
 
     return results;
@@ -288,7 +399,7 @@ public class DataViewer {
     return result;
   }
 
-  protected HashMap<Integer, HashMap<String, Object>> RDFFacilities(String fileName) {
+  protected HashMap<Integer, HashMap<String, Object>> RDFFacilities(String fileName) throws IOException {
     HashMap<Integer, HashMap<String, Object>> results = new HashMap<Integer, HashMap<String, Object>>();
     FileInputStream fIn = null;
     InputStreamReader isr = null;
@@ -297,7 +408,6 @@ public class DataViewer {
       XmlPullParser parser = Xml.newPullParser();
       String path = Config.path + File.separator + "data";
       String files = path + File.separator + fileName;
-      /*fIn = getActivity().openFileInput(fileName);*/
       fIn = new FileInputStream(files);
       isr = new InputStreamReader(fIn);
 
@@ -309,14 +419,12 @@ public class DataViewer {
     } catch (Exception e){
       Log.i("RDFFacilities Error: ", e.getMessage());
     } finally {
-      try {
-        if (isr != null) {
-          isr.close();
-        }
-        if (fIn != null) {
-          fIn.close();
-        }
-      } catch (IOException e) {}
+      if (isr != null) {
+        isr.close();
+      }
+      if (fIn != null) {
+        fIn.close();
+      }
     }
 
     return results;
@@ -362,12 +470,14 @@ public class DataViewer {
           result.put("Name", readContent(parser, name));
         } else if (name.equals("rdf:type")) {
           result.put("Type", readContent(parser, name));
-        } else if (name.equals("rdf:address")) {
-          result.put("Address", readContent(parser, name));
+        } else if (name.equals("rdf:category")) {
+          result.put("Category", readContent(parser, name));
         } else if (name.equals("rdf:district")) {
           result.put("District", readContent(parser, name));
-        } else if (name.equals("rdf:telphone")) {
-          result.put("Telphone", readContent(parser, name));
+        } else if (name.equals("rdf:address")) {
+          result.put("Address", readContent(parser, name));
+        } else if (name.equals("rdf:telephone")) {
+          result.put("Telephone", readContent(parser, name));
         } else if (name.equals("rdf:latitude")) {
           result.put("Latitude", readContent(parser, name));
         } else if (name.equals("rdf:longitude")) {
@@ -433,7 +543,7 @@ public class DataViewer {
     }
   }
 
-  protected String textContent(String fileName) {
+  protected String textContent(String fileName) throws IOException {
     String results = "";
     FileInputStream fIn = null;
     InputStreamReader isr = null;
@@ -458,23 +568,18 @@ public class DataViewer {
     } catch (Exception e){
       Log.i("textContent Error: ", e.getMessage());
     } finally {
-      try {
+      if (isr != null) {
         isr.close();
+      }
+      if (fIn != null) {
         fIn.close();
-
-        /*if (isr != null) {
-          isr.close();
-        }
-        if (fIn != null) {
-          fIn.close();
-        }*/
-      } catch(Exception ex) {}
+      }
     }
 
     return results;
   }
 
-  protected String showData(String fileName) {
+  protected String showData(String fileName) throws IOException {
     String results = "";
     String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 
@@ -494,5 +599,29 @@ public class DataViewer {
     Toast toast = Toast.makeText(context, msg, duration);
     toast.setGravity(Gravity.CENTER, 0, 0);
     toast.show();
+  }
+
+  protected int resourceIcon(String category) {
+    int result = R.drawable.icon;
+
+    if (category.equals("Shelter(Indoor)")) {
+      result = R.drawable.shelter_in;
+    } else if (category.equals("Shelter(Outdoor)")) {
+      result = R.drawable.shelter_out;
+    } else if (category.equals("Medical")) {
+      result = R.drawable.medical;
+    } else if (category.equals("Rescue")) {
+      result = R.drawable.rescue;
+    } else if (category.equals("Livelihood")) {
+      result = R.drawable.livelihood;
+    } else if (category.equals("Communication")) {
+      result = R.drawable.communication;
+    } else if (category.equals("Volunteer association")) {
+      result = R.drawable.volunteer_association;
+    } else if (category.equals("Transportation")) {
+      result = R.drawable.transportation;
+    }
+
+    return result;
   }
 }

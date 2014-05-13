@@ -1,25 +1,69 @@
 package mobilemad.app;
 
+/**
+ * Copyright (c) 2014  OpenISDM
+ *
+ * Project Name:
+ *   Mobile Clients for MAD
+ *
+ * Version:
+ *   1.0
+ *
+ * File Name:
+ *   AlertDialogFragment.java
+ *
+ * Abstract:
+ *   AlertDialogFragment.java is the class files in Mobile Clients for MAD project.
+ *   AlertDialogFragment will be used as custom dialog message in fragment to user when needed.
+ *
+ * Authors:
+ *   Andre Lukito, routhsauniere@gmail.com
+ *
+ * License:
+ *  GPL 3.0 This file is subject to the terms and conditions defined
+ *  in file 'COPYING.txt', which is part of this source code package.
+ *
+ * Major Revision History:
+ *   2014/5/13: complete version 1.0
+ */
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.provider.Settings;
 
-/**
- * Created by Andre on 05/01/2014.
- */
 public class AlertDialogFragment extends DialogFragment {
 
   private AlertDialog.Builder alertDialog;
 
   private String title, msg;
   private int button;
-  protected static String name, type, telephone, district, address;
+  protected static String name, type, category, telephone, district, address;
   protected static double latitude, longitude;
 
+  /**
+   * Function Name:
+   *   newInstance
+   *
+   * Function Description:
+   *   Create new instance for AlertDialogFragment class and put the variable in argument (Bundle).
+   *
+   * Parameters:
+   *   String title - title of dialog.
+   *   String msg - message of dialog.
+   *   int button - mode of button that needed to show in dialog.
+   *
+   * Returned Value:
+   *   Returns AlertDialogFragment Object with set of arguments
+   *
+   * Possible Error Code or Exception:
+   *   none
+   */
   protected static AlertDialogFragment newInstance(String title, String msg, int button) {
     AlertDialogFragment frag = new AlertDialogFragment();
     Bundle args = new Bundle();
@@ -53,18 +97,25 @@ public class AlertDialogFragment extends DialogFragment {
         alertDialog.setPositiveButton("Show",
             new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int whichButton) {
+
+                /**
+                 * Passing the data into class MapsFragment.
+                 * Set tab position into MapsFragment.
+                 */
                 MapsFragment.name = name;
                 MapsFragment.type = type;
-                MapsFragment.telephone = telephone;
+                MapsFragment.category = category;
                 MapsFragment.district = district;
                 MapsFragment.address = address;
+                MapsFragment.telephone = telephone;
                 MapsFragment.latitude = latitude;
                 MapsFragment.longitude = longitude;
                 name = "";
                 type = "";
-                telephone = "";
+                category = "";
                 district = "";
                 address = "";
+                telephone = "";
                 latitude = 0;
                 longitude = 0;
                 MainActivity.mViewPager.setCurrentItem(0);
@@ -83,7 +134,32 @@ public class AlertDialogFragment extends DialogFragment {
         alertDialog.setPositiveButton("Settings",
           new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
+
+              /**
+               * Start new Activity with the Location Settings.
+               */
               Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+              startActivity(intent);
+            }
+          }
+        );
+        alertDialog.setNegativeButton("Cancel",
+          new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+              dialog.dismiss();
+            }
+          }
+        );
+        break;
+      case 3:
+        alertDialog.setPositiveButton("Settings",
+          new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+              /**
+               * Start new Activity with the Settings.
+               */
+              Intent intent = new Intent(Settings.ACTION_SETTINGS);
               startActivity(intent);
             }
           }
