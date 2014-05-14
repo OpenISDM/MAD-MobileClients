@@ -37,6 +37,7 @@ import android.widget.EditText;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DataFragment extends Fragment {
@@ -45,7 +46,7 @@ public class DataFragment extends Fragment {
   private EditText txtData;
 
   private DataViewer dataViewer;
-  private HashMap<Integer, HashMap<String, Object>> result;
+  private LinkedHashMap<Integer, LinkedHashMap<String, Object>> result;
   private String content;
 
   private void getContent() throws IOException {
@@ -63,10 +64,10 @@ public class DataFragment extends Fragment {
 
     result = dataViewer.JSONFacilities("dataFiles.json");
 
-    for(Map.Entry<Integer, HashMap<String, Object>> entry : result.entrySet()) {
+    for(Map.Entry<Integer, LinkedHashMap<String, Object>> entry : result.entrySet()) {
       int key = entry.getKey();
       results += String.valueOf(key) + ":\n";
-      HashMap<String, Object> value = entry.getValue();
+      LinkedHashMap<String, Object> value = entry.getValue();
       for(Map.Entry<String, Object> entry1 : value.entrySet()) {
         String key1 = entry1.getKey();
         Object value1 = entry1.getValue();
@@ -86,7 +87,7 @@ public class DataFragment extends Fragment {
 
     result = dataViewer.RDFFacilities("dataFiles.rdf");
 
-    for(Map.Entry<Integer, HashMap<String, Object>> entry : result.entrySet()) {
+    for(Map.Entry<Integer, LinkedHashMap<String, Object>> entry : result.entrySet()) {
       int key = entry.getKey();
       results += String.valueOf(key) + ":\n";
       HashMap<String, Object> value = entry.getValue();
@@ -123,7 +124,7 @@ public class DataFragment extends Fragment {
     super.onCreate(savedInstanceState);
 
     dataViewer = new DataViewer();
-    result = new HashMap<Integer, HashMap<String, Object>>();
+    result = new LinkedHashMap<Integer, LinkedHashMap<String, Object>>();
   }
 
   @Override

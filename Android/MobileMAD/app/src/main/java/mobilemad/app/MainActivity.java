@@ -182,7 +182,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
       /**
        *  Check position given from selected tab.
-       *  Return fragment as view in activity.
+       *  Returns fragment as view in activity.
        */
       switch (position) {
         case 1:
@@ -204,7 +204,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     /**
-     *  Return the number of page.
+     *  Returns the number of page.
      */
     @Override
     public int getCount() {
@@ -212,7 +212,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     /**
-     *  Return the title of page.
+     *  Returns the title of page.
      */
     @Override
     public CharSequence getPageTitle(int position) {

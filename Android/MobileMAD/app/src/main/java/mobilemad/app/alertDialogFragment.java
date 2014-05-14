@@ -59,10 +59,10 @@ public class AlertDialogFragment extends DialogFragment {
    *   int button - mode of button that needed to show in dialog.
    *
    * Returned Value:
-   *   Returns AlertDialogFragment Object with set of arguments
+   *   Returns AlertDialogFragment Object with set of arguments.
    *
    * Possible Error Code or Exception:
-   *   none
+   *   none.
    */
   protected static AlertDialogFragment newInstance(String title, String msg, int button) {
     AlertDialogFragment frag = new AlertDialogFragment();
@@ -83,6 +83,9 @@ public class AlertDialogFragment extends DialogFragment {
     alertDialog.setTitle(title);
     alertDialog.setMessage(msg);
 
+    /**
+     * button mode selection for specific task that needed by caller.
+     */
     switch (button) {
       case 0:
         alertDialog.setPositiveButton("OK",
@@ -100,6 +103,7 @@ public class AlertDialogFragment extends DialogFragment {
 
                 /**
                  * Passing the data into class MapsFragment.
+                 * Clear the current data value.
                  * Set tab position into MapsFragment.
                  */
                 MapsFragment.name = name;

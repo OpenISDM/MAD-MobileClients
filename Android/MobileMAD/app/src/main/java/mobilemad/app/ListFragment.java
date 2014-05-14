@@ -29,7 +29,6 @@ package mobilemad.app;
  */
 
 import android.app.DialogFragment;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -42,7 +41,7 @@ import android.widget.SimpleAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ListFragment extends Fragment {
@@ -52,9 +51,9 @@ public class ListFragment extends Fragment {
   private SimpleAdapter sAdapter;
 
   private DataViewer dataViewer;
-  private HashMap<Integer, HashMap<String, Object>> result;
-  private HashMap<String, Object> data;
-  private ArrayList<HashMap<String, Object>> listData;
+  private LinkedHashMap<Integer, LinkedHashMap<String, Object>> result;
+  private LinkedHashMap<String, Object> data;
+  private ArrayList<LinkedHashMap<String, Object>> listData;
 
   /**
    * Procedure Name:
@@ -71,76 +70,102 @@ public class ListFragment extends Fragment {
    *   none
    */
   private void contentData(String... fileName) throws IOException {
-    result = dataViewer.JSONFacilities(fileName[0]);
+    result = dataViewer.RDFFacilities(fileName[0]);
     if (result.isEmpty()) {
-      result = dataViewer.RDFFacilities(fileName[1]);
+      result = dataViewer.JSONFacilities(fileName[1]);
     }
 
     listData.clear();
 
-    for(Map.Entry<Integer, HashMap<String, Object>> entry : result.entrySet()) {
-      data = new HashMap<String, Object>();
-      int key = entry.getKey();
+    if (!result.isEmpty()) {
+      for (Map.Entry<Integer, LinkedHashMap<String, Object>> entry : result.entrySet()) {
+        data = new LinkedHashMap<String, Object>();
+        int key = entry.getKey();
 
-      HashMap<String, Object> value = entry.getValue();
-      for(Map.Entry<String, Object> entry1 : value.entrySet()) {
-        String key1 = entry1.getKey();
-        Object value1 = entry1.getValue();
+        LinkedHashMap<String, Object> value = entry.getValue();
+        for (Map.Entry<String, Object> entry1 : value.entrySet()) {
+          String key1 = entry1.getKey();
+          Object value1 = entry1.getValue();
 
-        if (key1.equalsIgnoreCase("Name")) {
-          data.put("Name", value1);
-        } else if (key1.equalsIgnoreCase("Type")) {
-          data.put("Type", value1);
-        } else if (key1.equalsIgnoreCase("Category")) {
-          data.put("Category", dataViewer.resourceIcon(value1.toString()));
+          if (key1.equalsIgnoreCase("Name")) {
+            data.put("Name", value1);
+          } else if (key1.equalsIgnoreCase("Type")) {
+            data.put("Type", value1);
+          } else if (key1.equalsIgnoreCase("Category")) {
+            data.put("Category", dataViewer.resourceIcon(value1.toString()));
+          }
         }
-      }
 
-      listData.add(data);
+        listData.add(data);
+      }
     }
+
+    sAdapter.notifyDataSetChanged();
   }
 
-  private class contentViewer extends AsyncTask<String, Void, Void> {
-    @Override
-    protected void onPreExecute() {
-    }
+  /**
+   * Procedure Name:
+   *   initListView
+   *
+   * Procedure Description:
+   *   Create Simple Adapter to put the value from Array List. Show it on the list view.
+   *
+   * Possible Error Code or Exception:
+   *   None.
+   */
+  private void initListView() {
+    sAdapter = new SimpleAdapter(getActivity(), listData, R.layout.list_view_data,
+      new String[] {"Name", "Type", "Category"},
+      new int[] {R.id.txtName, R.id.txtType, R.id.ivIcon});
 
-    @Override
-    protected Void doInBackground(String... fileName) {
-      try {
-        contentData(fileName);
-      } catch (IOException e) {
-        Log.i("ListFragment - contentViewer - IOException", e.getMessage());
+    lvData.setAdapter(sAdapter);
+  }
+
+  /**
+   * Procedure Name:
+   *   runningThread
+   *
+   * Procedure Description:
+   *   Thread to update content of list view.
+   *   runOnUiThread are used because it is needed to update content of list view, as compare with
+   *   AsyncTask for background thread, where AsyncTask can't be used in this case because
+   *   adapter for list view need to be updated from UI thread instead from background thread
+   *   (see Reference).
+   *
+   * Reference:
+   *   This is are the error that occur when update adapter in ListView using AsyncTask.
+   *   "java.lang.IllegalStateException: The content of the adapter has changed but ListView did
+   *   not receive a notification. Make sure the content of your adapter is not modified from a
+   *   background thread, but only from the UI thread."
+   *
+   * Possible Error Code or Exception:
+   *   File not found.
+   */
+  private void runningThread(String... fileName) {
+    final String[] filename = fileName;
+    getActivity().runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          contentData(filename);
+        } catch (IOException e) {
+          Log.i("ListFragment - runningThread - IOException", e.getMessage());
+        }
       }
-
-      return null;
-    }
-
-    @Override
-    protected void onPostExecute(Void unused) {
-      if (!result.isEmpty()) {
-
-        /**
-         * Create Simple Adapter to put the value from list (after contentData called).
-         * Show it on list view.
-         */
-        sAdapter = new SimpleAdapter(getActivity(), listData, R.layout.list_view_data, new String[] {"Name", "Type", "Category"}, new int[] {R.id.txtName, R.id.txtType, R.id.ivIcon});
-        lvData.setAdapter(sAdapter);
-      }
-    }
+    });
   }
 
   @Override
   public void setMenuVisibility(final boolean visible) {
     super.setMenuVisibility(visible);
     if (visible) {
-
-      /**
-       * Check if default view not null.
-       * Invokes the thread for show the data on list view when user return to tab List.
-       */
       if (rootView != null) {
-        new contentViewer().execute("dataFiles.json", "dataFiles.rdf");
+        /**
+         * Initialize adapter into list view.
+         * Invokes the thread for show the data on list view when user return to tab List.
+         */
+        initListView();
+        runningThread("dataFiles.rdf", "dataFiles.json");
       }
     }
   }
@@ -150,9 +175,9 @@ public class ListFragment extends Fragment {
     super.onCreate(savedInstanceState);
 
     dataViewer = new DataViewer();
-    result = new HashMap<Integer, HashMap<String, Object>>();
-    data = new HashMap<String, Object>();
-    listData = new ArrayList<HashMap<String,Object>>();
+    result = new LinkedHashMap<Integer, LinkedHashMap<String, Object>>();
+    data = new LinkedHashMap<String, Object>();
+    listData = new ArrayList<LinkedHashMap<String,Object>>();
   }
 
   @Override
@@ -191,8 +216,10 @@ public class ListFragment extends Fragment {
           AlertDialogFragment.district = district;
           AlertDialogFragment.address = address;
           AlertDialogFragment.telephone = telephone;
-          AlertDialogFragment.latitude = Double.valueOf(result.get(position).get("Latitude").toString());
-          AlertDialogFragment.longitude = Double.valueOf(result.get(position).get("Longitude").toString());
+          AlertDialogFragment.latitude =
+              Double.valueOf(result.get(position).get("Latitude").toString());
+          AlertDialogFragment.longitude =
+              Double.valueOf(result.get(position).get("Longitude").toString());
 
           alertDlgFragment = AlertDialogFragment.newInstance("Detail Information", msg, 1);
           alertDlgFragment.setCancelable(false);
@@ -202,9 +229,11 @@ public class ListFragment extends Fragment {
     });
 
     /**
+     * Initialize adapter into list view.
      * Invokes the thread for show the data on list view for the first time.
      */
-    new contentViewer().execute("dataFiles.json", "dataFiles.rdf");
+    initListView();
+    runningThread("dataFiles.rdf", "dataFiles.json");
 
     return rootView;
   }

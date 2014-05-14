@@ -86,10 +86,11 @@ public class MapsFragment extends Fragment implements LocationListener {
 
   private DownloaderHTTP downloaderHTTP;
   private DataViewer dataViewer;
+  private String provider;
+  private final int RQS_GooglePlayServices = 10;
+
   protected static String name, type, category, telephone, district, address;
   protected static double latitude, longitude, deviceLatitude, deviceLongitude;
-  private String provider;
-  final int RQS_GooglePlayServices = 10;
 
   /**
    * Returns direction URL that created to match with Google APIs for Maps.
@@ -404,7 +405,8 @@ public class MapsFragment extends Fragment implements LocationListener {
         if ((latitude > 0) && (longitude > 0)) {
 
           /**
-           * Put marker on Google Maps based on latitude and longitude from selected item on tab List.
+           * Put marker on Google Maps based on latitude and longitude from selected item
+           * on tab List.
            */
           marker = googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude))
               .icon(BitmapDescriptorFactory.fromResource(dataViewer.resourceIcon(category))));

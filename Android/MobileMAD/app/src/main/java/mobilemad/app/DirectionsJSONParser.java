@@ -1,5 +1,34 @@
 package mobilemad.app;
 
+/**
+ * Copyright (c) 2014  OpenISDM
+ *
+ * Project Name:
+ *   Mobile Clients for MAD
+ *
+ * Version:
+ *   1.0
+ *
+ * File Name:
+ *   DirectionsJSONParser.java
+ *
+ * Abstract:
+ *   DirectionsJSONParser.java is the class files in Mobile Clients for MAD project.
+ *   DirectionsJSONParser will be used in Mobile Clients for MAD app as:
+ *   1. Parse Google APIs for Maps data in JSON format for navigation.
+ *   2. Create the poly to draw into Google Maps in MapsFragment.
+ *
+ * Authors:
+ *   Andre Lukito, routhsauniere@gmail.com
+ *
+ * License:
+ *  GPL 3.0 This file is subject to the terms and conditions defined
+ *  in file 'COPYING.txt', which is part of this source code package.
+ *
+ * Major Revision History:
+ *   2014/5/13: complete version 1.0
+ */
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +40,25 @@ import org.json.JSONObject;
 import com.google.android.gms.maps.model.LatLng;
 
 public class DirectionsJSONParser {
-  /** Receives a JSONObject and returns a list of lists containing latitude and longitude */
+
+  /**
+   * Function Name:
+   *   parse
+   *
+   * Function Description:
+   *   Receives a JSONObject and returns a list of lists containing latitude and longitude.
+   *
+   * Parameters:
+   *   JSONObject jObject - content from JSONObject object as an Object.
+   *
+   * Returned Value:
+   *   If the function returned normally, the returned is
+   *   List<List<HashMap<String, String>>>;
+   *   otherwise, the returned value is null.
+   *
+   * Possible Error Code or Exception:
+   *   Different structure.
+   */
   public List<List<HashMap<String, String>>> parse(JSONObject jObject) {
     List<List<HashMap<String, String>>> routes = new ArrayList<List<HashMap<String,String>>>();
     JSONArray jRoutes = null;
@@ -56,9 +103,24 @@ public class DirectionsJSONParser {
   }
 
   /**
-   * Method to decode polyline points
-   * Courtesy : jeffreysambells.com/2010/05/27/decoding-polylines-from-google-maps-direction-api-with-java
-   * */
+   * Function Name:
+   *   decodePoly
+   *
+   * Function Description:
+   *   Method to decode polyline points.
+   *   Courtesy :
+   *      jeffreysambells.com/2010/05/27/decoding-polylines-from-google-maps-direction-api-with-java
+   *
+   * Parameters:
+   *   String encoded - representation of poly in String.
+   *
+   * Returned Value:
+   *   If the function returned normally, the returned is List<LatLng>;
+   *   otherwise, the returned value is null.
+   *
+   * Possible Error Code or Exception:
+   *   Different structure.
+   */
   private List<LatLng> decodePoly(String encoded) {
     List<LatLng> poly = new ArrayList<LatLng>();
     int index = 0;

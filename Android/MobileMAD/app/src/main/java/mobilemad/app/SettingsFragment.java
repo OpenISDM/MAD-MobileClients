@@ -129,20 +129,21 @@ public class SettingsFragment extends Fragment {
     btnDownloadFiles = (Button) rootView.findViewById(R.id.btnDownloadFiles);
     btnDeleteFiles = (Button) rootView.findViewById(R.id.btnDeleteFiles);
 
-    txtImageLocation.setHint(Config.imgLocation2);
-    txtImageLocation.setText(Config.imgLocation2);
-    txtDataLocation.setHint(Config.fileLocation2);
-    txtDataLocation.setText(Config.fileLocation2);
+    txtImageLocation.setHint(Config.IMG_LOCATION2);
+    txtImageLocation.setText(Config.IMG_LOCATION2);
+    txtDataLocation.setHint(Config.FILE_LOCATION2);
+    txtDataLocation.setText(Config.FILE_LOCATION2);
 
     btnDownloadFiles.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
 
         /**
-         * Check availability of Connectivity services (Wi-Fi or mobile) before
+         * Check availability of Connectivity services (Mobile or Wi-Fi) before
          * downloading the data.
          */
-        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager =
+            (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (downloaderHTTP.isNetworkAvailable(connectivityManager)) {
 
           /**
@@ -151,7 +152,8 @@ public class SettingsFragment extends Fragment {
           new DownloadData().execute("imgMaps.png", txtImageLocation.getText().toString(), "image");
           new DownloadData().execute("dataFiles.json", txtDataLocation.getText().toString(), "text");
         } else {
-          alertDlgFragment = AlertDialogFragment.newInstance("No Network Available", "Please enable the Mobile Data or Wi-Fi", 3);
+          alertDlgFragment = AlertDialogFragment.newInstance("No Network Available",
+              "Please enable the Mobile Data or Wi-Fi", 3);
           alertDlgFragment.setCancelable(false);
           alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
         }
@@ -173,7 +175,8 @@ public class SettingsFragment extends Fragment {
           file.delete();
         }
 
-        alertDlgFragment = AlertDialogFragment.newInstance("Delete Internal Storage Files", "Success", 0);
+        alertDlgFragment = AlertDialogFragment.newInstance("Delete Internal Storage Files",
+            "Success", 0);
         alertDlgFragment.setCancelable(false);
         alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
       }

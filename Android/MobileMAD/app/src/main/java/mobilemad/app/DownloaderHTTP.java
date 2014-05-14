@@ -1,6 +1,35 @@
 package mobilemad.app;
 
-import android.content.Context;
+/**
+ * Copyright (c) 2014  OpenISDM
+ *
+ * Project Name:
+ *   Mobile Clients for MAD
+ *
+ * Version:
+ *   1.0
+ *
+ * File Name:
+ *   DownloaderHTTP.java
+ *
+ * Abstract:
+ *   DownloaderHTTP.java is the class files in Mobile Clients for MAD project.
+ *   DownloaderHTTP will be used in Mobile Clients for MAD app as:
+ *   1. Check network availability.
+ *   2. Download data from URL.
+ *   3. Save downloaded data into bitmap or text file.
+ *
+ * Authors:
+ *   Andre Lukito, routhsauniere@gmail.com
+ *
+ * License:
+ *  GPL 3.0 This file is subject to the terms and conditions defined
+ *  in file 'COPYING.txt', which is part of this source code package.
+ *
+ * Major Revision History:
+ *   2014/5/13: complete version 1.0
+ */
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -15,11 +44,26 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by Andre on 05/09/2014.
- */
 public class DownloaderHTTP {
 
+  /**
+   * Function Name:
+   *   isNetworkAvailable
+   *
+   * Function Description:
+   *   Returns the network availability, such as Mobile or Wi-Fi.
+   *
+   * Parameters:
+   *   ConnectivityManager connectivityManager - System Service value for connectivity services,
+   *   such as Mobile or Wi-Fi.
+   *
+   * Returned Value:
+   *   If the function returned normally, the returned is true;
+   *   otherwise, the returned value is false.
+   *
+   * Possible Error Code or Exception:
+   *   None.
+   */
   protected boolean isNetworkAvailable(ConnectivityManager connectivityManager) {
     boolean result = false;
     NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -31,9 +75,24 @@ public class DownloaderHTTP {
     return result;
   }
 
-
-  // Given a string representation of a URL, sets up a connection and gets
-  // an input stream.
+  /**
+   * Function Name:
+   *   downloadUrl
+   *
+   * Function Description:
+   *   Sets up a connection and get the downloaded data from WebServices.
+   *
+   * Parameters:
+   *   String urlString - representation of a URL for download data.
+   *
+   * Returned Value:
+   *   If the function returned normally, the returned is InputStream;
+   *   otherwise, the returned value is null.
+   *
+   * Possible Error Code or Exception:
+   *   Connection problem.
+   *   Wrong URL.
+   */
   protected InputStream downloadUrl(String urlString) {
     HttpURLConnection conn = null;
 
@@ -45,7 +104,8 @@ public class DownloaderHTTP {
       conn.setConnectTimeout(15000 /* milliseconds */);
       conn.setRequestMethod("GET");
       conn.setDoInput(true);
-      // Starts the query
+
+      /** Starts the query */
       conn.connect();
 
       return conn.getInputStream();
@@ -55,7 +115,22 @@ public class DownloaderHTTP {
     }
   }
 
-  protected void saveImage(InputStream inputStream, String path, String files) {
+  /**
+   * Procedure Name:
+   *   saveImage
+   *
+   * Procedure Description:
+   *   Save downloaded data into bitmap file as PNG format.
+   *
+   * Parameters:
+   *   InputStream inputStream - representation of downloaded data.
+   *   String path - directory location to save the bitmap file.
+   *   String files - full path with filename to save the bitmap file.
+   *
+   * Possible Error Code or Exception:
+   *   Can't save the file.
+   */
+  protected void saveImage(InputStream inputStream, String path, String files) throws IOException {
     OutputStream outputStream = null;
 
     try {
@@ -68,13 +143,26 @@ public class DownloaderHTTP {
     } catch (Exception e) {
       Log.i("saveImage", e.getMessage());
     } finally {
-      try {
-        outputStream.close();
-      } catch(Exception ex) {}
+      outputStream.close();
     }
   }
 
-  protected void saveText(InputStream inputStream, String path, String files) {
+  /**
+   * Procedure Name:
+   *   saveText
+   *
+   * Procedure Description:
+   *   Save downloaded data into file.
+   *
+   * Parameters:
+   *   InputStream inputStream - representation of downloaded data.
+   *   String path - directory location to save the file.
+   *   String files - full path with filename to save the file.
+   *
+   * Possible Error Code or Exception:
+   *   Can't save the file.
+   */
+  protected void saveText(InputStream inputStream, String path, String files) throws IOException {
     OutputStream outputStream = null;
     byte[] buffer = new byte[1024];
     int bufferLength = 0;
@@ -93,9 +181,7 @@ public class DownloaderHTTP {
     } catch (Exception e) {
       Log.i("saveText", e.getMessage());
     } finally {
-      try {
-        outputStream.close();
-      } catch(Exception ex) {}
+      outputStream.close();
     }
   }
 }
