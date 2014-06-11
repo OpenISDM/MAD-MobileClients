@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-08fbcad6a4564d85b6952b89deae9a0c43a12343.jar"
+        jar="E:\Editor\Android Studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+    <item
+        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\alljoyn-e9ec7d23bc9283f1fbe5c7624c93127963bd0750.jar"
+        jar="E:\Editor\Project\Android-Studio\MobileMAD\app\libs\alljoyn.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="ed6fba1c4d3c360e07f80fd54500612e982e646a"/>
+    <item
+        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\classes-43195ac0eb441eed3cfeb9424b69c6a6aa8ff45b.jar"
+        jar="E:\Editor\Project\Android-Studio\MobileMAD\build\intermediates\exploded-aar\com.google.android.gms\play-services\4.4.52\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3dfdf1db5ce5ea2999a5dcde8c8e650b02660059"/>
+    <item
+        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\classes-081fd3dbe1882818ed653ca185fb10f137f44721.jar"
+        jar="E:\Editor\Project\Android-Studio\MobileMAD\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+
+</pre-dex-items>

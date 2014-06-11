@@ -31,17 +31,14 @@ package mobilemad.app;
 
 public class Config {
   protected static String path = "";
-  protected final static String IMG_LOCATION =
-      "http://media.nj.com/ledgerupdates_impact/photo/2010/08/nb-mappng-f3544c4d29006cfa_large.png";
-  protected final static String FILE_LOCATION =
-      "http://blog.paultondeur.com/files/2010/UnityExternalJSONXML/books.json";
-  protected final static String IMG_LOCATION1 = "http://140.109.22.181/image";
-  protected final static String FILE_LOCATION1 = "http://140.109.22.181/topic";
-  protected final static String IMG_LOCATION2 = "http://140.109.17.48/image";
-  protected final static String FILE_LOCATION2 = "http://140.109.17.48/topic";
-  protected final static String IMG_LOCATION3 =
+  protected final static String IMG_LOCATION = "http://140.109.22.153/topic/img";
+  protected final static String FILE_LOCATION = "http://140.109.22.153/topic/rdf";
+  protected final static String FILE1_LOCATION = "http://140.109.22.153/topic/json";
+  protected final static String IMG_LOCATION1 = "http://140.109.17.48/image";
+  protected final static String FILE_LOCATION1 = "http://140.109.17.48/topic";
+  protected final static String IMG_LOCATION2 =
       "http://140.109.22.197/static/Topic/TWN-112-583552/TWN-112-583552.png";
-  protected final static String FILE_LOCATION3 =
+  protected final static String FILE_LOCATION2 =
       "http://140.109.22.197/static/Topic/TWN-112-583552/TWN-112-583552.json";
 
   protected final static String SHELTER_INDOOR = "Shelter(Indoor)";

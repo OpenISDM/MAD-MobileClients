@@ -129,10 +129,10 @@ public class SettingsFragment extends Fragment {
     btnDownloadFiles = (Button) rootView.findViewById(R.id.btnDownloadFiles);
     btnDeleteFiles = (Button) rootView.findViewById(R.id.btnDeleteFiles);
 
-    txtImageLocation.setHint(Config.IMG_LOCATION2);
-    txtImageLocation.setText(Config.IMG_LOCATION2);
-    txtDataLocation.setHint(Config.FILE_LOCATION2);
-    txtDataLocation.setText(Config.FILE_LOCATION2);
+    txtImageLocation.setHint(Config.IMG_LOCATION);
+    txtImageLocation.setText(Config.IMG_LOCATION);
+    txtDataLocation.setHint(Config.FILE_LOCATION);
+    txtDataLocation.setText(Config.FILE_LOCATION);
 
     btnDownloadFiles.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -150,7 +150,8 @@ public class SettingsFragment extends Fragment {
            * Invokes the thread for download the data from the server and saved file locally.
            */
           new DownloadData().execute("imgMaps.png", txtImageLocation.getText().toString(), "image");
-          new DownloadData().execute("dataFiles.json", txtDataLocation.getText().toString(), "text");
+          new DownloadData().execute("dataFiles.rdf", txtDataLocation.getText().toString(), "text");
+          new DownloadData().execute("dataFiles.json", Config.FILE1_LOCATION, "text");
         } else {
           alertDlgFragment = AlertDialogFragment.newInstance("No Network Available",
               "Please enable the Mobile Data or Wi-Fi", 3);
