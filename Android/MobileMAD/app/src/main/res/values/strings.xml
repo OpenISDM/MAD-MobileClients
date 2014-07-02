@@ -8,6 +8,7 @@
   <string name="ui_tabname_image">Image</string>
   <string name="ui_tabname_data">Data</string>
   <string name="ui_tabname_list">List</string>
+  <string name="ui_tabname_chat">Chat</string>
   <string name="ui_tabname_settings">Settings</string>
 
   <!-- Menu Strings -->

@@ -39,24 +39,24 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
 public class LogoActivity extends Activity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
     /**
      * Set FullScreen window for splash screen.
      * Set animation image.
      */
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
     this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.activity_logo);
-		AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
+    setContentView(R.layout.activity_logo);
+    AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
     animation.setDuration(3000);
-    ImageView img_logo = (ImageView)this.findViewById(R.id.img_logo);
+    ImageView img_logo = (ImageView) this.findViewById(R.id.img_logo);
     img_logo.setAnimation(animation);
 
-    animation.setAnimationListener(new AnimationListener(){
-			public void onAnimationEnd(Animation animation){
+    animation.setAnimationListener(new AnimationListener() {
+      public void onAnimationEnd(Animation animation) {
 
         /**
          * Start new Activity with the MainActivity.
@@ -64,15 +64,15 @@ public class LogoActivity extends Activity {
         Intent intent = new Intent(LogoActivity.this, MainActivity.class);
         startActivity(intent);
         LogoActivity.this.finish();
-			}
+      }
 
-			public void onAnimationRepeat(Animation animation){
-				// TODO Auto-generated method stub
-			}
+      public void onAnimationRepeat(Animation animation) {
+        // TODO Auto-generated method stub
+      }
 
-			public void onAnimationStart(Animation animation){
-				// TODO Auto-generated method stub
-			}
-		});
-	}
+      public void onAnimationStart(Animation animation) {
+        // TODO Auto-generated method stub
+      }
+    });
+  }
 }

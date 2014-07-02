@@ -48,21 +48,21 @@ public class DownloaderHTTP {
 
   /**
    * Function Name:
-   *   isNetworkAvailable
-   *
+   * isNetworkAvailable
+   * <p/>
    * Function Description:
-   *   Returns the network availability, such as Mobile or Wi-Fi.
-   *
+   * Returns the network availability, such as Mobile or Wi-Fi.
+   * <p/>
    * Parameters:
-   *   ConnectivityManager connectivityManager - System Service value for connectivity services,
-   *   such as Mobile or Wi-Fi.
-   *
+   * ConnectivityManager connectivityManager - System Service value for connectivity services,
+   * such as Mobile or Wi-Fi.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is true;
-   *   otherwise, the returned value is false.
-   *
+   * If the function returned normally, the returned is true;
+   * otherwise, the returned value is false.
+   * <p/>
    * Possible Error Code or Exception:
-   *   None.
+   * None.
    */
   protected boolean isNetworkAvailable(ConnectivityManager connectivityManager) {
     boolean result = false;
@@ -77,21 +77,21 @@ public class DownloaderHTTP {
 
   /**
    * Function Name:
-   *   downloadUrl
-   *
+   * downloadUrl
+   * <p/>
    * Function Description:
-   *   Sets up a connection and get the downloaded data from WebServices.
-   *
+   * Sets up a connection and get the downloaded data from WebServices.
+   * <p/>
    * Parameters:
-   *   String urlString - representation of a URL for download data.
-   *
+   * String urlString - representation of a URL for download data.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is InputStream;
-   *   otherwise, the returned value is null.
-   *
+   * If the function returned normally, the returned is InputStream;
+   * otherwise, the returned value is null.
+   * <p/>
    * Possible Error Code or Exception:
-   *   Connection problem.
-   *   Wrong URL.
+   * Connection problem.
+   * Wrong URL.
    */
   protected InputStream downloadUrl(String urlString) {
     HttpURLConnection conn = null;
@@ -117,18 +117,18 @@ public class DownloaderHTTP {
 
   /**
    * Procedure Name:
-   *   saveImage
-   *
+   * saveImage
+   * <p/>
    * Procedure Description:
-   *   Save downloaded data into bitmap file as PNG format.
-   *
+   * Save downloaded data into bitmap file as PNG format.
+   * <p/>
    * Parameters:
-   *   InputStream inputStream - representation of downloaded data.
-   *   String path - directory location to save the bitmap file.
-   *   String files - full path with filename to save the bitmap file.
-   *
+   * InputStream inputStream - representation of downloaded data.
+   * String path - directory location to save the bitmap file.
+   * String files - full path with filename to save the bitmap file.
+   * <p/>
    * Possible Error Code or Exception:
-   *   Can't save the file.
+   * Can't save the file.
    */
   protected void saveImage(InputStream inputStream, String path, String files) throws IOException {
     OutputStream outputStream = null;
@@ -149,18 +149,18 @@ public class DownloaderHTTP {
 
   /**
    * Procedure Name:
-   *   saveText
-   *
+   * saveText
+   * <p/>
    * Procedure Description:
-   *   Save downloaded data into file.
-   *
+   * Save downloaded data into file.
+   * <p/>
    * Parameters:
-   *   InputStream inputStream - representation of downloaded data.
-   *   String path - directory location to save the file.
-   *   String files - full path with filename to save the file.
-   *
+   * InputStream inputStream - representation of downloaded data.
+   * String path - directory location to save the file.
+   * String files - full path with filename to save the file.
+   * <p/>
    * Possible Error Code or Exception:
-   *   Can't save the file.
+   * Can't save the file.
    */
   protected void saveText(InputStream inputStream, String path, String files) throws IOException {
     OutputStream outputStream = null;
@@ -174,7 +174,7 @@ public class DownloaderHTTP {
       outputStream = new FileOutputStream(file);
 
       //now, read through the input buffer and write the contents to the file
-      while ((bufferLength = inputStream.read(buffer)) > 0 ) {
+      while ((bufferLength = inputStream.read(buffer)) > 0) {
         //add the data in the buffer to the file in the file output stream (the file on the sd card
         outputStream.write(buffer, 0, bufferLength);
       }

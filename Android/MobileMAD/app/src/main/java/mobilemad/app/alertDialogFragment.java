@@ -30,39 +30,36 @@ package mobilemad.app;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.provider.Settings;
 
 public class AlertDialogFragment extends DialogFragment {
 
-  private AlertDialog.Builder alertDialog;
-
-  private String title, msg;
-  private int button;
   protected static String name, type, category, telephone, district, address;
   protected static double latitude, longitude;
+  private AlertDialog.Builder alertDialog;
+  private String title, msg;
+  private int button;
 
   /**
    * Function Name:
-   *   newInstance
-   *
+   * newInstance
+   * <p/>
    * Function Description:
-   *   Create new instance for AlertDialogFragment class and put the variable in argument (Bundle).
-   *
+   * Create new instance for AlertDialogFragment class and put the variable in argument (Bundle).
+   * <p/>
    * Parameters:
-   *   String title - title of dialog.
-   *   String msg - message of dialog.
-   *   int button - mode of button that needed to show in dialog.
-   *
+   * String title - title of dialog.
+   * String msg - message of dialog.
+   * int button - mode of button that needed to show in dialog.
+   * <p/>
    * Returned Value:
-   *   Returns AlertDialogFragment Object with set of arguments.
-   *
+   * Returns AlertDialogFragment Object with set of arguments.
+   * <p/>
    * Possible Error Code or Exception:
-   *   none.
+   * none.
    */
   protected static AlertDialogFragment newInstance(String title, String msg, int button) {
     AlertDialogFragment frag = new AlertDialogFragment();
@@ -89,43 +86,43 @@ public class AlertDialogFragment extends DialogFragment {
     switch (button) {
       case 0:
         alertDialog.setPositiveButton("OK",
-            new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-              }
+          new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+              dialog.dismiss();
             }
-          );
+          }
+        );
         break;
       case 1:
         alertDialog.setPositiveButton("Show",
-            new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int whichButton) {
+          new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
 
-                /**
-                 * Passing the data into class MapsFragment.
-                 * Clear the current data value.
-                 * Set tab position into MapsFragment.
-                 */
-                MapsFragment.name = name;
-                MapsFragment.type = type;
-                MapsFragment.category = category;
-                MapsFragment.district = district;
-                MapsFragment.address = address;
-                MapsFragment.telephone = telephone;
-                MapsFragment.latitude = latitude;
-                MapsFragment.longitude = longitude;
-                name = "";
-                type = "";
-                category = "";
-                district = "";
-                address = "";
-                telephone = "";
-                latitude = 0;
-                longitude = 0;
-                MainActivity.mViewPager.setCurrentItem(0);
-              }
+              /**
+               * Passing the data into class MapsFragment.
+               * Clear the current data value.
+               * Set tab position into MapsFragment.
+               */
+              MapsFragment.name = name;
+              MapsFragment.type = type;
+              MapsFragment.category = category;
+              MapsFragment.district = district;
+              MapsFragment.address = address;
+              MapsFragment.telephone = telephone;
+              MapsFragment.latitude = latitude;
+              MapsFragment.longitude = longitude;
+              name = "";
+              type = "";
+              category = "";
+              district = "";
+              address = "";
+              telephone = "";
+              latitude = 0;
+              longitude = 0;
+              MainActivity.mViewPager.setCurrentItem(0);
             }
-          );
+          }
+        );
         alertDialog.setNegativeButton("Cancel",
           new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {

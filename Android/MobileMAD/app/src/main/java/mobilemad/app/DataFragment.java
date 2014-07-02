@@ -64,11 +64,11 @@ public class DataFragment extends Fragment {
 
     result = dataViewer.JSONFacilities("dataFiles.json");
 
-    for(Map.Entry<Integer, LinkedHashMap<String, Object>> entry : result.entrySet()) {
+    for (Map.Entry<Integer, LinkedHashMap<String, Object>> entry : result.entrySet()) {
       int key = entry.getKey();
       results += String.valueOf(key) + ":\n";
       LinkedHashMap<String, Object> value = entry.getValue();
-      for(Map.Entry<String, Object> entry1 : value.entrySet()) {
+      for (Map.Entry<String, Object> entry1 : value.entrySet()) {
         String key1 = entry1.getKey();
         Object value1 = entry1.getValue();
         results += key1 + ": ";
@@ -87,11 +87,11 @@ public class DataFragment extends Fragment {
 
     result = dataViewer.RDFFacilities("dataFiles.rdf");
 
-    for(Map.Entry<Integer, LinkedHashMap<String, Object>> entry : result.entrySet()) {
+    for (Map.Entry<Integer, LinkedHashMap<String, Object>> entry : result.entrySet()) {
       int key = entry.getKey();
       results += String.valueOf(key) + ":\n";
       HashMap<String, Object> value = entry.getValue();
-      for(Map.Entry<String, Object> entry1 : value.entrySet()) {
+      for (Map.Entry<String, Object> entry1 : value.entrySet()) {
         String key1 = entry1.getKey();
         Object value1 = entry1.getValue();
         results += key1 + ": ";

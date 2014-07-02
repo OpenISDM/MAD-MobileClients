@@ -29,26 +29,24 @@ package mobilemad.app;
  *   2014/5/01: complete version 1.0
  */
 
-import java.util.Calendar;
-import java.util.Locale;
-
-import android.os.Bundle;
 import android.app.DialogFragment;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
+import java.util.Calendar;
+import java.util.Locale;
 
-  private DialogFragment alertDlgFragment;
+public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
 
   /**
    * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -59,11 +57,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
    * {@link android.support.v4.app.FragmentStatePagerAdapter}.
    */
   protected static SectionsPagerAdapter mSectionsPagerAdapter;
-
   /**
    * The {@link ViewPager} that will host the section contents.
    */
   protected static ViewPager mViewPager;
+  private DialogFragment alertDlgFragment;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +137,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
       case R.id.menuitem_about:
         Calendar calendar = Calendar.getInstance();
         alertDlgFragment = AlertDialogFragment.newInstance("Academia Sinica - OPENISDM",
-            "Mobile MAD App ©" + String.valueOf(calendar.get(Calendar.YEAR)), 0);
+          "Mobile MAD App ©" + String.valueOf(calendar.get(Calendar.YEAR)), 0);
         alertDlgFragment.setCancelable(false);
         alertDlgFragment.show(getFragmentManager(), "dialog");
         return true;
@@ -171,7 +169,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
    * sections/tabs/pages.
    */
   public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
-    private Fragment fragmentMaps, fragmentImage, fragmentData, fragmentList, fragmentSettings;
+    private Fragment fragmentMaps, fragmentImage, fragmentData, fragmentList, fragmentChat, fragmentSettings;
 
     public SectionsPagerAdapter(FragmentManager fm) {
       super(fm);
@@ -195,6 +193,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
           fragmentSettings = new SettingsFragment();
           return fragmentSettings;
         case 4:
+          fragmentChat = new ChatFragment();
+          return fragmentChat;
+        case 5:
           fragmentData = new DataFragment();
           return fragmentData;
         default:
@@ -204,7 +205,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     /**
-     *  Returns the number of page.
+     * Returns the number of page.
      */
     @Override
     public int getCount() {
@@ -212,7 +213,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     /**
-     *  Returns the title of page.
+     * Returns the title of page.
      */
     @Override
     public CharSequence getPageTitle(int position) {
@@ -228,6 +229,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
           return getString(R.string.ui_tabname_settings).toUpperCase(l);
         case 4:
           return getString(R.string.ui_tabname_data).toUpperCase(l);
+        case 5:
+          return getString(R.string.ui_tabname_chat).toUpperCase(l);
       }
       return null;
     }

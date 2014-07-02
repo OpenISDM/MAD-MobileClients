@@ -59,25 +59,25 @@ import java.util.LinkedHashMap;
 
 public class DataViewer {
 
-  private StringBuffer sb2;
   private static final String ns = null;
+  private StringBuffer sb2;
 
   /**
    * Function Name:
-   *   openFiles
-   *
+   * openFiles
+   * <p/>
    * Function Description:
-   *   Open file in specific path.
-   *
+   * Open file in specific path.
+   * <p/>
    * Parameters:
-   *   String fileName - name of file.
-   *
+   * String fileName - name of file.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is FileInputStream;
-   *   otherwise, the returned value is null.
-   *
+   * If the function returned normally, the returned is FileInputStream;
+   * otherwise, the returned value is null.
+   * <p/>
    * Possible Error Code or Exception:
-   *   File not found.
+   * File not found.
    */
   private FileInputStream openFiles(String fileName) {
     FileInputStream result = null;
@@ -86,7 +86,7 @@ public class DataViewer {
       String path = Config.path + File.separator + "data";
       String files = path + File.separator + fileName;
       result = new FileInputStream(files);
-    } catch (Exception e){
+    } catch (Exception e) {
       Log.i("openFiles Error: ", e.getMessage());
     }
 
@@ -95,30 +95,30 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   removeByteOrderMark
-   *
+   * removeByteOrderMark
+   * <p/>
    * Function Description:
-   *   Remove Byte Order Mark (BOM) from file when they occur, it happens when the file have
-   *   encoding mark like UTF-8 and UTF-16.
-   *   BOM occur at the beginning of file with several bytes as mark. To identify it, it depends
-   *   on the encoding of the files like the following encoding:
-   *   1. 0xEF & 0xBB & 0xBF -> UTF-8
-   *   2. 0xFF & 0xFE -> UTF-16LE
-   *   3. 0xFF & 0xFF -> UTF-16BE
-   *
+   * Remove Byte Order Mark (BOM) from file when they occur, it happens when the file have
+   * encoding mark like UTF-8 and UTF-16.
+   * BOM occur at the beginning of file with several bytes as mark. To identify it, it depends
+   * on the encoding of the files like the following encoding:
+   * 1. 0xEF & 0xBB & 0xBF -> UTF-8
+   * 2. 0xFF & 0xFE -> UTF-16LE
+   * 3. 0xFF & 0xFF -> UTF-16BE
+   * <p/>
    * Parameters:
-   *   BufferedInputStream bufferedInputStream - BufferedInputStream object that get stream value
-   *   after file opened with FileInputStream.
-   *
+   * BufferedInputStream bufferedInputStream - BufferedInputStream object that get stream value
+   * after file opened with FileInputStream.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is InputStreamReader;
-   *   otherwise, the returned value is null.
-   *
+   * If the function returned normally, the returned is InputStreamReader;
+   * otherwise, the returned value is null.
+   * <p/>
    * Possible Error Code or Exception:
-   *   None.
+   * None.
    */
   public InputStreamReader removeByteOrderMark(BufferedInputStream bufferedInputStream)
-      throws IOException {
+    throws IOException {
     bufferedInputStream.mark(3);
     int byte1 = bufferedInputStream.read();
     int byte2 = bufferedInputStream.read();
@@ -139,20 +139,20 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   imgViewer
-   *
+   * imgViewer
+   * <p/>
    * Function Description:
-   *   Open image file in specific path and put into bitmap variable.
-   *
+   * Open image file in specific path and put into bitmap variable.
+   * <p/>
    * Parameters:
-   *   String fileName - name of image file.
-   *
+   * String fileName - name of image file.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is Bitmap;
-   *   otherwise, the returned value is null.
-   *
+   * If the function returned normally, the returned is Bitmap;
+   * otherwise, the returned value is null.
+   * <p/>
    * Possible Error Code or Exception:
-   *   File not found.
+   * File not found.
    */
   protected Bitmap imgViewer(String fileName) throws IOException {
     Bitmap results = null;
@@ -164,7 +164,7 @@ public class DataViewer {
       if (inputStream != null) {
         results = BitmapFactory.decodeStream(inputStream);
       }
-    } catch (Exception e){
+    } catch (Exception e) {
       Log.i("imgViewer Error: ", e.getMessage());
     } finally {
       if (inputStream != null) {
@@ -177,20 +177,20 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   XMLParser
-   *
+   * XMLParser
+   * <p/>
    * Function Description:
-   *   Parse every XML file format with standard structure.
-   *
+   * Parse every XML file format with standard structure.
+   * <p/>
    * Parameters:
-   *   String fileName - filename of XML file.
-   *
+   * String fileName - filename of XML file.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is String;
-   *   otherwise, the returned value is empty String.
-   *
+   * If the function returned normally, the returned is String;
+   * otherwise, the returned value is empty String.
+   * <p/>
    * Possible Error Code or Exception:
-   *   File not found.
+   * File not found.
    */
   protected String XMLParser(String fileName) throws IOException {
     String results = "";
@@ -207,8 +207,8 @@ public class DataViewer {
 
         parser.setInput(inputStreamReader);
         int eventType = parser.getEventType();
-        while (eventType != XmlPullParser.END_DOCUMENT){
-          switch (eventType){
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+          switch (eventType) {
             case XmlPullParser.START_DOCUMENT:
               results = "Start Document\n";
               break;
@@ -226,7 +226,7 @@ public class DataViewer {
         }
         results += "\nEnd Document";
       }
-    } catch (Exception e){
+    } catch (Exception e) {
       Log.i("XMLParser Error: ", e.getMessage());
     } finally {
       if (inputStreamReader != null) {
@@ -242,20 +242,20 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   JSONParser
-   *
+   * JSONParser
+   * <p/>
    * Function Description:
-   *   Parse every JSON file format with standard structure.
-   *
+   * Parse every JSON file format with standard structure.
+   * <p/>
    * Parameters:
-   *   String fileName - name of JSON file.
-   *
+   * String fileName - name of JSON file.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is String;
-   *   otherwise, the returned value is empty String.
-   *
+   * If the function returned normally, the returned is String;
+   * otherwise, the returned value is empty String.
+   * <p/>
    * Possible Error Code or Exception:
-   *   File not found.
+   * File not found.
    */
   protected String JSONParser(String fileName) throws IOException {
     String result, results = "";
@@ -279,17 +279,17 @@ public class DataViewer {
          * Check file format, whether it is start JSON with Array or Object,
          * otherwise it is not JSON file.
          */
-        if(result.charAt(0) == '['){
+        if (result.charAt(0) == '[') {
           JSONArray(jReader);
           results = sb2.toString();
-        }else if(result.charAt(0) == '{'){
+        } else if (result.charAt(0) == '{') {
           JSONObject(jReader);
           results = sb2.toString();
-        }else{
+        } else {
           results = "Invalid JSON file";
         }
       }
-    } catch (Exception e){
+    } catch (Exception e) {
       Log.i("JSONParser Error: ", e.getMessage());
     } finally {
       if (jReader != null) {
@@ -308,19 +308,19 @@ public class DataViewer {
 
   /**
    * Procedure Name:
-   *   JSONArray
-   *
+   * JSONArray
+   * <p/>
    * Procedure Description:
-   *   This procedure called when next JSON format are in array structure.
-   *   Check with "peek()" method to see what is the type for next value and then get the next value
-   *   based on type from "peek()" method.
-   *   Every value will be put into global private variable sb2 as StringBuffer Object.
-   *
+   * This procedure called when next JSON format are in array structure.
+   * Check with "peek()" method to see what is the type for next value and then get the next value
+   * based on type from "peek()" method.
+   * Every value will be put into global private variable sb2 as StringBuffer Object.
+   * <p/>
    * Parameters:
-   *   JsonReader jReader - Next start content from JsonReader object as an Array.
-   *
+   * JsonReader jReader - Next start content from JsonReader object as an Array.
+   * <p/>
    * Possible Error Code or Exception:
-   *   None.
+   * None.
    */
   private void JSONArray(JsonReader jReader) throws IOException {
     JsonToken jToken;
@@ -351,19 +351,19 @@ public class DataViewer {
 
   /**
    * Procedure Name:
-   *   JSONObject
-   *
+   * JSONObject
+   * <p/>
    * Procedure Description:
-   *   This procedure called when next JSON format are in object structure.
-   *   Check with "peek()" method to see what is the type for next value and then get the next value
-   *   based on type from "peek()" method.
-   *   Every value will be put into global private variable sb2 as StringBuffer Object.
-   *
+   * This procedure called when next JSON format are in object structure.
+   * Check with "peek()" method to see what is the type for next value and then get the next value
+   * based on type from "peek()" method.
+   * Every value will be put into global private variable sb2 as StringBuffer Object.
+   * <p/>
    * Parameters:
-   *   JsonReader jReader - Next start content from JsonReader object as an Object.
-   *
+   * JsonReader jReader - Next start content from JsonReader object as an Object.
+   * <p/>
    * Possible Error Code or Exception:
-   *   None.
+   * None.
    */
   private void JSONObject(JsonReader jReader) throws IOException {
     JsonToken jToken;
@@ -394,27 +394,27 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   JSONFacilities
-   *
+   * JSONFacilities
+   * <p/>
    * Function Description:
-   *   Parse JSON Files with specific structure (see the data in DataFormat folder).
-   *
+   * Parse JSON Files with specific structure (see the data in DataFormat folder).
+   * <p/>
    * Parameters:
-   *   String fileName - name of JSON file.
-   *
+   * String fileName - name of JSON file.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is
-   *   LinkedHashMap<Integer, LinkedHashMap<String, Object>>;
-   *   otherwise, the returned value is null.
-   *
+   * If the function returned normally, the returned is
+   * LinkedHashMap<Integer, LinkedHashMap<String, Object>>;
+   * otherwise, the returned value is null.
+   * <p/>
    * Possible Error Code or Exception:
-   *   File not found.
-   *   Different structure.
+   * File not found.
+   * Different structure.
    */
   protected LinkedHashMap<Integer, LinkedHashMap<String, Object>> JSONFacilities(String fileName)
-      throws IOException {
+    throws IOException {
     LinkedHashMap<Integer, LinkedHashMap<String, Object>> results =
-        new LinkedHashMap<Integer, LinkedHashMap<String, Object>>();
+      new LinkedHashMap<Integer, LinkedHashMap<String, Object>>();
     LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
     JsonReader jReader = null;
     JsonToken jToken;
@@ -446,7 +446,7 @@ public class DataViewer {
         }
         jReader.endArray();
       }
-    } catch (Exception e){
+    } catch (Exception e) {
       Log.i("JSONFacilities Error: ", e.getMessage());
     } finally {
       if (jReader != null) {
@@ -468,23 +468,23 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   JSONDataObject
-   *
+   * JSONDataObject
+   * <p/>
    * Function Description:
-   *   This function called by JSONFacilities as the data structure begin with JSON object.
-   *   Check with "peek()" method to see what is the type for next value and then get the next value
-   *   based on type from "peek()" method.
-   *   Every value will be put into variable result with type LinkedHashMap<String, Object>.
-   *
+   * This function called by JSONFacilities as the data structure begin with JSON object.
+   * Check with "peek()" method to see what is the type for next value and then get the next value
+   * based on type from "peek()" method.
+   * Every value will be put into variable result with type LinkedHashMap<String, Object>.
+   * <p/>
    * Parameters:
-   *   JsonReader jReader - Next start content from JsonReader object as an Object.
-   *
+   * JsonReader jReader - Next start content from JsonReader object as an Object.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is LinkedHashMap<String, Object>;
-   *   otherwise, the returned value is null.
-   *
+   * If the function returned normally, the returned is LinkedHashMap<String, Object>;
+   * otherwise, the returned value is null.
+   * <p/>
    * Possible Error Code or Exception:
-   *   None.
+   * None.
    */
   private LinkedHashMap<String, Object> JSONDataObject(JsonReader jReader) throws IOException {
     String name = "";
@@ -517,27 +517,27 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   RDFFacilities
-   *
+   * RDFFacilities
+   * <p/>
    * Function Description:
-   *   Parse RDF/XML Files with specific structure (see the data in DataFormat folder).
-   *
+   * Parse RDF/XML Files with specific structure (see the data in DataFormat folder).
+   * <p/>
    * Parameters:
-   *   String fileName - name of RDF/XML file.
-   *
+   * String fileName - name of RDF/XML file.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is
-   *   LinkedHashMap<Integer, LinkedHashMap<String, Object>>;
-   *   otherwise, the returned value is null.
-   *
+   * If the function returned normally, the returned is
+   * LinkedHashMap<Integer, LinkedHashMap<String, Object>>;
+   * otherwise, the returned value is null.
+   * <p/>
    * Possible Error Code or Exception:
-   *   File not found.
-   *   Different structure.
+   * File not found.
+   * Different structure.
    */
   protected LinkedHashMap<Integer, LinkedHashMap<String, Object>> RDFFacilities(String fileName)
-      throws IOException {
+    throws IOException {
     LinkedHashMap<Integer, LinkedHashMap<String, Object>> results =
-        new LinkedHashMap<Integer, LinkedHashMap<String, Object>>();
+      new LinkedHashMap<Integer, LinkedHashMap<String, Object>>();
     FileInputStream fileInputStream = null;
     BufferedInputStream bufferedInputStream = null;
     InputStreamReader inputStreamReader = null;
@@ -556,7 +556,7 @@ public class DataViewer {
         parser.nextTag();
         results = readRDF(parser);
       }
-    } catch (Exception e){
+    } catch (Exception e) {
       Log.i("RDFFacilities Error: ", e.getMessage());
     } finally {
       if (inputStreamReader != null) {
@@ -575,29 +575,29 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   readRDF
-   *
+   * readRDF
+   * <p/>
    * Function Description:
-   *   This function called by RDFFacilities as the data structure begin with "rdf:RDF" as
-   *   the beginning of tag.
-   *   Check each Tag with specific name tag to continue the process, otherwise skip the tag.
-   *
+   * This function called by RDFFacilities as the data structure begin with "rdf:RDF" as
+   * the beginning of tag.
+   * Check each Tag with specific name tag to continue the process, otherwise skip the tag.
+   * <p/>
    * Parameters:
-   *   XmlPullParser parser - next start content from XmlPullParser object after the
-   *   beginning of tag.
-   *
+   * XmlPullParser parser - next start content from XmlPullParser object after the
+   * beginning of tag.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is
-   *   LinkedHashMap<Integer, LinkedHashMap<String, Object>>;
-   *   otherwise, the returned value is null.
-   *
+   * If the function returned normally, the returned is
+   * LinkedHashMap<Integer, LinkedHashMap<String, Object>>;
+   * otherwise, the returned value is null.
+   * <p/>
    * Possible Error Code or Exception:
-   *   start tag not found.
+   * start tag not found.
    */
   private LinkedHashMap<Integer, LinkedHashMap<String, Object>> readRDF(XmlPullParser parser)
-      throws IOException {
+    throws IOException {
     LinkedHashMap<Integer, LinkedHashMap<String, Object>> result =
-        new LinkedHashMap<Integer, LinkedHashMap<String, Object>>();
+      new LinkedHashMap<Integer, LinkedHashMap<String, Object>>();
     int ctr = 0;
 
     try {
@@ -624,24 +624,24 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   readDescription
-   *
+   * readDescription
+   * <p/>
    * Function Description:
-   *   This function called by readRDF as the data structure begin with "rdf:Description" as
-   *   the beginning of tag.
-   *   Check each Tag with specific name tag to get the value, otherwise skip the tag.
-   *   Every value will be put into variable result with type LinkedHashMap<String, Object>.
-   *
+   * This function called by readRDF as the data structure begin with "rdf:Description" as
+   * the beginning of tag.
+   * Check each Tag with specific name tag to get the value, otherwise skip the tag.
+   * Every value will be put into variable result with type LinkedHashMap<String, Object>.
+   * <p/>
    * Parameters:
-   *   XmlPullParser parser - next start content from XmlPullParser object after the
-   *   beginning of tag.
-   *
+   * XmlPullParser parser - next start content from XmlPullParser object after the
+   * beginning of tag.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is LinkedHashMap<String, Object>;
-   *   otherwise, the returned value is null.
-   *
+   * If the function returned normally, the returned is LinkedHashMap<String, Object>;
+   * otherwise, the returned value is null.
+   * <p/>
    * Possible Error Code or Exception:
-   *   Start tag not found.
+   * Start tag not found.
    */
   private LinkedHashMap<String, Object> readDescription(XmlPullParser parser) throws IOException {
     LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
@@ -684,23 +684,23 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   readContent
-   *
+   * readContent
+   * <p/>
    * Function Description:
-   *   This function called by readDescription to get the tag value with the specific tag.
-   *   The value will be put into variable content with type String.
-   *
+   * This function called by readDescription to get the tag value with the specific tag.
+   * The value will be put into variable content with type String.
+   * <p/>
    * Parameters:
-   *   XmlPullParser parser - next start content from XmlPullParser object after the
-   *   beginning of tag.
-   *   String tag - name of tag that needed to get the value of specific tag.
-   *
+   * XmlPullParser parser - next start content from XmlPullParser object after the
+   * beginning of tag.
+   * String tag - name of tag that needed to get the value of specific tag.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is String;
-   *   otherwise, the returned value is empty String.
-   *
+   * If the function returned normally, the returned is String;
+   * otherwise, the returned value is empty String.
+   * <p/>
    * Possible Error Code or Exception:
-   *   tag not found.
+   * tag not found.
    */
   private String readContent(XmlPullParser parser, String tag) throws IOException {
     String content = "";
@@ -716,21 +716,21 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   readText
-   *
+   * readText
+   * <p/>
    * Function Description:
-   *   This function called by readRDF to get the tag value with the specific tag.
-   *   The value will be put into variable result with type String.
-   *
+   * This function called by readRDF to get the tag value with the specific tag.
+   * The value will be put into variable result with type String.
+   * <p/>
    * Parameters:
-   *   XmlPullParser parser - value of tag from XmlPullParser object with specific tag.
-   *
+   * XmlPullParser parser - value of tag from XmlPullParser object with specific tag.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is String;
-   *   otherwise, the returned value is empty String.
-   *
+   * If the function returned normally, the returned is String;
+   * otherwise, the returned value is empty String.
+   * <p/>
    * Possible Error Code or Exception:
-   *   tag not found.
+   * tag not found.
    */
   private String readText(XmlPullParser parser) throws IOException {
     String result = "";
@@ -749,19 +749,19 @@ public class DataViewer {
 
   /**
    * Procedure Name:
-   *   skipParser
-   *
+   * skipParser
+   * <p/>
    * Procedure Description:
-   *   This procedure called by readContent and readDescription to skip the tag that not needed.
-   *   Skip tag will check from the start tag until end tag. So, every tag inside this current tag
-   *   will skipped.
-   *
+   * This procedure called by readContent and readDescription to skip the tag that not needed.
+   * Skip tag will check from the start tag until end tag. So, every tag inside this current tag
+   * will skipped.
+   * <p/>
    * Parameters:
-   *   XmlPullParser parser - next start content from XmlPullParser object after the
-   *   beginning of tag
-   *
+   * XmlPullParser parser - next start content from XmlPullParser object after the
+   * beginning of tag
+   * <p/>
    * Possible Error Code or Exception:
-   *   tag is not start tag.
+   * tag is not start tag.
    */
   private void skipParser(XmlPullParser parser) throws IOException {
     try {
@@ -786,20 +786,20 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   textContent
-   *
+   * textContent
+   * <p/>
    * Function Description:
-   *   Parse every file format as text file.
-   *
+   * Parse every file format as text file.
+   * <p/>
    * Parameters:
-   *   String fileName - name of text file.
-   *
+   * String fileName - name of text file.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is String;
-   *   otherwise, the returned value is empty String.
-   *
+   * If the function returned normally, the returned is String;
+   * otherwise, the returned value is empty String.
+   * <p/>
    * Possible Error Code or Exception:
-   *   File not found.
+   * File not found.
    */
   protected String textContent(String fileName) throws IOException {
     String results = "";
@@ -816,7 +816,7 @@ public class DataViewer {
         StringBuilder sb = new StringBuilder();
         String line = null;
 
-        while((line = reader.readLine()) != null) {
+        while ((line = reader.readLine()) != null) {
           sb.append(line + "\n");
         }
 
@@ -824,7 +824,7 @@ public class DataViewer {
 
         results = sb.toString();
       }
-    } catch (Exception e){
+    } catch (Exception e) {
       Log.i("textContent Error: ", e.getMessage());
     } finally {
       if (inputStreamReader != null) {
@@ -840,21 +840,21 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   showData
-   *
+   * showData
+   * <p/>
    * Function Description:
-   *   Check extension of files and call specific procedure or function to parse the file content
-   *   as the standard structure.
-   *
+   * Check extension of files and call specific procedure or function to parse the file content
+   * as the standard structure.
+   * <p/>
    * Parameters:
-   *   String fileName - name of file.
-   *
+   * String fileName - name of file.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is String;
-   *   otherwise, the returned value is empty String.
-   *
+   * If the function returned normally, the returned is String;
+   * otherwise, the returned value is empty String.
+   * <p/>
    * Possible Error Code or Exception:
-   *   none.
+   * none.
    */
   protected String showData(String fileName) throws IOException {
     String results = "";
@@ -873,19 +873,19 @@ public class DataViewer {
 
   /**
    * Procedure Name:
-   *   showMessage
-   *
+   * showMessage
+   * <p/>
    * Procedure Description:
-   *   Show message using Android package (Toast), can be called by another class that need to
-   *   show short message as notification to user.
-   *
+   * Show message using Android package (Toast), can be called by another class that need to
+   * show short message as notification to user.
+   * <p/>
    * Parameters:
-   *   Context context - it will use Android code to get activity from the one who call this
-   *   feature [getApplicationContext()].
-   *   String msg - String message that need to be shown to the user..
-   *
+   * Context context - it will use Android code to get activity from the one who call this
+   * feature [getApplicationContext()].
+   * String msg - String message that need to be shown to the user..
+   * <p/>
    * Possible Error Code or Exception:
-   *   none.
+   * none.
    */
   protected void showMessage(Context context, String msg) {
     int duration = Toast.LENGTH_SHORT;
@@ -896,20 +896,20 @@ public class DataViewer {
 
   /**
    * Function Name:
-   *   resourceIcon
-   *
+   * resourceIcon
+   * <p/>
    * Function Description:
-   *   Check category name to get the specific icon with specific name.
-   *
+   * Check category name to get the specific icon with specific name.
+   * <p/>
    * Parameters:
-   *   String category - category name to define the icon of data.
-   *
+   * String category - category name to define the icon of data.
+   * <p/>
    * Returned Value:
-   *   If the function returned normally, the returned is drawable as int;
-   *   otherwise, the returned value is default drawable as int.
-   *
+   * If the function returned normally, the returned is drawable as int;
+   * otherwise, the returned value is default drawable as int.
+   * <p/>
    * Possible Error Code or Exception:
-   *   none.
+   * none.
    */
   protected int resourceIcon(String category) {
     int result = R.drawable.icon;

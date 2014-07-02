@@ -28,6 +28,28 @@ package mobilemad.app;
  *   2014/5/13: complete version 1.0
  */
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -40,29 +62,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -74,6 +73,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MapsFragment extends Fragment implements LocationListener {
+  protected static String name, type, category, telephone, district, address;
+  protected static double latitude, longitude, deviceLatitude, deviceLongitude;
+  private final int RQS_GooglePlayServices = 10;
   private View rootView;
   private SupportMapFragment supportMapFragment;
   private GoogleMap googleMap;
@@ -83,14 +85,9 @@ public class MapsFragment extends Fragment implements LocationListener {
   private DialogFragment alertDlgFragment;
   private TextView txtName, txtType, txtTelephone, txtDistrict, txtAddress;
   private ImageView ivIcon;
-
   private DownloaderHTTP downloaderHTTP;
   private DataViewer dataViewer;
   private String provider;
-  private final int RQS_GooglePlayServices = 10;
-
-  protected static String name, type, category, telephone, district, address;
-  protected static double latitude, longitude, deviceLatitude, deviceLongitude;
 
   /**
    * Returns direction URL that created to match with Google APIs for Maps.
@@ -113,127 +110,6 @@ public class MapsFragment extends Fragment implements LocationListener {
     String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
 
     return url;
-  }
-
-  private class DownloadDirection extends AsyncTask<String, Void, String> {
-
-    /**
-     * Fetching the data from web service.
-     */
-    @Override
-    protected String doInBackground(String... urls) {
-      String data = "";
-      InputStream downloadStream = null;
-
-      try {
-        downloadStream = downloaderHTTP.downloadUrl(urls[0]);
-
-        if (downloadStream != null) {
-          BufferedReader br = new BufferedReader(new InputStreamReader(downloadStream));
-
-          StringBuffer sb  = new StringBuffer();
-
-          String line = "";
-          while ((line = br.readLine()) != null){
-            sb.append(line);
-          }
-
-          data = sb.toString();
-
-          br.close();
-        }
-      } catch(Exception ex) {
-        Log.d("DownloadTask", ex.getMessage());
-      } finally {
-        try {
-          if (downloadStream != null) {
-            downloadStream.close();
-          }
-        } catch (IOException e) {}
-      }
-
-      return data;
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-      super.onPostExecute(result);
-
-      ParserTask parserTask = new ParserTask();
-
-      /**
-       * Invokes the thread for parsing the JSON data
-       */
-      parserTask.execute(result);
-    }
-  }
-
-  private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
-
-    /**
-     * Parse the Google Places in JSON format
-     */
-    @Override
-    protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
-      JSONObject jObject;
-      List<List<HashMap<String, String>>> routes = null;
-
-      try {
-        jObject = new JSONObject(jsonData[0]);
-        DirectionsJSONParser parser = new DirectionsJSONParser();
-
-        routes = parser.parse(jObject);
-      } catch(Exception e) {
-        e.printStackTrace();
-      }
-
-      return routes;
-    }
-
-    @Override
-    protected void onPostExecute(List<List<HashMap<String, String>>> result) {
-
-      ArrayList<LatLng> points = null;
-      PolylineOptions lineOptions = null;
-
-      /**
-       * Traversing through all the routes
-       */
-      for (int i = 0; i < result.size(); i++) {
-        points = new ArrayList<LatLng>();
-        lineOptions = new PolylineOptions();
-
-        /**
-         * Fetching i-th route
-         */
-        List<HashMap<String, String>> path = result.get(i);
-
-        /**
-         * Fetching all the points in i-th route
-         */
-        for (int j = 0; j < path.size(); j++) {
-          HashMap<String,String> point = path.get(j);
-
-          double lat = Double.parseDouble(point.get("lat"));
-          double lng = Double.parseDouble(point.get("lng"));
-          LatLng position = new LatLng(lat, lng);
-
-          points.add(position);
-        }
-
-        /**
-         * Adding all the points in the route to LineOptions
-         */
-        lineOptions.addAll(points);
-        lineOptions.width(2);
-        lineOptions.color(Color.RED);
-      }
-
-      /**
-       * Drawing polyline in the Google Map for the i-th route
-       */
-      googleMap.addPolyline(lineOptions);
-    }
   }
 
   @Override
@@ -276,7 +152,7 @@ public class MapsFragment extends Fragment implements LocationListener {
 
     } else {
       alertDlgFragment = AlertDialogFragment.newInstance("Location Services Not Active",
-          "Please enable Location Services and GPS", 2);
+        "Please enable Location Services and GPS", 2);
       alertDlgFragment.setCancelable(false);
       alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
     }
@@ -346,7 +222,7 @@ public class MapsFragment extends Fragment implements LocationListener {
             txtAddress = (TextView) v.findViewById(R.id.txtAddress);
 
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                dataViewer.resourceIcon(category));
+              dataViewer.resourceIcon(category));
 
             ivIcon.setImageBitmap(bitmap);
             txtName.setText(name);
@@ -363,7 +239,7 @@ public class MapsFragment extends Fragment implements LocationListener {
           @Override
           public void onInfoWindowClick(Marker marker) {
             ConnectivityManager connectivityManager = (ConnectivityManager) getActivity()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+              .getSystemService(Context.CONNECTIVITY_SERVICE);
 
             /**
              * Check availability of Connectivity services (Wi-Fi or mobile) before
@@ -386,7 +262,7 @@ public class MapsFragment extends Fragment implements LocationListener {
               downloadDirection.execute(url);
             } else {
               alertDlgFragment = AlertDialogFragment.newInstance("No Network Available",
-                  "Please enable the Mobile Data or Wi-Fi", 3);
+                "Please enable the Mobile Data or Wi-Fi", 3);
               alertDlgFragment.setCancelable(false);
               alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
             }
@@ -409,7 +285,7 @@ public class MapsFragment extends Fragment implements LocationListener {
            * on tab List.
            */
           marker = googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude))
-              .icon(BitmapDescriptorFactory.fromResource(dataViewer.resourceIcon(category))));
+            .icon(BitmapDescriptorFactory.fromResource(dataViewer.resourceIcon(category))));
 
           /**
            * Show detailed info on marker in Google Maps.
@@ -431,7 +307,7 @@ public class MapsFragment extends Fragment implements LocationListener {
        * Google Play services was not available for some reason.
        */
       Dialog dialog = GooglePlayServicesUtil.getErrorDialog(resultCode, getActivity(),
-          RQS_GooglePlayServices);
+        RQS_GooglePlayServices);
       dialog.setCancelable(false);
       dialog.show();
     }
@@ -453,5 +329,127 @@ public class MapsFragment extends Fragment implements LocationListener {
 
   @Override
   public void onProviderDisabled(String provider) {
+  }
+
+  private class DownloadDirection extends AsyncTask<String, Void, String> {
+
+    /**
+     * Fetching the data from web service.
+     */
+    @Override
+    protected String doInBackground(String... urls) {
+      String data = "";
+      InputStream downloadStream = null;
+
+      try {
+        downloadStream = downloaderHTTP.downloadUrl(urls[0]);
+
+        if (downloadStream != null) {
+          BufferedReader br = new BufferedReader(new InputStreamReader(downloadStream));
+
+          StringBuffer sb = new StringBuffer();
+
+          String line = "";
+          while ((line = br.readLine()) != null) {
+            sb.append(line);
+          }
+
+          data = sb.toString();
+
+          br.close();
+        }
+      } catch (Exception ex) {
+        Log.d("DownloadTask", ex.getMessage());
+      } finally {
+        try {
+          if (downloadStream != null) {
+            downloadStream.close();
+          }
+        } catch (IOException e) {
+        }
+      }
+
+      return data;
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+      super.onPostExecute(result);
+
+      ParserTask parserTask = new ParserTask();
+
+      /**
+       * Invokes the thread for parsing the JSON data
+       */
+      parserTask.execute(result);
+    }
+  }
+
+  private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
+
+    /**
+     * Parse the Google Places in JSON format
+     */
+    @Override
+    protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
+      JSONObject jObject;
+      List<List<HashMap<String, String>>> routes = null;
+
+      try {
+        jObject = new JSONObject(jsonData[0]);
+        DirectionsJSONParser parser = new DirectionsJSONParser();
+
+        routes = parser.parse(jObject);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+      return routes;
+    }
+
+    @Override
+    protected void onPostExecute(List<List<HashMap<String, String>>> result) {
+
+      ArrayList<LatLng> points = null;
+      PolylineOptions lineOptions = null;
+
+      /**
+       * Traversing through all the routes
+       */
+      for (int i = 0; i < result.size(); i++) {
+        points = new ArrayList<LatLng>();
+        lineOptions = new PolylineOptions();
+
+        /**
+         * Fetching i-th route
+         */
+        List<HashMap<String, String>> path = result.get(i);
+
+        /**
+         * Fetching all the points in i-th route
+         */
+        for (int j = 0; j < path.size(); j++) {
+          HashMap<String, String> point = path.get(j);
+
+          double lat = Double.parseDouble(point.get("lat"));
+          double lng = Double.parseDouble(point.get("lng"));
+          LatLng position = new LatLng(lat, lng);
+
+          points.add(position);
+        }
+
+        /**
+         * Adding all the points in the route to LineOptions
+         */
+        lineOptions.addAll(points);
+        lineOptions.width(2);
+        lineOptions.color(Color.RED);
+      }
+
+      /**
+       * Drawing polyline in the Google Map for the i-th route
+       */
+      googleMap.addPolyline(lineOptions);
+    }
   }
 }

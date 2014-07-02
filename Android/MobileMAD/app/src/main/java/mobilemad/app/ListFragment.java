@@ -57,17 +57,17 @@ public class ListFragment extends Fragment {
 
   /**
    * Procedure Name:
-   *   contentData
-   *
+   * contentData
+   * <p/>
    * Procedure Description:
-   *   Make list from parsed JSON or RDF data to put into list view.
-   *
+   * Make list from parsed JSON or RDF data to put into list view.
+   * <p/>
    * Parameters:
-   *   String[] fileName - Array of String for filename.
-   *   If the parsed data is empty, list view will empty.
-   *
+   * String[] fileName - Array of String for filename.
+   * If the parsed data is empty, list view will empty.
+   * <p/>
    * Possible Error Code or Exception:
-   *   none
+   * none
    */
   private void contentData(String... fileName) throws IOException {
     result = dataViewer.RDFFacilities(fileName[0]);
@@ -105,41 +105,41 @@ public class ListFragment extends Fragment {
 
   /**
    * Procedure Name:
-   *   initListView
-   *
+   * initListView
+   * <p/>
    * Procedure Description:
-   *   Create Simple Adapter to put the value from Array List. Show it on the list view.
-   *
+   * Create Simple Adapter to put the value from Array List. Show it on the list view.
+   * <p/>
    * Possible Error Code or Exception:
-   *   None.
+   * None.
    */
   private void initListView() {
     sAdapter = new SimpleAdapter(getActivity(), listData, R.layout.list_view_data,
-      new String[] {"Name", "Type", "Category"},
-      new int[] {R.id.txtName, R.id.txtType, R.id.ivIcon});
+      new String[]{"Name", "Type", "Category"},
+      new int[]{R.id.txtName, R.id.txtType, R.id.ivIcon});
 
     lvData.setAdapter(sAdapter);
   }
 
   /**
    * Procedure Name:
-   *   runningThread
-   *
+   * runningThread
+   * <p/>
    * Procedure Description:
-   *   Thread to update content of list view.
-   *   runOnUiThread are used because it is needed to update content of list view, as compare with
-   *   AsyncTask for background thread, where AsyncTask can't be used in this case because
-   *   adapter for list view need to be updated from UI thread instead from background thread
-   *   (see Reference).
-   *
+   * Thread to update content of list view.
+   * runOnUiThread are used because it is needed to update content of list view, as compare with
+   * AsyncTask for background thread, where AsyncTask can't be used in this case because
+   * adapter for list view need to be updated from UI thread instead from background thread
+   * (see Reference).
+   * <p/>
    * Reference:
-   *   This is are the error that occur when update adapter in ListView using AsyncTask.
-   *   "java.lang.IllegalStateException: The content of the adapter has changed but ListView did
-   *   not receive a notification. Make sure the content of your adapter is not modified from a
-   *   background thread, but only from the UI thread."
-   *
+   * This is are the error that occur when update adapter in ListView using AsyncTask.
+   * "java.lang.IllegalStateException: The content of the adapter has changed but ListView did
+   * not receive a notification. Make sure the content of your adapter is not modified from a
+   * background thread, but only from the UI thread."
+   * <p/>
    * Possible Error Code or Exception:
-   *   File not found.
+   * File not found.
    */
   private void runningThread(String... fileName) {
     final String[] filename = fileName;
@@ -177,7 +177,7 @@ public class ListFragment extends Fragment {
     dataViewer = new DataViewer();
     result = new LinkedHashMap<Integer, LinkedHashMap<String, Object>>();
     data = new LinkedHashMap<String, Object>();
-    listData = new ArrayList<LinkedHashMap<String,Object>>();
+    listData = new ArrayList<LinkedHashMap<String, Object>>();
   }
 
   @Override
@@ -217,9 +217,9 @@ public class ListFragment extends Fragment {
           AlertDialogFragment.address = address;
           AlertDialogFragment.telephone = telephone;
           AlertDialogFragment.latitude =
-              Double.valueOf(result.get(position).get("Latitude").toString());
+            Double.valueOf(result.get(position).get("Latitude").toString());
           AlertDialogFragment.longitude =
-              Double.valueOf(result.get(position).get("Longitude").toString());
+            Double.valueOf(result.get(position).get("Longitude").toString());
 
           alertDlgFragment = AlertDialogFragment.newInstance("Detail Information", msg, 1);
           alertDlgFragment.setCancelable(false);

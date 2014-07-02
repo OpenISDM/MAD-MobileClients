@@ -32,7 +32,6 @@ import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -55,61 +54,6 @@ public class SettingsFragment extends Fragment {
   private View rootView;
   private EditText txtImageLocation, txtDataLocation;
   private Button btnDownloadFiles, btnDeleteFiles;
-
-  private class DownloadData extends AsyncTask<String, Void, Void> {
-    private String error = null;
-    private ProgressDialog pgDialog = new ProgressDialog(getActivity());
-
-    @Override
-    protected void onPreExecute() {
-      pgDialog.setMessage("Please wait...");
-      pgDialog.setCanceledOnTouchOutside(false);
-      pgDialog.show();
-    }
-
-    /**
-     * Fetching the data from server.
-     */
-    @Override
-    protected Void doInBackground(String... urls) {
-      InputStream downloadStream = null;
-
-      try {
-        String path = Config.path + File.separator + "data";
-        String fileName = urls[0];
-        String files = path + File.separator + fileName;
-
-        downloadStream = downloaderHTTP.downloadUrl(urls[1]);
-
-        if (downloadStream != null) {
-          if (urls[2].equals("image")) {
-            downloaderHTTP.saveImage(downloadStream, path, files);
-          } else if (urls[2].equals("text")) {
-            downloaderHTTP.saveText(downloadStream, path, files);
-          }
-        }
-      } catch(Exception ex) {
-        error = ex.getMessage();
-      } finally {
-        try {
-          downloadStream.close();
-        } catch (IOException e) {}
-      }
-
-      return null;
-    }
-
-    @Override
-    protected void onPostExecute(Void unused) {
-      pgDialog.dismiss();
-      if (error != null) {
-        dataViewer.showMessage(context, "Download Data Failed");
-        Log.i("downloadData", error);
-      } else {
-        dataViewer.showMessage(context, "Download Data Completed");
-      }
-    }
-  }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -143,7 +87,7 @@ public class SettingsFragment extends Fragment {
          * downloading the data.
          */
         ConnectivityManager connectivityManager =
-            (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+          (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (downloaderHTTP.isNetworkAvailable(connectivityManager)) {
 
           /**
@@ -151,10 +95,10 @@ public class SettingsFragment extends Fragment {
            */
           new DownloadData().execute("imgMaps.png", txtImageLocation.getText().toString(), "image");
           new DownloadData().execute("dataFiles.rdf", txtDataLocation.getText().toString(), "text");
-          new DownloadData().execute("dataFiles.json", Config.FILE1_LOCATION, "text");
+          //new DownloadData().execute("dataFiles.json", Config.FILE1_LOCATION, "text");
         } else {
           alertDlgFragment = AlertDialogFragment.newInstance("No Network Available",
-              "Please enable the Mobile Data or Wi-Fi", 3);
+            "Please enable the Mobile Data or Wi-Fi", 3);
           alertDlgFragment.setCancelable(false);
           alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
         }
@@ -177,12 +121,68 @@ public class SettingsFragment extends Fragment {
         }
 
         alertDlgFragment = AlertDialogFragment.newInstance("Delete Internal Storage Files",
-            "Success", 0);
+          "Success", 0);
         alertDlgFragment.setCancelable(false);
         alertDlgFragment.show(getActivity().getFragmentManager(), "dialog");
       }
     });
 
     return rootView;
+  }
+
+  private class DownloadData extends AsyncTask<String, Void, Void> {
+    private String error = null;
+    private ProgressDialog pgDialog = new ProgressDialog(getActivity());
+
+    @Override
+    protected void onPreExecute() {
+      pgDialog.setMessage("Please wait...");
+      pgDialog.setCanceledOnTouchOutside(false);
+      pgDialog.show();
+    }
+
+    /**
+     * Fetching the data from server.
+     */
+    @Override
+    protected Void doInBackground(String... urls) {
+      InputStream downloadStream = null;
+
+      try {
+        String path = Config.path + File.separator + "data";
+        String fileName = urls[0];
+        String files = path + File.separator + fileName;
+
+        downloadStream = downloaderHTTP.downloadUrl(urls[1]);
+
+        if (downloadStream != null) {
+          if (urls[2].equals("image")) {
+            downloaderHTTP.saveImage(downloadStream, path, files);
+          } else if (urls[2].equals("text")) {
+            downloaderHTTP.saveText(downloadStream, path, files);
+          }
+        }
+      } catch (Exception ex) {
+        error = ex.getMessage();
+      } finally {
+        try {
+          downloadStream.close();
+        } catch (IOException e) {
+        }
+      }
+
+      return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void unused) {
+      pgDialog.dismiss();
+      if (error != null) {
+        dataViewer.showMessage(context, "Download Data Failed");
+        Log.i("downloadData", error);
+      } else {
+        dataViewer.showMessage(context, "Download Data Completed");
+      }
+    }
   }
 }
