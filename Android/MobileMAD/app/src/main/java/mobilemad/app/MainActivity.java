@@ -39,6 +39,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -117,6 +118,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
           .setTabListener(this)
       );
     }
+
+    mViewPager.setCurrentItem(mSectionsPagerAdapter.getCount() - 1);
+    mViewPager.setCurrentItem(0);
   }
 
   @Override
@@ -146,6 +150,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         return true;
     }
     return false;
+  }
+
+  @Override
+  protected void onPostResume() {
+    super.onPostResume();
+    Log.i("onPostResume()", "called");
   }
 
   /**
@@ -190,11 +200,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
           fragmentList = new ListFragment();
           return fragmentList;
         case 3:
-          fragmentSettings = new SettingsFragment();
-          return fragmentSettings;
-        case 4:
           fragmentChat = new ChatFragment();
           return fragmentChat;
+        case 4:
+          fragmentSettings = new SettingsFragment();
+          return fragmentSettings;
         case 5:
           fragmentData = new DataFragment();
           return fragmentData;
@@ -209,7 +219,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
      */
     @Override
     public int getCount() {
-      return 4;
+      return 5;
     }
 
     /**
@@ -226,11 +236,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         case 2:
           return getString(R.string.ui_tabname_list).toUpperCase(l);
         case 3:
-          return getString(R.string.ui_tabname_settings).toUpperCase(l);
-        case 4:
-          return getString(R.string.ui_tabname_data).toUpperCase(l);
-        case 5:
           return getString(R.string.ui_tabname_chat).toUpperCase(l);
+        case 4:
+          return getString(R.string.ui_tabname_settings).toUpperCase(l);
+        case 5:
+          return getString(R.string.ui_tabname_data).toUpperCase(l);
       }
       return null;
     }

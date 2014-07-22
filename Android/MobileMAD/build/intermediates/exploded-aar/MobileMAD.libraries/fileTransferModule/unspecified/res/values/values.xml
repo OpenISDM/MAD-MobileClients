@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/E:/Editor/Project/Android-Studio/MobileMAD/libraries/fileTransferModule/src/main/res/values/strings.xml -->
+    <eat-comment />
+
+    <string name="announce">Announce File</string>
+    <string name="app_name">FtTestApp</string>
+    <string name="empty"></string>
+    <string name="fd_fileid">FileId</string>
+    <string name="fd_filename">FileName</string>
+    <string name="fd_owner">Owner</string>
+    <string name="fd_relativepath">RelativePath</string>
+    <string name="fd_sharedpath">SharedPath</string>
+    <string name="fd_size">Size</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">File System</string>
+
+</resources>

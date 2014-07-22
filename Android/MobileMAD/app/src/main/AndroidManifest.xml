@@ -2,6 +2,7 @@
 <manifest
   package="mobilemad.app"
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   android:versionCode="1"
   android:versionName="1.0">
 
@@ -34,6 +35,8 @@
   <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
 
   <application
+    tools:replace="android:icon"
+    android:name=".ChatApplication"
     android:allowBackup="true"
     android:icon="@drawable/mad"
     android:label="@string/app_name"
@@ -41,7 +44,8 @@
 
     <activity
       android:name="mobilemad.app.LogoActivity"
-      android:label="@string/app_name">
+      android:label="@string/app_name"
+      android:windowSoftInputMode="stateHidden">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -53,6 +57,10 @@
       android:name="MainActivity"
       android:configChanges="orientation|keyboardHidden|screenSize">
     </activity>
+
+    <service
+      android:name="AllJoynService">
+    </service>
 
     <meta-data
       android:name="com.google.android.gms.version"

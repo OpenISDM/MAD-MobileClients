@@ -30,9 +30,13 @@ package mobilemad.app;
  */
 
 public class Config {
-  protected final static String IMG_LOCATION = "http://140.109.22.142/cache/Cache.png";
-  protected final static String FILE_LOCATION = "http://140.109.22.142/cache/Cache.rdf";
-  protected final static String FILE1_LOCATION = "http://140.109.22.142/cache/Cache.json";
+  protected final static String IMG_LOCATION = "http://192.168.1.10/cache/Cache.png";
+  protected final static String FILE_LOCATION = "http://192.168.1.10/cache/Cache.rdf";
+  protected final static String FILE1_LOCATION = "http://192.168.1.10/cache/Cache.json";
+  protected final static String IMG_LOCATION1 = "http://140.109.22.142/cache/Cache.png";
+  protected final static String FILE_LOCATION1 = "http://140.109.22.142/cache/Cache.rdf";
+  protected final static String FILE1_LOCATION1 = "http://140.109.22.142/cache/Cache.json";
+
 
   protected final static String SHELTER_INDOOR = "Shelter(Indoor)";
   protected final static String SHELTER_OUTDOOR = "Shelter(Outdoor)";

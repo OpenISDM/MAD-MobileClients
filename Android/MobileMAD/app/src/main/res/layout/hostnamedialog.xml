@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Enter a channel name below"
+    />
+
+  <EditText
+    android:id="@+id/txtHostNameChannel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:hint="channel name"
+    />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <Button
+      android:id="@+id/btnHostNameOk"
+      android:layout_width="120dp"
+      android:layout_height="wrap_content"
+      android:text="OK"
+      />
+
+    <Button
+      android:id="@+id/btnHostNameCancel"
+      android:layout_width="120dp"
+      android:layout_height="wrap_content"
+      android:text="Cancel"
+      />
+  </LinearLayout>
+</LinearLayout>
