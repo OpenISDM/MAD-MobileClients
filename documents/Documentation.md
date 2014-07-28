@@ -27,7 +27,7 @@ Settings feature is the feature where user can decide location of POS or IS with
 
 Each of main feature will be explained more detail in different subsection.
 
-[Figure1]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/Android/MobileMAD/app/src/main/res/drawable-hdpi/ic_launcher.png "Figure 1 – General Architecture in Mobile Client."
+[Figure1]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/documents/Picture/MainProcess.png "Figure 1 – General Architecture in Mobile Client."
 [MobileClient]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git
 
 ### 1.1. Maps Feature
@@ -50,7 +50,7 @@ If the location services are not enabled, system cannot get the user location an
 
 So, user need to enable the location services setting in their mobile phone.
 
-[Figure2]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/Android/MobileMAD/app/src/main/res/drawable-hdpi/ic_launcher.png "Figure 2 – Navigation process with Google APIs Map."
+[Figure2]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/documents/Picture/MapsProcess.png "Figure 2 – Navigation process with Google APIs Map."
 
 ### 1.2. Image Feature
 
@@ -66,7 +66,7 @@ As Figure 3 shows, this is process to show saved maps as image and display it to
 
 If the image file are not exists, image feature will display image as blank and it is indicate that there is no data in the application at that time.
 
-[Figure3]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/Android/MobileMAD/app/src/main/res/drawable-hdpi/ic_launcher.png "Figure 3 – Show Image process."
+[Figure3]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/documents/Picture/ShowImageProcess.png "Figure 3 – Show Image process."
 
 ### 1.3. List Feature
 
@@ -98,8 +98,8 @@ From the details of facility, user can go directly into Maps feature and then Go
 
 So, basically, the data from details of facility will be pass it into Maps feature and with this data, application can point out the facility location in Google Maps and user can use the navigation from their location into selected facility location.
 
-[Figure4]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/Android/MobileMAD/app/src/main/res/drawable-hdpi/ic_launcher.png "Figure 4 – Show List of Facilities process."
-[Figure5]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/Android/MobileMAD/app/src/main/res/drawable-hdpi/ic_launcher.png "Figure 5 – Details of Facilities process."
+[Figure4]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/documents/Picture/ShowListofFacilitiesProcess.png "Figure 4 – Show List of Facilities process."
+[Figure5]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/documents/Picture/DetailsofFacilitiesProcess.png "Figure 5 – Details of Facilities process."
 
 ### 1.4. Chat Feature
 
@@ -123,7 +123,7 @@ If user send message, then it will show in the chat history. If user send files,
 
 Before using this feature, user need to set up and start the host channel in the Settings feature.
 
-[Figure6]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/Android/MobileMAD/app/src/main/res/drawable-hdpi/ic_launcher.png "Figure 6 – Message and Files process."
+[Figure6]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/documents/Picture/MessageandFilesProcess.png "Figure 6 – Message and Files process."
 
 ### 1.5. Settings Feature
 
@@ -147,7 +147,7 @@ At this time, application will not have any data and user need to download data 
 
 To make connection between devices, user need to create and start host using AllJoyn services. With this services, user can use Chat feature to send message or files to other connected user. User need to set up host name channel, user nickname for chat, and start the host name channel.
 
-[Figure7]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/Android/MobileMAD/app/src/main/res/drawable-hdpi/ic_launcher.png "Figure 7 – Download and Delete data, and set up Host process."
+[Figure7]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/documents/Picture/SettingsProcess.png "Figure 7 – Download and Delete data, and set up Host process."
 
 ## 2. Requirement
 This section will describe requirement that needed to develop mobile device application in Android devices:
@@ -236,20 +236,20 @@ Property Category are group for several type of facility that have same feature 
 7. Volunteer association. It is include Red Cross, civilian rescue team, etc.
 8. Transportation. It is include MRT, bus station, bike supply site, gas station, etc.
 
-[Figure8]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/Android/MobileMAD/app/src/main/res/drawable-hdpi/ic_launcher.png "Figure 8 – Saved Map into Image."
+[Figure8]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/raw/master/documents/Picture/SavedMap.png "Figure 8 – Saved Map into Image."
 [DataFormat]: http://gitlab.iis.sinica.edu.tw/gitlab/sp4_vr/mobileapplication-git/tree/master/DataFormat
 
 ## 4. Future Works
 The early version of MAD mobile application have main basic function for working MAD. But, there is some another feature that can bring more improvement for the application. The following list are the feature can be done for the new version of MAD mobile application:
-1. **Download data automatically from IS using cellular network and Wi-Fi connected to internet.**
+1. Download data automatically from IS using cellular network and Wi-Fi connected to internet.
 In the early version, MAD mobile application will only download data from POS with local Wi-Fi only. So in the future, user can choose to download data directly from POS or IS when cellular network or Wi-Fi connected to internet are available.
 User does not need to download data manually, but instead, application will check data version of POS or IS data with data version stored on mobile device storage. If data version of POS or IS are newer than data stored on mobile device storage, application will download automatically, backup the old data, and then use the new downloaded data.
 So, Settings feature will be remove and implement the download data on the application background. Application will manage the data automatically as the application need and data still will be removed when user remove the application.
-2. **Offline Maps and GPS Navigation.**
+2. Offline Maps and GPS Navigation.
 MAD mobile application using maps to show facility location and user can use navigation system to go to the facility location. But, when disaster occur and user cannot use cellular network or internet, maps feature will lost the functionality, because maps need internet connection to show the maps and navigate. With the current Google Maps version, user cannot get offline maps and the GPS navigation. As for now, Google still develop new feature to save maps into offline maps and can be used without internet connection. This can be good news when user need to go to the facility location but they don’t have internet.
 For other options, there are offline maps application by Nokia HERE Maps, user can download directly full offline maps for country where they live and the GPS navigation can be done offline too. But this application, for now, only available on Windows Phone or other Nokia smartphones, and with other following news, Nokia HERE Maps will be developed into Android and iOS.
 When this feature achieved, other feature such as Image feature can be obsolete and can be removed from the MAD mobile application.
-3. **MAD mobile application for iOS and Windows Phone.**
+3. MAD mobile application for iOS and Windows Phone.
 As mention in the beginning, the early version of MAD mobile application are developed with Android. The goal of this application are can be used by many user with same or different mobile Operating System. So, this application need to be developed into other mobile Operating System, such as iOS and Windows Phone. The feature and structure will be same for mobile application on each mobile Operating System.
 
 ## 5. Package Reference
