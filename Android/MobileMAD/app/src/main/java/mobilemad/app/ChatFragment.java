@@ -140,7 +140,7 @@ public class ChatFragment extends Fragment implements Observer {
   @Override
   public void setMenuVisibility(final boolean visible) {
     super.setMenuVisibility(visible);
-    Log.i("setMenuVisibility", "visible");
+    Log.i(TAG, "visible");
     if (rootView != null) {
 
       /**
@@ -176,6 +176,19 @@ public class ChatFragment extends Fragment implements Observer {
     super.onDestroy();
   }
 
+  /**
+   * Procedure Name:
+   * showDialog
+   * <p/>
+   * Procedure Description:
+   * Create dialog by calling DialogBuilder class depends on type of dialog that called by developer.
+   * <p/>
+   * Parameters:
+   * int id - used to identify the type of dialog to be shown to the user.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   protected void showDialog(int id) {
     Log.i(TAG, "showDialog()");
     Dialog result = null;
@@ -215,6 +228,19 @@ public class ChatFragment extends Fragment implements Observer {
     }
   }
 
+  /**
+   * Procedure Name:
+   * updateHistory
+   * <p/>
+   * Procedure Description:
+   * Update chat history when user send chat message to another user in the same channel.
+   * <p/>
+   * Parameters:
+   * None.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   private void updateHistory() {
     Log.i(TAG, "updateHistory()");
     aaHistoryList.clear();
@@ -227,6 +253,21 @@ public class ChatFragment extends Fragment implements Observer {
     aaHistoryList.notifyDataSetChanged();
   }
 
+  /**
+   * Procedure Name:
+   * updateChannelState
+   * <p/>
+   * Procedure Description:
+   * To determine status of AllJoyn client channel. It can be idle and joined.
+   * Whenever client channel is idle, then user can join any channel that started by other user.
+   * When client channel is joined, then user can send message or files each other.
+   * <p/>
+   * Parameters:
+   * None.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   private void updateChannelState() {
     Log.i(TAG, "updateHistory()");
     AllJoynService.UseChannelState channelState = mChatApplication.useGetChannelState();
@@ -255,8 +296,8 @@ public class ChatFragment extends Fragment implements Observer {
   }
 
   /**
-   * An AllJoyn error has happened. Since this activity pops up first we
-   * handle the general errors. We also handle our own errors.
+   * An AllJoyn error has happened. Since this activity pops up first, general error and application
+   * error will be handled.
    */
   private void alljoynError() {
     if (mChatApplication.getErrorModule() == ChatApplication.Module.GENERAL ||
@@ -272,8 +313,7 @@ public class ChatFragment extends Fragment implements Observer {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    Log.i("createView", "created");
-    // Inflate the layout for this fragment
+    Log.i(TAG, "created");
     rootView = inflater.inflate(R.layout.chat_fragment, container, false);
 
     aaHistoryList = new ArrayAdapter<String>(getActivity(), android.R.layout.test_list_item);

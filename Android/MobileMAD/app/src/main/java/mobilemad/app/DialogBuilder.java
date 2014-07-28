@@ -57,6 +57,23 @@ import java.util.List;
 public class DialogBuilder {
   private static final String TAG = "app.Dialogs";
 
+  /**
+   * Function Name:
+   * createUseJoinDialog
+   * <p/>
+   * Function Description:
+   * Create the dialog for user to join channel that has been started by other user.
+   * <p/>
+   * Parameters:
+   * Activity activity - using active activity to show the dialog.
+   * ChatApplication application - using application to join selected channel.
+   * <p/>
+   * Returned Value:
+   * Dialog.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   public Dialog createUseJoinDialog(final Activity activity, final ChatApplication application) {
     Log.i(TAG, "createUseJoinDialog()");
     final Dialog dialog = new Dialog(activity);
@@ -116,6 +133,23 @@ public class DialogBuilder {
     return dialog;
   }
 
+  /**
+   * Function Name:
+   * createUseLeaveDialog
+   * <p/>
+   * Function Description:
+   * Create the dialog for user to leave channel.
+   * <p/>
+   * Parameters:
+   * Activity activity - using active activity to show the dialog.
+   * ChatApplication application - using application to leave channel.
+   * <p/>
+   * Returned Value:
+   * Dialog.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   public Dialog createUseLeaveDialog(Activity activity, final ChatApplication application) {
     Log.i(TAG, "createUseLeaveDialog()");
     final Dialog dialog = new Dialog(activity);
@@ -142,6 +176,23 @@ public class DialogBuilder {
     return dialog;
   }
 
+  /**
+   * Function Name:
+   * createNickNameDialog
+   * <p/>
+   * Function Description:
+   * Create the dialog for user to set the nickname.
+   * <p/>
+   * Parameters:
+   * Activity activity - using active activity to show the dialog.
+   * ChatApplication application - using application to set chat nickname.
+   * <p/>
+   * Returned Value:
+   * Dialog.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   public Dialog createNickNameDialog(Activity activity, final ChatApplication application) {
     Log.i(TAG, "createNickNameDialog()");
     final Dialog dialog = new Dialog(activity);
@@ -185,6 +236,24 @@ public class DialogBuilder {
   }
 
 
+  /**
+   * Function Name:
+   * createHostNameDialog
+   * <p/>
+   * Function Description:
+   * Create the dialog for user to set the host name channel.
+   * <p/>
+   * Parameters:
+   * Activity activity - using active activity to show the dialog.
+   * ChatApplication application - using application to set host name channel and initialize the
+   * host channel.
+   * <p/>
+   * Returned Value:
+   * Dialog.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   public Dialog createHostNameDialog(Activity activity, final ChatApplication application) {
     Log.i(TAG, "createHostNameDialog()");
     final Dialog dialog = new Dialog(activity);
@@ -229,6 +298,23 @@ public class DialogBuilder {
     return dialog;
   }
 
+  /**
+   * Function Name:
+   * createHostStartDialog
+   * <p/>
+   * Function Description:
+   * Create the dialog for user to start the host channel.
+   * <p/>
+   * Parameters:
+   * Activity activity - using active activity to show the dialog.
+   * ChatApplication application - using application to start the host channel.
+   * <p/>
+   * Returned Value:
+   * Dialog.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   public Dialog createHostStartDialog(Activity activity, final ChatApplication application) {
     Log.i(TAG, "createHostStartDialog()");
     final Dialog dialog = new Dialog(activity);
@@ -254,6 +340,23 @@ public class DialogBuilder {
     return dialog;
   }
 
+  /**
+   * Function Name:
+   * createHostStopDialog
+   * <p/>
+   * Function Description:
+   * Create the dialog for user to stop the host channel.
+   * <p/>
+   * Parameters:
+   * Activity activity - using active activity to show the dialog.
+   * ChatApplication application - using application to stop the host channel.
+   * <p/>
+   * Returned Value:
+   * Dialog.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   public Dialog createHostStopDialog(Activity activity, final ChatApplication application) {
     Log.i(TAG, "createHostStopDialog()");
     final Dialog dialog = new Dialog(activity);
@@ -279,6 +382,23 @@ public class DialogBuilder {
     return dialog;
   }
 
+  /**
+   * Function Name:
+   * createHostStopDialog
+   * <p/>
+   * Function Description:
+   * Create the dialog for user to show the AllJoyn or Application error.
+   * <p/>
+   * Parameters:
+   * Activity activity - using active activity to show the dialog.
+   * ChatApplication application - using application to get the error message.
+   * <p/>
+   * Returned Value:
+   * Dialog.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   public Dialog createAllJoynErrorDialog(Activity activity, final ChatApplication application) {
     Log.i(TAG, "createAllJoynErrorDialog()");
     final Dialog dialog = new Dialog(activity);

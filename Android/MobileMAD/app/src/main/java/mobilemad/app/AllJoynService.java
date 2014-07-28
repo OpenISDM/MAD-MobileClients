@@ -939,6 +939,20 @@ public class AllJoynService extends Service implements Observer {
     }
   }
 
+  /**
+   * Procedure Name:
+   * processFiles
+   * <p/>
+   * Procedure Description:
+   * Process selected files into bytes and send it using AllJoyn services.
+   * <p/>
+   * Parameters:
+   * ChatInterface tChatInterface - used to send files when joined to a session.
+   * String[] savedFilename - name of files to be used by destination devices to save the files.
+   * <p/>
+   * Possible Error Code or Exception:
+   * There is a problem with Bus signal to send the files.
+   */
   private void processFiles(ChatInterface tChatInterface, String[] savedFilename) {
     String filePath;
     File file = null;
@@ -1127,6 +1141,11 @@ public class AllJoynService extends Service implements Observer {
     String nickname = ctx.sender;
     nickname = nickname.substring(nickname.length() - 10, nickname.length());
 
+    /**
+     * Receive sequence of bytes, total bytes of file size, and name of file to be used as filename.
+     * When the total of received bytes same with total bytes of file size, the sequence of bytes
+     * will be saved into file with filename given by sender.
+     */
     try {
       tpath = Config.path + File.separator + "data" + File.separator + filename;
       file = new File(tpath);

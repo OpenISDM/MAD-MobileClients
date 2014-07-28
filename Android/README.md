@@ -3,10 +3,11 @@
 1. Maps Feature.
 2. Image Feature.
 3. List Feature.
-4. Settings Feature.
+4. Chat Feature.
+5. Settings Feature.
 
 ## IDE:
-Android Studio (version 0.5.8 Build 135.1155795).
+Android Studio (version 0.8.2 Build 135.1267975).
 
 ## SDK:
 Android SDK (API level 19) latest update and Google Play Services (with SDK minimum version Android 3.0 (Honeycomb (API level 11)).

@@ -324,6 +324,19 @@ public class SettingsFragment extends Fragment implements Observer {
     super.onDestroy();
   }
 
+  /**
+   * Procedure Name:
+   * showDialog
+   * <p/>
+   * Procedure Description:
+   * Create dialog by calling DialogBuilder class depends on type of dialog that called by developer.
+   * <p/>
+   * Parameters:
+   * int id - used to identify the type of dialog to be shown to the user.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   protected void showDialog(int id) {
     Log.i(TAG, "showDialog()");
     Dialog result = null;
@@ -359,6 +372,31 @@ public class SettingsFragment extends Fragment implements Observer {
     result.show();
   }
 
+  /**
+   * Procedure Name:
+   * updateChannelState
+   * <p/>
+   * Procedure Description:
+   * To determine status of AllJoyn host channel and host channel name. It can be idle, named,
+   * bound, advertised, connected, and unknown.
+   * Whenever host channel is idle, then user can set host channel name and start the channel.
+   * When user start the host channel, AllJoyn will checking the host channel name and bound the
+   * host channel.
+   * When host channel is started, it will advertised itself and it can be discovered by neighbour
+   * whenever they connected into same network and open the application.
+   * Host channel will state connected if there is another user join the host by this application.
+   * Host channel status will be unknown if there is problem with AllJoyn services when user try to
+   * start the host channel.
+   * After host channel started, then user can stop the host channel too and the state will
+   * become idle and it can't discovered by neighbour even though they still connected into same
+   * network and open the application.
+   * <p/>
+   * Parameters:
+   * None.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   private void updateChannelState() {
     AllJoynService.HostChannelState channelState = mChatApplication.hostGetChannelState();
     String name = mChatApplication.hostGetChannelName();
@@ -407,6 +445,19 @@ public class SettingsFragment extends Fragment implements Observer {
     }
   }
 
+  /**
+   * Procedure Name:
+   * updateNickName
+   * <p/>
+   * Procedure Description:
+   * To update nickname will be used by user when they use the chat feature.
+   * <p/>
+   * Parameters:
+   * None.
+   * <p/>
+   * Possible Error Code or Exception:
+   * None.
+   */
   private void updateNickName() {
     String nickName = mChatApplication.getNickName();
 
@@ -417,6 +468,10 @@ public class SettingsFragment extends Fragment implements Observer {
     lblNickName.setText(nickName);
   }
 
+  /**
+   * An AllJoyn error has happened. Since this activity pops up first, general error and application
+   * error will be handled.
+   */
   private void alljoynError() {
     if (mChatApplication.getErrorModule() == ChatApplication.Module.GENERAL ||
       mChatApplication.getErrorModule() == ChatApplication.Module.USE) {
