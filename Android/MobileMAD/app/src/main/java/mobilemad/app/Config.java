@@ -36,6 +36,9 @@ public class Config {
   protected final static String IMG_LOCATION1 = "http://140.109.22.142/cache/Cache.png";
   protected final static String FILE_LOCATION1 = "http://140.109.22.142/cache/Cache.rdf";
   protected final static String FILE1_LOCATION1 = "http://140.109.22.142/cache/Cache.json";
+  protected final static String IMG_LOCATION2 = "http://140.109.22.153/topic/img";
+  protected final static String FILE_LOCATION2 = "http://140.109.22.153/topic/rdf";
+  protected final static String FILE1_LOCATION2 = "http://140.109.22.153/topic/json";
 
 
   protected final static String SHELTER_INDOOR = "Shelter(Indoor)";

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+  package="mobilemad.app.tests"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <uses-sdk android:minSdkVersion="11"/>
+  <!-- Permission required to use the TCP transport -->
+  <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+  <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"></uses-permission>
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+  <!-- Permission required to access external storage -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+  <!-- We add an application tag here just so that we can indicate that
+         this package needs to link against the android.test library,
+         which is needed when building test cases. -->
+  <application>
+    <uses-library android:name="android.test.runner" />
+  </application>
+
+  <!--
+    Specifies the instrumentation test runner used to run the tests.
+    -->
+  <instrumentation
+    android:name="android.test.InstrumentationTestRunner"
+    android:targetPackage="mobilemad.app"
+    android:label="Tests for mobilemad.app" />
+
+</manifest>

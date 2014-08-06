@@ -156,21 +156,6 @@ public class ListFragment extends Fragment {
   }
 
   @Override
-  public void setMenuVisibility(final boolean visible) {
-    super.setMenuVisibility(visible);
-    if (visible) {
-      if (rootView != null) {
-        /**
-         * Initialize adapter into list view.
-         * Invokes the thread for show the data on list view when user return to tab List.
-         */
-        initListView();
-        runningThread("dataFiles.rdf", "dataFiles.json");
-      }
-    }
-  }
-
-  @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 

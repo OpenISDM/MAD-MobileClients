@@ -93,7 +93,8 @@ public class SettingsFragment extends Fragment implements Observer {
     }
   };
 
-  private ChatApplication mChatApplication = null;
+  ChatApplication mChatApplication = null;
+  Dialog aDialog;
   private DialogFragment alertDlgFragment;
   private DownloaderHTTP downloaderHTTP;
   private DataViewer dataViewer;
@@ -118,12 +119,12 @@ public class SettingsFragment extends Fragment implements Observer {
     rootView = inflater.inflate(R.layout.settings_fragment, container, false);
 
     txtImageLocation = (EditText) rootView.findViewById(R.id.txtImageLocation);
-    txtImageLocation.setHint(Config.IMG_LOCATION1);
-    txtImageLocation.setText(Config.IMG_LOCATION1);
+    txtImageLocation.setHint(Config.IMG_LOCATION);
+    txtImageLocation.setText(Config.IMG_LOCATION);
 
     txtDataLocation = (EditText) rootView.findViewById(R.id.txtDataLocation);
-    txtDataLocation.setHint(Config.FILE_LOCATION1);
-    txtDataLocation.setText(Config.FILE_LOCATION1);
+    txtDataLocation.setHint(Config.FILE_LOCATION);
+    txtDataLocation.setText(Config.FILE_LOCATION);
 
     btnDownloadFiles = (Button) rootView.findViewById(R.id.btnDownloadFiles);
     btnDeleteFiles = (Button) rootView.findViewById(R.id.btnDeleteFiles);
@@ -287,36 +288,6 @@ public class SettingsFragment extends Fragment implements Observer {
   }
 
   @Override
-  public void setMenuVisibility(boolean menuVisible) {
-    super.setMenuVisibility(menuVisible);
-    if (rootView != null) {
-
-      /**
-       * Keep a pointer to the Android Application class around. We use this
-       * as the Model for our MVC-based application. Whenever we are started
-       * we need to "check in" with the application so it can ensure that our
-       * required services are running.
-       */
-      mChatApplication = (ChatApplication) getActivity().getApplication();
-      mChatApplication.checkin();
-
-      /**
-       * Call down into the model to get its current state. Since the model
-       * outlives its Activities, this may actually be a lot of state and not
-       * just empty.
-       */
-      updateChannelState();
-      updateNickName();
-
-      /**
-       * Now that we're all ready to go, we are ready to accept notifications
-       * from other components.
-       */
-      mChatApplication.addObserver(this);
-    }
-  }
-
-  @Override
   public void onDestroy() {
     Log.i(TAG, "onDestroy()");
     mChatApplication = (ChatApplication) getActivity().getApplication();
@@ -368,6 +339,8 @@ public class SettingsFragment extends Fragment implements Observer {
       }
       break;
     }
+
+    aDialog = result;
 
     result.show();
   }

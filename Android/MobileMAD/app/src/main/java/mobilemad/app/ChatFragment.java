@@ -94,7 +94,8 @@ public class ChatFragment extends Fragment implements Observer {
   };
 
   private View rootView;
-  private ChatApplication mChatApplication = null;
+  ChatApplication mChatApplication = null;
+  Dialog aDialog;
   private ArrayAdapter<String> aaHistoryList;
   private Button btnJoin, btnLeave, btnSendFiles;
   private TextView lblChannelName, lblChannelStatus;
@@ -224,6 +225,7 @@ public class ChatFragment extends Fragment implements Observer {
     }
 
     if (showsDialog) {
+      aDialog = result;
       result.show();
     }
   }

@@ -104,22 +104,6 @@ public class DataFragment extends Fragment {
   }
 
   @Override
-  public void setMenuVisibility(final boolean visible) { // 0
-    super.setMenuVisibility(visible);
-    if (visible) {
-      if (rootView != null) {
-        try {
-          getContent();
-        } catch (IOException e) {
-          Log.i("DataFragment - setMenuVisibility - IOException", e.getMessage());
-        }
-        /*contentJSON();*/
-        /*contentRDF();*/
-      }
-    }
-  }
-
-  @Override
   public void onCreate(Bundle savedInstanceState) { // 1
     super.onCreate(savedInstanceState);
 

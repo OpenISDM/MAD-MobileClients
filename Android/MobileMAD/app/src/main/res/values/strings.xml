@@ -9,7 +9,6 @@
   <string name="ui_tabname_data">Data</string>
   <string name="ui_tabname_list">List</string>
   <string name="ui_tabname_chat">Chat</string>
-  <string name="ui_tabname_transfer">Transfer Files</string>
   <string name="ui_tabname_settings">Settings</string>
 
   <!-- Menu Strings -->

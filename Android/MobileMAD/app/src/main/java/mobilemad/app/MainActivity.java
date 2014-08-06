@@ -214,6 +214,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
       }
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+      return POSITION_NONE;
+    }
+
     /**
      * Returns the number of page.
      */

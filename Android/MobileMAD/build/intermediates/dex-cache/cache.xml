@@ -2,40 +2,40 @@
 <pre-dex-items>
 
     <item
-        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-026b6ed3677fdd04371d07e71ff8a731d833e8ba.jar"
-        jar="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
+        dex="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-6b177c87f01de8258cfa31f4e2e23f3330b931b6.jar"
+        jar="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
     <item
-        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\alljoyn-e9ec7d23bc9283f1fbe5c7624c93127963bd0750.jar"
-        jar="E:\Editor\Project\Android-Studio\MobileMAD\app\libs\alljoyn.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="ed6fba1c4d3c360e07f80fd54500612e982e646a"/>
-    <item
-        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\classes-31b9caee047591dc4bbe700e2e32a8a8a1148d77.jar"
-        jar="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
+        dex="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\classes-0496ddb5beb1eaf7bb26944be5274ae6bc5e4ba6.jar"
+        jar="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
     <item
-        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\classes-e1733fd09704d2e368b6f1687bfbffbdf05f2227.jar"
-        jar="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\5.0.77\classes.jar"
+        dex="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\alljoyn-699d427191d76f391e7c502777e63609f495e307.jar"
+        jar="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\libs\alljoyn.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="b6a82434c1eca686607867cd906bcc80ed987837"/>
+        sha1="ed6fba1c4d3c360e07f80fd54500612e982e646a"/>
     <item
-        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-8a3b7228d8833b56b62c65d9dfa425621236469f.jar"
-        jar="E:\Editor\Android Studio\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        dex="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\classes-cfb5e496abea59187130a579660dc07343302dd0.jar"
+        jar="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\5.0.89\classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+        sha1="d71573c9c5ea98a8db47ad6ff993a63d492b3bfa"/>
     <item
-        dex="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\classes-642faa284af7cc54ac894012113adc00f3b4b25b.jar"
-        jar="E:\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
+        dex="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\classes-1d4c71bf587f4c76c46b3ea145df42cae9cf473b.jar"
+        jar="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
+    <item
+        dex="C:\Me\E\Editor\Project\Android-Studio\MobileMAD\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-097fb42e782c7b1fe94f9fe0ee1fc7f0272c31af.jar"
+        jar="C:\Me\E\Editor\Android Studio\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
 
 </pre-dex-items>
