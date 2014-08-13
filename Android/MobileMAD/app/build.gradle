@@ -1,20 +1,42 @@
 apply plugin: 'android'
 
+// The sample build uses multiple directories to
+// keep boilerplate and common code separate from
+// the main sample code.
+List<String> dirs = [
+  'androidTest', // test code.
+  'main']     // main sample code; look here for the interesting stuff.
+
 android {
   compileSdkVersion 19
   buildToolsVersion '19.1.0'
+  
   defaultConfig {
     minSdkVersion 11
     targetSdkVersion 19
     versionCode 1
     versionName '1.0'
   }
+  
   buildTypes {
     release {
       runProguard false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
     }
   }
+  
+  sourceSets {
+    main {
+      dirs.each { dir ->
+        java.srcDirs "src/${dir}/java"
+        res.srcDirs "src/${dir}/res"
+      }
+    }
+    androidTest.setRoot('androidTest')
+    androidTest.java.srcDirs = ['androidTest/java']
+
+  }
+  
   productFlavors {
   }
 }
