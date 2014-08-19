@@ -10,6 +10,9 @@
     android:minSdkVersion="11"
     android:targetSdkVersion="19"/>
 
+  <uses-library
+    android:name="com.google.android.maps" />
+
   <permission
     android:name="mobilemad.app.permission.MAPS_RECEIVE"
     android:protectionLevel="signature"/>
