@@ -27,7 +27,7 @@ android {
       res.srcDirs = ['src/main/res']
     }
 
-    instrumentTest {
+    androidTest {
       java.srcDirs = ['src/androidTest/java']
       manifest.srcFile file('src/androidTest/AndroidManifest.xml')
       res.srcDirs = ['src/main/res']
@@ -38,21 +38,19 @@ android {
   }
 }
 
-/*sourceSets {
-  unitTest {
-    java.srcDir file('src/androidTest/java')
-    compileClasspath = sourceSets.androidTest.output
-    runtimeClasspath = output + compileClasspath
+sourceSets {
+  androidTest {
+    java.srcDirs = ['src/androidTest/java']
   }
 }
 
-task unitTest(type:Test, dependsOn: assemble) {
+task androidTest(type:Test, dependsOn: assemble) {
   description = 'Runs the Instrumentation Test'
-  testClassesDir = sourceSets.unitTest.output.classesDir
-  classpath = sourceSets.unitTest.runtimeClasspath
+  testClassesDir = sourceSets.androidTest.output.classesDir
+  classpath = sourceSets.androidTest.runtimeClasspath
 }
 
-check.dependsOn unitTest*/
+check.dependsOn androidTest
 
 dependencies {
   compile 'com.android.support:appcompat-v7:20.+'
