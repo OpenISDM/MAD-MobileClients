@@ -33,8 +33,8 @@ android {
       }
     }
 
-    androidTest.setRoot('androidTest')
-    androidTest.java.srcDirs = ['androidTest/java']
+    androidTest.setRoot('src/androidTest')
+    androidTest.java.srcDirs = ['src/androidTest/java']
   }
 
   productFlavors {
@@ -42,12 +42,16 @@ android {
 }
 
 sourceSets {
+  androidTest.java.srcDirs = ['src/androidTest/java']
   unitTest {
-    java.srcDirs file('src/androidTest/java')
+    java.srcDir file('src/androidTest/java')
+    compileClasspath = sourceSets.androidTest.output
+    runtimeClasspath = output + compileClasspath
   }
 }
 
 task unitTest(type:Test, dependsOn: assemble) {
+  description = 'Runs the Instrumentation Test'
   testClassesDir = sourceSets.unitTest.output.classesDir
   classpath = sourceSets.unitTest.runtimeClasspath
 }
