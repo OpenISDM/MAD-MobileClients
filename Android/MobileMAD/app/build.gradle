@@ -57,6 +57,7 @@ dependencies {
   compile 'com.google.android.gms:play-services:+'
   compile files('libs/alljoyn.jar')
   androidTestCompile 'com.google.android:android-test:4.1.1.4'
+  androidTestCompile 'com.google.android:support-v4:r7'
   androidTestCompile files("$project.buildDir/classes/debug")
   androidTestCompile 'junit:junit:4.11'
   androidTestCompile 'com.google.android:android:4.0.1.2'
