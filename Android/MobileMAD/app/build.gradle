@@ -69,4 +69,5 @@ dependencies {
   androidTestCompile 'com.google.android:android:4.0.1.2'
   androidTestCompile 'com.google.android:android-test:4.1.1.4'
   androidTestCompile 'com.google.android:support-v4:r7'
+  androidTestCompile files('libs/alljoyn.jar')
 }
