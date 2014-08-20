@@ -56,7 +56,7 @@ task androidTest(type:Test, dependsOn: assemble) {
   classpath = sourceSets.androidTest.runtimeClasspath
 }
 
-check.dependsOn androidTest
+/*check.dependsOn androidTest*/
 
 dependencies {
   compile 'com.android.support:appcompat-v7:20.+'
