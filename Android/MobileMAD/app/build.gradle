@@ -39,7 +39,7 @@ android {
 }
 
 // extend the runtime
-configurations {
+/*configurations {
   androidTestCompile.extendsFrom runtime
   androidTestRuntime.extendsFrom androidTestCompile
 }
@@ -56,18 +56,18 @@ task androidTest(type:Test, dependsOn: assemble) {
   classpath = sourceSets.androidTest.runtimeClasspath
 }
 
-/*check.dependsOn androidTest*/
+check.dependsOn androidTest*/
 
 dependencies {
   compile 'com.android.support:appcompat-v7:20.+'
   compile 'com.google.android.gms:play-services:+'
   compile files('libs/alljoyn.jar')
 
-  androidTestCompile files("$project.buildDir/classes/debug")
+  /*androidTestCompile files("$project.buildDir/classes/debug")
   androidTestCompile files("$project.buildDir/classes/release")
   androidTestCompile 'junit:junit:4.11'
   androidTestCompile 'com.google.android:android:4.0.1.2'
   androidTestCompile 'com.google.android:android-test:4.1.1.4'
   androidTestCompile 'com.google.android:support-v4:r7'
-  androidTestCompile files('libs/alljoyn.jar')
+  androidTestCompile files('libs/alljoyn.jar')*/
 }
