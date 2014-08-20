@@ -23,7 +23,7 @@ NB: Google APIs Key needed to change when the environment for project is change,
 
 ##Jenkins:
 For now, Jenkins can build android application, because Gradle Android projects (particularly if you are using Maps, USB or Compatibility Libraries) have library dependencies that cannot be resolved with the local Android SDK and are not available from Maven Central.
-To run testing in Jenkins, open app.gradle located in .\MobileMAD\app and uncomment some line with comment remark.
+To run testing in Jenkins, open "app.gradle" file located in ".\MobileMAD\app" and uncomment some line with comment remark.
 Compile the project and commit into git.
 MobileMAD configuration in Jenkins can be seen on: http://140.109.17.55:8080/job/MobileMAD
 
